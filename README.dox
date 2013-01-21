@@ -1,0 +1,24 @@
+/**
+ * @file README.dx
+ * @mainpage Project Presentation
+ * @par Introduction
+ * Some basic dynamic data structures implemented as pure, generic ADT:s - in ANSI C.
+ * - Singly-linked list
+ * - Doubly-linked list
+ * .
+ * Original and major parts of the code written by 
+ * <a href="http://www.kyleloudon.com/" target="blank_">Kyle Loudon</a>.\n
+ * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="blank_">Dan Levin</a>.
+ * @author   <a href="http://www.kyleloudon.com/" target="blank_">Kyle Loudon</a> and <a href="https://github.com/dale48" target="blank_">Dan Levin</a>
+ * @date     Mon Dec 03 15:20:15 2012
+ * @version  0.1 (<a href="md__change_log.html">To ChangeLog</a>)
+ * @par ToDo
+ *  Continue making more dynamic data structures as ADT:s - such as:
+ * - A queue ADT - **QUEUE**
+ * - A stack ADT - **STACK**
+ * - A priority queue ADT - **PQUEUE**
+ * - A set ADT - **SET**\n
+ * - A heap ADT - **HEAP**\n
+ * .
+ *
+ **/

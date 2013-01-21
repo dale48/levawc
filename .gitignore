@@ -1,5 +1,6 @@
 # Object files
 *.o
+*.obj
 
 # Libraries
 *.lib
@@ -15,6 +16,9 @@
 *.exe
 *.out
 *.app
+
+# Bakefiles
+*.bkl
 
 # Temporary files
 *~
