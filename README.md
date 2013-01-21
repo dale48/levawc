@@ -11,5 +11,5 @@ Original source code was written by <a href="http://www.kyleloudon.com/">Kyle Lo
 
 <h5>Disclaimer:</h5> see file "UNLICENSE" below.
 
-<h5>Documentation:</h5> Clone this project, install <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> on your box - and finally run "doxygen" from the command prommpt when standing in the top-most directory of your clone. Then point your browser to the file "index.html" in the the new subdirectory  "html" - recently created by this command.
+<h5>Documentation:</h5> Clone this project, install <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> on your box - and finally run <i>doxygen</i> from the command prompt when standing in the top-most directory of your clone. Then point your browser to the file <i>index.html</i> in the the new subdirectory  <i>html</i> - recently created by this command.
 
