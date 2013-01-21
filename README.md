@@ -7,9 +7,9 @@ Original source code was written by <a href="http://www.kyleloudon.com/">Kyle Lo
 
 <h5>Authors:</h5> <a href="http://www.kyleloudon.com/">Kyle Loudon</a> - and me.
 
-<h5>License:</h5> see file "UNLICENSE" below.
+<h5>License:</h5> see file "UNLICENSE" above.
 
-<h5>Disclaimer:</h5> see file "UNLICENSE" below.
+<h5>Disclaimer:</h5> see file "UNLICENSE" above.
 
 <h5>Documentation:</h5> Clone this project, install <a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> on your box - and finally run command <b>doxygen</b> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <b>index.html</b> in the the new subdirectory  <b>html</b> - recently created by this command.
 
