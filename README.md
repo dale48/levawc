@@ -3,7 +3,7 @@ Project "levawc"
  
 Purpose: Some fundamental, pure, generic container ADT:s - written in ANSI C. Primarily for educational purposes. 
 
-Original source code was written by <a href="http://www.kyleloudon.com/">Kyle Loudon</a> - in his book "Algorithms with C" (http://shop.oreilly.com/product/9781565924536.do) <a href="http://http://oreilly.com/">O'Reilly Company</a>. I have rewritten and extended some minor parts of the original source conde. Finally, I want to thank Kyle and O'Reilly for giving me permisson to publish this code here at GitHub.
+Original source code was written by <a href="http://www.kyleloudon.com/">Kyle Loudon</a> - in his book <a href="http://shop.oreilly.com/product/9781565924536.do">Algorithms with C</a> - published at <a href="http://www.oreilly.com/">O'Reilly Company</a>. I have rewritten and extended some minor parts of the original source code. Finally, I want to thank Kyle and O'Reilly for giving me permisson to publish this code here at GitHub.
 
 Authors: <a href="http://www.kyleloudon.com/">Kyle Loudon</a> - and me, Dan Levin.
 
