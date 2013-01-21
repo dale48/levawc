@@ -15,6 +15,6 @@ Original source code was written by <a href="http://www.kyleloudon.com/">Kyle Lo
 
 <h5>Demos:</h5> In the <b>demos</b> subdirectory you will find some simple demos (<b>demo1.c, demo2.c</b>) - using the ADT containers. You can build these yourself - by simply using the enclosed makefiles in this directory, accordingly:
 
-<b>linux.mak</b> - uses the native gcc compiler in Linux. Command: <b>gcc -f linux.mak</b>
-<b>mingw32.mak</b> - uses mingw32 gcc compiler in Win32. Command: <b>mingw32-make -f mingw32.mak</b>
-<b>vcwin32.mak</b> - uses Visual C compiler in Win32. Command: <b>nmake -f vcwin32.mak</b>
+<b>linux.mak</b> - uses the native gcc compiler in Linux. Command: <b>gcc -f linux.mak</b><br />
+<b>mingw32.mak</b> - uses mingw32 gcc compiler in Win32. Command: <b>mingw32-make -f mingw32.mak</b><br />
+<b>vcwin32.mak</b> - uses Visual C compiler in Win32. Command: <b>nmake -f vcwin32.mak</b><br />
