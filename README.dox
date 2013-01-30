@@ -1,24 +1,25 @@
 /**
- * @file README.dx
+ * @file README.dox
  * @mainpage Project Presentation
  * @par Introduction
  * Some basic dynamic data structures implemented as pure, generic ADT:s - in ANSI C.
  * - Singly-linked list
  * - Doubly-linked list
+ * - Stack
+ * - Queue
  * .
  * Original and major parts of the code written by 
- * <a href="http://www.kyleloudon.com/" target="blank_">Kyle Loudon</a>.\n
- * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="blank_">Dan Levin</a>.
- * @author   <a href="http://www.kyleloudon.com/" target="blank_">Kyle Loudon</a> and <a href="https://github.com/dale48" target="blank_">Dan Levin</a>
- * @date     Mon Dec 03 15:20:15 2012
- * @version  0.1 (<a href="md__change_log.html">To ChangeLog</a>)
+ * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
+ * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
+ * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
+ * @date     Tue Jan 29 13:10:01 2013
+ * @version  0.2 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par ToDo
- *  Continue making more dynamic data structures as ADT:s - such as:
- * - A queue ADT - **QUEUE**
- * - A stack ADT - **STACK**
+ *  Continue making more pure, generic ADT:s - such as:
  * - A priority queue ADT - **PQUEUE**
  * - A set ADT - **SET**\n
  * - A heap ADT - **HEAP**\n
+ * - A hashtable ADT - **HASHTABLE**\n
  * .
  *
  **/
