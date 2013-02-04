@@ -14,4 +14,4 @@
 <h4>New features</h4>
 <p>- None</p>
 <h4>Bugfixes</h4>
-<p>None</p>
+<p>- None</p>
