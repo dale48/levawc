@@ -124,7 +124,6 @@ int main(void)
   for (i = 0; i < nr; ++i)
     {
       void *piq, *pis;
-      int tmp;
 
       QUEUEdequeue(myqueue, &piq);
       sprintf(mess, "QUEUE: Dequeued: %02d (new frontvalue: %02d)", *(int *)piq, *(int *)QUEUEpeek(myqueue));

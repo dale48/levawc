@@ -219,10 +219,11 @@ int main(void)
 {
   /* Declare YOUR variables here ! */
   CHtbl mytbl;
+  char msg[BUFSIZ];
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
-  char msg[BUFSIZ];
+
 
   printf("--- INITIALIZING A CHAINED HASHTABLE, %d ELEMENTS, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
 
