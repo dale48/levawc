@@ -5,9 +5,9 @@
  *     \___/  
  *
  * Filename: stack.h
- * Author  : Dan Levin
- * Date    : Thu Dec 20 09:08:21 2012
- * Version : 0.1 
+ * Author  : Kyle Loudon/Dan Levin
+ * Date    : Wed Feb 20 10:55:46 GMT 2013
+ * Version : 0.25
  * ---
  * Description: A C interface for a generic stack ADT.
  * 
@@ -15,6 +15,8 @@
  *
  * Date        Revision message
  * 2012-12-20  Created this file
+ * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
+ *             in/out parameters - i.e. double-pointers.             
  *
  */
 
@@ -45,8 +47,9 @@ extern "C" {
    * for freeing element data, when the stack is deleted. If @a destroy is 
    * NULL - then element data will be left untouched when the list is 
    * destroyed.
-   * @return A reference - to a new, empty stack. Take really good care 
-   * of this return value, since it will be needed as a parameter in 
+   * @return A reference - to a new, empty stack - if dynamic memory
+   * allocation for the ADT was successful - or NULL otherwise. Take really
+   * good care of this return value, since it will be needed as a parameter in 
    * subsequent calls - to the majority of other stack handling functions 
    * in this stack function interface - i.e. a sort of "handle" to the stack.
    * @see STACKdestroy()
@@ -88,19 +91,19 @@ extern "C" {
    * Remove(=pop) the top element.
    *
    * When called, the 2nd parameter of this function, @a data,
-   * should be a reference to a (user-defined) pointer.
-   * After the call - a reference to data of the removed element
-   * can be accessed by dereferencing the parameter @a data - 
-   * that is, @a *data - if the call was succesful. The caller 
-   * is responsible for the future  of this memory - 
-   * deallocating it, if needed, for example.
+   * should reference an (external, user-defined) pointer.
+   * After the call - this referenced, external pointer has been
+   * redirected, to point to the data of the removed element - 
+   * if the call was succesful. The caller is responsible for
+   * the future  of this memory - deallocating it, if needed,
+   * for example.
    *
    * @param[in] stk - reference to current stack.
-   * @param[out] data - reference to a pointer.
-   * After the call, this parameter @a data, when dereferenced,
-   * will point to data of the removed element - if the call was
+   * @param[out] data - reference to a pointer. After the call, 
+   * this referenced pointer has been redirected to point to
+   * the data of the removed element - if the call was
    * successful. The caller is responsible for the future  of
-   * this memory.
+   * this memory - deallocating it, for example.
    * 
    * @return Value 0 - if the call was OK - or 
    * value -1 otherwise.

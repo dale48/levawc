@@ -35,29 +35,35 @@ DEBUG = 0
 
 ### Variables: ###
 
-LEVAWC_CFLAGS = /MD$(____DEBUG_12) /DWIN32 $(____DEBUG) $(____DEBUG_4) \
-	$(____DEBUG_10) $(______DEBUG) /Fdlevawc.pdb $(____DEBUG_14) /I.\.. \
+LEVAWC_CFLAGS = /MD$(____DEBUG_18) /DWIN32 $(____DEBUG) $(____DEBUG_15) \
+	$(____DEBUG_16) $(______DEBUG) /Fdlevawc.pdb $(____DEBUG_20) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 LEVAWC_OBJECTS =  \
 	levawc_slist.obj \
 	levawc_dlist.obj \
 	levawc_stack.obj \
-	levawc_queue.obj
-DEMO1_CFLAGS = /MD$(____DEBUG_12) /DWIN32 $(____DEBUG) $(____DEBUG_4) \
-	$(____DEBUG_10) $(______DEBUG) /Fddemo1.pdb $(____DEBUG_14) /I.\.. \
+	levawc_queue.obj \
+	levawc_chashtbl.obj
+DEMO1_CFLAGS = /MD$(____DEBUG_18) /DWIN32 $(____DEBUG) $(____DEBUG_15) \
+	$(____DEBUG_16) $(______DEBUG) /Fddemo1.pdb $(____DEBUG_20) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO1_OBJECTS =  \
 	demo1_demo1.obj
-DEMO2_CFLAGS = /MD$(____DEBUG_12) /DWIN32 $(____DEBUG) $(____DEBUG_4) \
-	$(____DEBUG_10) $(______DEBUG) /Fddemo2.pdb $(____DEBUG_14) /I.\.. \
+DEMO2_CFLAGS = /MD$(____DEBUG_18) /DWIN32 $(____DEBUG) $(____DEBUG_15) \
+	$(____DEBUG_16) $(______DEBUG) /Fddemo2.pdb $(____DEBUG_20) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO2_OBJECTS =  \
 	demo2_demo2.obj
-DEMO3_CFLAGS = /MD$(____DEBUG_12) /DWIN32 $(____DEBUG) $(____DEBUG_4) \
-	$(____DEBUG_10) $(______DEBUG) /Fddemo3.pdb $(____DEBUG_14) /I.\.. \
+DEMO3_CFLAGS = /MD$(____DEBUG_18) /DWIN32 $(____DEBUG) $(____DEBUG_15) \
+	$(____DEBUG_16) $(______DEBUG) /Fddemo3.pdb $(____DEBUG_20) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO3_OBJECTS =  \
 	demo3_demo3.obj
+DEMO4_CFLAGS = /MD$(____DEBUG_18) /DWIN32 $(____DEBUG) $(____DEBUG_15) \
+	$(____DEBUG_16) $(______DEBUG) /Fddemo4.pdb $(____DEBUG_20) /I.\.. \
+	$(CPPFLAGS) $(CFLAGS)
+DEMO4_OBJECTS =  \
+	demo4_demo4.obj
 
 ### Conditionally set variables: ###
 
@@ -65,19 +71,25 @@ DEMO3_OBJECTS =  \
 ____DEBUG_19_25 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_19_25 = $(____DEBUG_13)
+____DEBUG_19_25 = $(____DEBUG_19)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_33_39 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_33_39 = $(____DEBUG_13)
+____DEBUG_33_39 = $(____DEBUG_19)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_47_53 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_47_53 = $(____DEBUG_13)
+____DEBUG_47_53 = $(____DEBUG_19)
+!endif
+!if "$(DEBUG)" == "0"
+____DEBUG_61_67 = 
+!endif
+!if "$(DEBUG)" == "1"
+____DEBUG_61_67 = $(____DEBUG_19)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG = /DNDEBUG
@@ -86,22 +98,22 @@ ____DEBUG = /DNDEBUG
 ____DEBUG = 
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_4 = /O2
+____DEBUG_15 = /O2
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_4 = /Od
+____DEBUG_15 = /Od
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_10 = 
+____DEBUG_16 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_10 = /Zi
+____DEBUG_16 = /Zi
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_11 = 
+____DEBUG_17 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_11 = /DEBUG
+____DEBUG_17 = /DEBUG
 !endif
 !if "$(DEBUG)" == "0"
 ______DEBUG = 
@@ -110,28 +122,28 @@ ______DEBUG =
 ______DEBUG = /D_DEBUG
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_12 = 
+____DEBUG_18 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_12 = d
+____DEBUG_18 = d
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_13 = /opt:ref /opt:icf
+____DEBUG_19 = /opt:ref /opt:icf
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_13 = 
+____DEBUG_19 = 
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_14 = 
+____DEBUG_20 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_14 = /W4
+____DEBUG_20 = /W4
 !endif
 
 
 ### Targets: ###
 
-all: levawc.lib demo1.exe demo2.exe demo3.exe
+all: levawc.lib demo1.exe demo2.exe demo3.exe demo4.exe
 
 clean: 
 	-if exist .\*.obj del .\*.obj
@@ -147,6 +159,9 @@ clean:
 	-if exist demo3.exe del demo3.exe
 	-if exist demo3.ilk del demo3.ilk
 	-if exist demo3.pdb del demo3.pdb
+	-if exist demo4.exe del demo4.exe
+	-if exist demo4.ilk del demo4.ilk
+	-if exist demo4.pdb del demo4.pdb
 
 levawc.lib: $(LEVAWC_OBJECTS)
 	if exist $@ del $@
@@ -155,18 +170,23 @@ levawc.lib: $(LEVAWC_OBJECTS)
 <<
 
 demo1.exe: $(DEMO1_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_11) /pdb:"demo1.pdb" $(____DEBUG_19_25) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_17) /pdb:"demo1.pdb" $(____DEBUG_19_25) $(LDFLAGS) @<<
 	$(DEMO1_OBJECTS)   levawc.lib
 <<
 
 demo2.exe: $(DEMO2_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_11) /pdb:"demo2.pdb" $(____DEBUG_33_39) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_17) /pdb:"demo2.pdb" $(____DEBUG_33_39) $(LDFLAGS) @<<
 	$(DEMO2_OBJECTS)   levawc.lib
 <<
 
 demo3.exe: $(DEMO3_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_11) /pdb:"demo3.pdb" $(____DEBUG_47_53) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_17) /pdb:"demo3.pdb" $(____DEBUG_47_53) $(LDFLAGS) @<<
 	$(DEMO3_OBJECTS)   levawc.lib
+<<
+
+demo4.exe: $(DEMO4_OBJECTS) levawc.lib
+	link /NOLOGO /OUT:$@  $(____DEBUG_17) /pdb:"demo4.pdb" $(____DEBUG_61_67) $(LDFLAGS) @<<
+	$(DEMO4_OBJECTS)   levawc.lib
 <<
 
 levawc_slist.obj: .\..\slist.c
@@ -181,6 +201,9 @@ levawc_stack.obj: .\..\stack.c
 levawc_queue.obj: .\..\queue.c
 	$(CC) /c /nologo /TC /Fo$@ $(LEVAWC_CFLAGS) .\..\queue.c
 
+levawc_chashtbl.obj: .\..\chashtbl.c
+	$(CC) /c /nologo /TC /Fo$@ $(LEVAWC_CFLAGS) .\..\chashtbl.c
+
 demo1_demo1.obj: .\demo1.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO1_CFLAGS) .\demo1.c
 
@@ -189,4 +212,7 @@ demo2_demo2.obj: .\demo2.c
 
 demo3_demo3.obj: .\demo3.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO3_CFLAGS) .\demo3.c
+
+demo4_demo4.obj: .\demo4.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO4_CFLAGS) .\demo4.c
 

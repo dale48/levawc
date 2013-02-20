@@ -6,8 +6,8 @@
  *
  * Filename: demo3.c
  * Author  : Dan Levin
- * Date    : Tue Jan 22 19:21:32 2013
- * Version : 0.1 
+ * Date    : Wed Feb 20 11:59:40 GMT 2013
+ * Version : 0.15
  * ---
  * Description: A demo of stack/queue ADT usage - in LevAWC
  *
@@ -102,14 +102,24 @@ int main(void)
   my_clearscrn();
 
   printf("--- INITIALIZING A QUEUE, %d ELEMENTS, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
-  myqueue = QUEUEinit(my_destroy); /* Initialize the queue... */
+  if ((myqueue = QUEUEinit(my_destroy)) == NULL) /* Initialize the queue... */
+    {
+      printf("\nFatal error - bailing out...!");
+      exit(-1);
+    }
+
   queue_elements(myqueue, NR_OF_ITEMS); /* Populate the queue... */
 
   nr = QUEUEsize(myqueue)/2;  /* Save half the size of the queue... */
   sprintf(mess, "\nNext - let's DEQUEUE %d elements from our queue...", nr);
   prompt_and_pause(mess);
   prompt_and_pause("...and now PUSH them - on a brand, new STACK...!!");
-  mystk = STACKinit(my_destroy); /* Set up a new stack... */
+
+  if ((mystk = STACKinit(my_destroy)) == NULL) /* Set up a new stack... */
+    {
+      printf("\nFatal error - bailing out...!");
+      exit(-1);
+    }
 
   for (i = 0; i < nr; ++i)
     {

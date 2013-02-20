@@ -6,8 +6,8 @@
  *
  * Filename: slist.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Mon Dec 03 15:20:15 2012
- * Version : 0.1 
+ * Date    : Wed Feb 20 10:37:13 GMT 2013
+ * Version : 0.25 
  * ---
  * Description: A singly-linked list - implemented as a pure, generic ADT.
  *
@@ -15,7 +15,13 @@
  *
  * Date        Revision message
  * 2012-12-03  Created this file
- *
+ * 2013-02-05  Made following changes to function 'int SLISTremnode(Slist list, void **data)':
+ *             - Changed function name to - 'int SLISTfind_remove(Slist list, void **data)'
+ *             - Changed return value - for missing "match-callback"(=not set) - from -1 to -2
+ *             - Changed return value - for node not found - from -1 to 1.
+ * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
+ *             in/out parameters - i.e. double-pointers.             
+ *             
  */
 
 /**
@@ -197,7 +203,7 @@ SlistNode SLISTfindnode(Slist list, const void *data)
   return member;
 }
 
-int SLISTremnode(Slist list, void **data)
+int SLISTfind_remove(Slist list, void **data)
 {
   SlistNode member, prev;
 
@@ -205,8 +211,9 @@ int SLISTremnode(Slist list, void **data)
 
   /* If match-callback not set */
   if (list->match == NULL)
-    return -1;
+    return -2;
 
+  /* Search list sequentially.. */
   for (member = list->head; member != NULL; member = member->next) 
     {
       if (list->match(*data, member->data))
@@ -215,9 +222,10 @@ int SLISTremnode(Slist list, void **data)
       prev = member;
     }
 
-  if (member == NULL)
-    return -1;
+  if (member == NULL) /* Node not found */
+    return 1;
 
+  /* Perform the removal.. */
   return SLISTremnext(list, prev, data);
 }
 

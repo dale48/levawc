@@ -6,8 +6,8 @@
  *
  * Filename: demo2.c
  * Author  : Dan Levin
- * Date    : Thu Dec 13 17:31:15 2012
- * Version : 0.1 
+ * Date    : Wed Feb 20 11:59:40 GMT 2013
+ * Version : 0.15
  * ---
  * Description: A short C demo program testing the function interface of library LevAWC, doubly-linked list. 
  * 
@@ -15,6 +15,8 @@
  * Date   Revision
  * 121212 Created this program the first time..
  * 121218 After some editing I consider this hack ready for going public :-)
+ * 130205 Used the new function 'int DLISTfind_remove()'...
+ * 130205 Further editing - more extensive error handling than before..
  * 
  *
  */
@@ -111,35 +113,38 @@ void add_nodes(Dlist list, int nr_of_nodes)
 /* --- Function: void remove_nodes(Dlist list, int nr_of_removes) --- */
 void remove_nodes(Dlist list, int nr_of_removes)
 {
-  int i=0, tmp, *pi;
-  DlistNode node;
+  int i=0, tmp, *pi, retval;
 
   do
     {
       printf("\nCurrent list content(%d nodes): ", DLISTsize(list));
       DLISTtraverse(list, print, DLIST_FWD);
 
-      printf("\nEnter nodedata to be removed: ");
+      printf("\nEnter keydata for node to be removed: ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
-      if ((node = DLISTfindnode(list, &tmp)) != NULL) /* Node found */
-	{
-	  /* Remove node - and free memory */
-	  pi = &tmp;
+      /* Remove node - and free memory */
+      pi = &tmp;
 
-	  if ((DLISTremove(list, node, (void **)&pi)) == 0)
+      if ((retval = DLISTfind_remove(list, (void **)&pi)) != 0)
+	{
+	  if (retval == 1)
+	    printf("Node %d not found in list...!", tmp);	    
+	  else 
 	    {
-	      free(pi);
-	    }
-	  else
-	    {
-	      printf("Fatal error - exiting...");
-	      exit(-1);
+	      if (retval == -2)
+		printf("\nMatch-callback is missing... - bailing out!");
+	      else
+ 		printf("\nFatal error... - bailing out!");
+	      exit(retval);
 	    }
 	}
       else
-	prompt_and_pause("Node not found!");
+	{
+	  printf("Node %d removed...!", *pi);
+	  free(pi);
+	}
 
       i++;
 
@@ -172,9 +177,11 @@ void insert_nodes(Dlist list, int nr_of_insertions)
 	      printf("Fatal error - exiting...");
 	      exit(-1);
 	    }
+	  else
+	    printf("Node 99 inserted after node %d", *(int *)DLISTdata(node));
 	}
       else
-	prompt_and_pause("Node not found!");
+	  printf("Node %d not found...!", tmp);
 
       i++;
 
@@ -191,6 +198,12 @@ int main(void)
 
   printf("--- INITIALIZING A DOUBLY-LINKED LIST, %d NODES, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
   mylist = DLISTinit(my_destroy); /* Initialize the list */
+  if ((mylist = DLISTinit(my_destroy)) == NULL) /* Initialize the list */
+    {
+      printf("\nFatal error... - bailing out!");
+      exit(-1);
+    }
+
   add_nodes(mylist, NR_OF_ITEMS); /* Populate the list */
   prompt_and_pause("\nNext - let's SORT the list...");
 

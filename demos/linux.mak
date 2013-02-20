@@ -40,25 +40,30 @@ DEBUG ?= 0
 ### Variables: ###
 
 CPPDEPS = -MT$@ -MF`echo $@ | sed -e 's,\.o$$,.d,'` -MD -MP
-LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_4) $(____DEBUG_7) $(____DEBUG_6) -I./.. \
-	$(CPPFLAGS) $(CFLAGS)
+LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	-I./.. $(CPPFLAGS) $(CFLAGS)
 LEVAWC_OBJECTS =  \
 	levawc_slist.o \
 	levawc_dlist.o \
 	levawc_stack.o \
-	levawc_queue.o
-DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_4) $(____DEBUG_7) $(____DEBUG_6) -I./.. \
-	$(CPPFLAGS) $(CFLAGS)
+	levawc_queue.o \
+	levawc_chashtbl.o
+DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	-I./.. $(CPPFLAGS) $(CFLAGS)
 DEMO1_OBJECTS =  \
 	demo1_demo1.o
-DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_4) $(____DEBUG_7) $(____DEBUG_6) -I./.. \
-	$(CPPFLAGS) $(CFLAGS)
+DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	-I./.. $(CPPFLAGS) $(CFLAGS)
 DEMO2_OBJECTS =  \
 	demo2_demo2.o
-DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_4) $(____DEBUG_7) $(____DEBUG_6) -I./.. \
-	$(CPPFLAGS) $(CFLAGS)
+DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	-I./.. $(CPPFLAGS) $(CFLAGS)
 DEMO3_OBJECTS =  \
 	demo3_demo3.o
+DEMO4_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	-I./.. $(CPPFLAGS) $(CFLAGS)
+DEMO4_OBJECTS =  \
+	demo4_demo4.o
 
 ### Conditionally set variables: ###
 
@@ -69,28 +74,28 @@ ifeq ($(DEBUG),1)
 ____DEBUG = 
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_4 = -O2
+____DEBUG_7 = -O2
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_4 = -O0
+____DEBUG_7 = -O0
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_6 = 
+____DEBUG_10 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_6 = -W -Wall
+____DEBUG_10 = -W -Wall
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_7 = 
+____DEBUG_11 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_7 = -g
+____DEBUG_11 = -g
 endif
 
 
 ### Targets: ###
 
-all: liblevawc.a demo1 demo2 demo3
+all: liblevawc.a demo1 demo2 demo3 demo4
 
 install: 
 
@@ -103,6 +108,7 @@ clean:
 	rm -f demo1
 	rm -f demo2
 	rm -f demo3
+	rm -f demo4
 
 liblevawc.a: $(LEVAWC_OBJECTS)
 	rm -f $@
@@ -110,13 +116,16 @@ liblevawc.a: $(LEVAWC_OBJECTS)
 	$(RANLIB) $@
 
 demo1: $(DEMO1_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_7) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
 
 demo2: $(DEMO2_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_7) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
 
 demo3: $(DEMO3_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_7) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
+
+demo4: $(DEMO4_OBJECTS) liblevawc.a
+	$(CC) -o $@ $(DEMO4_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
 
 levawc_slist.o: ./../slist.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
@@ -130,6 +139,9 @@ levawc_stack.o: ./../stack.c
 levawc_queue.o: ./../queue.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
 
+levawc_chashtbl.o: ./../chashtbl.c
+	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
+
 demo1_demo1.o: ./demo1.c
 	$(CC) -c -o $@ $(DEMO1_CFLAGS) $(CPPDEPS) $<
 
@@ -138,6 +150,9 @@ demo2_demo2.o: ./demo2.c
 
 demo3_demo3.o: ./demo3.c
 	$(CC) -c -o $@ $(DEMO3_CFLAGS) $(CPPDEPS) $<
+
+demo4_demo4.o: ./demo4.c
+	$(CC) -c -o $@ $(DEMO4_CFLAGS) $(CPPDEPS) $<
 
 .PHONY: all install uninstall clean
 

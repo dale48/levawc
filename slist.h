@@ -6,8 +6,8 @@
  *
  * Filename: slist.h
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Mon Dec 03 15:20:15 2012
- * Version : 0.1 
+ * Date    : Wed Feb 20 10:37:13 GMT 2013
+ * Version : 0.25 
  * ---
  * Description: A singly-linked list - implemented as a pure, generic ADT.
  *
@@ -15,6 +15,12 @@
  *
  * Date        Revision message
  * 2012-12-03  Created this file
+ * 2013-02-05  Made following changes to function 'int SLISTremnode(Slist list, void **data)':
+ *             - Changed function name to - 'int SLISTfind_remove(Slist list, void **data)'
+ *             - Changed return value - for missing "match-callback"(=not set) - from -1 to -2
+ *             - Changed return value - for node not found - from -1 to 1.
+ * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
+ *             in/out parameters - i.e. double-pointers.             
  *
  */
 
@@ -62,10 +68,12 @@ extern "C" {
    * for freeing node data, when the list is deleted. If @a destroy is 
    * NULL - then node data will be left untouched when the list is 
    * destroyed.
-   * @return A reference - to a new, empty list. Take really good care 
-   * of this return value, since it will be needed as a parameter in 
-   * subsequent calls - to the majority of other list handling functions 
-   * in the this function interface - i.e. a sort of "handle" to the list.
+   * @return A reference - to a new, empty list - if dynamic memory
+   * allocation for the ADT was successful - or NULL otherwise. Take 
+   * really good care  of this return value, since it will be needed as
+   * a parameter in subsequent calls - to the majority of other list 
+   * handling functions in the this function interface - i.e. a sort of
+   * "handle" to the list.
    * @see SLISTdestroy()
    **/
   Slist SLISTinit(void (*destroy)(void *data));
@@ -197,10 +205,10 @@ extern "C" {
    * Search the list sequentially for a node, whose data matches the data
    * referenced by parameter @a data. A reference to the node with the 
    * @b first match will be returned - NULL otherwise. A @b user-defined
-   * @b callback @b function, responsible for doing the @b comparison 
+   * @b callback @b function, responsible for doing the @b matching 
    * of node data - with data referenced by parameter @a data - @b must 
    * exist for this function to work - otherwise NULL will be returned - 
-   * always. This user-supplied comparison function is set into the list 
+   * always. This user-supplied @b match-callback is set into the list 
    * with another function - SLISTsetmatch().
    *
    * @param[in] list - reference to the current list.
@@ -220,7 +228,7 @@ extern "C" {
    * @param[in] match - a reference to a user-defined function that 
    * receives references to node data - and search key data - via its 
    * parameters @a key1 and @a key2 - and thereby can make 
-   * the actual comparison. This callback function shall return 1 - 
+   * the actual matching. This callback function shall return 1 - 
    * in case of a hit - or 0 otherwise.
    *
    * @return Nothing.
@@ -229,35 +237,40 @@ extern "C" {
 					      const void *key2));
 
   /**
-   * Remove a node - by using an in/out parameter.
+   * Search - and remove a node - by using an in/out parameter.
    *
    * When called, the 2nd parameter of this function, @a data, should 
    * reference a pointer, that points to the search key data. Moreover, 
    * a @b user-defined @b callback @b function responsible for doing the 
-   * @b comparison of node data - and data referenced by parameter 
-   * @a data - must exist for this function to work - otherwise -1 will
-   *  be returned - always.
-   * This user-supplied comparison function is set into the list with a
+   * @b matching of node data - and data referenced by parameter 
+   * @a data - must exist for this function to work - otherwise -2 will
+   * be returned - always.
+   * This user-supplied @b match-callback is set into the list with a
    * call to another function, SLISTsetmatch().
    * 
-   * After the call - a reference to data of the removed node can be
-   * accessed by dereferencing the parameter @a data - that is, @a *data -
-   * if the call was succesful. The caller is responsible for the future 
-   * of this memory - deallocating it, if needed, for example.
+   * After the call - an (external) pointer referenced by parameter 
+   * @a data, has been redirected to point to data of the removed 
+   * node - if the call was succesful. The caller is responsible 
+   * for the future of this memory - deallocating it, if needed, 
+   * for example.
    *
    * @param[in] list - reference to current list.
-   * @param[in,out] data - reference to a pointer, that shall point 
-   * to the search key data - when this function is called. 
-   * After the call, this parameter @a data, when dereferenced, that
-   * is @a *data - will point to node data of the removed node - if 
-   * call was successful. The caller is responsible for the future 
-   * of this memory - deallocating it, for example.
+   * @param[in,out] data - reference to an external pointer, that 
+   * initially shall point to the search key data - when this 
+   * function is called. After the call, this referenced (external) 
+   * pointer, has been redirected - to point to node data of the 
+   * removed node - if the call was successful. The caller is 
+   * responsible for the future of this memory - deallocating it,
+   * for example.
    * 
-   * @return Value 0 - if the call was OK - or 
-   * value -1 otherwise.
+   * @return Value 0 --  if the call was OK - that is, node found and removed.\n
+   *         Value 1 --  node not found.\n
+   *         Value -2 -- if match-callback is not set.\n
+   *         Value -1 -- otherwise (implies fatal error).
+   * 
    * @see SLISTsetmatch()
    **/
-  int SLISTremnode(Slist list, void **data);
+  int SLISTfind_remove(Slist list, void **data);
 
   /**
    * Reverse the list - physically.

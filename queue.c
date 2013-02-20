@@ -5,12 +5,15 @@
  *     \___/  
  *
  * Filename: queue.c
- * Author  : Dan Levin
- * Date    : Thu Dec 20 09:11:31 2012
- * Version : 0.1 
+ * Author  : Kyle Loudon/Dan Levin
+ * Date    : Wed Feb 20 10:57:38 GMT 2013
+ * Version : 0.25
  * ---
  * Description: An implementation of a generic, queue ADT. 
  * 
+ * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
+ *             in/out parameters - i.e. double-pointers.             
+
  */
 
 /**

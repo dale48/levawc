@@ -6,8 +6,8 @@
  *
  * Filename: dlist.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Mon Dec 03 15:20:15 2012
- * Version : 0.1 
+ * Date    : Wed Feb 20 10:40:40 GMT 2013
+ * Version : 0.25
  * ---
  * Description: A doubly-linked list - implemented as a pure, generic ADT.
  *
@@ -15,6 +15,9 @@
  *
  * Date        Revision message
  * 2012-12-03  Created this file
+ * 2013-02-05  Created a new function 'int DLISTfind_remove(Dlist list, void **data)'
+ * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
+ *             in/out parameters - i.e. double-pointers.             
  *
  */
 
@@ -253,6 +256,24 @@ DlistNode DLISTfindnode(Dlist list, const void *data)
 void DLISTsetmatch(Dlist list, int (*match)(const void *key1, const void *key2))
 {
   list->match = match;
+}
+
+int DLISTfind_remove(Dlist list, void **data)
+{
+  DlistNode member;
+
+  /* If match-callback not set */
+  if (list->match == NULL)
+    return -2;
+
+  /* Search list sequentially.. */
+  member = DLISTfindnode(list, *data);
+
+  if (member == NULL) /* Node not found */
+    return 1;
+
+  /* Perform the removal.. */
+  return DLISTremove(list, member, data);
 }
 
 void DLISTsort(Dlist list, int (*cmp)(const void *key1, const void *key2))

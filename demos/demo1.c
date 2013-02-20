@@ -6,8 +6,8 @@
  *
  * Filename: demo1.c
  * Author  : Dan Levin
- * Date    : Wed Dec 12 10:09:56 2012
- * Version : 0.1 
+ * Date    : Wed Feb 20 11:59:40 GMT 2013
+ * Version : 0.15
  * ---
  * Description: A first demo of the library LevAWC - singly-linked lists. 
  *
@@ -15,7 +15,8 @@
  * Date   Revision
  * 121212 Created this program the first time..
  * 121218 After some editing I consider this hack ready for going public :-)
- * 
+ * 130205 Used the new function 'int SLISTfind_remove()' (instead of the old 'int SLISTremnode()'..)
+ * 130205 Further editing - more extensive error handling than before..
  * 
  */
 
@@ -109,33 +110,38 @@ void add_nodes(Slist list, int nr_of_nodes)
 /* --- Function: void remove_nodes(Slist list, int nr_of_removes) --- */
 void remove_nodes(Slist list, int nr_of_removes)
 {
-  int i=0, tmp, *pi;
+  int i=0, tmp, *pi, retval;
 
   do
     {
       printf("\nCurrent list content(%d nodes): ", SLISTsize(list));
       SLISTtraverse(list, print, SLIST_FWD);
 
-      printf("\nEnter nodedata for node to be removed: ");
+      printf("\nEnter keydata for node to be removed: ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
-      if (SLISTfindnode(list, &tmp) != NULL) /* Node found */
+      /* Remove node - and free memory */
+      pi = &tmp;
+
+      if ((retval = SLISTfind_remove(list, (void **)&pi)) != 0)
 	{
-	  /* Remove node - and free memory */
-	  pi = &tmp;
-	  if ((SLISTremnode(list, (void **)&pi)) == 0)
+	  if (retval == 1)
+	    printf("Node %d not found in list...!", tmp);	    
+	  else 
 	    {
-	      free(pi);
-	    }
-	  else
-	    {
-	      printf("Fatal error - exiting...");
-	      exit(-1);
+	      if (retval == -2)
+		printf("\nMatch-callback is missing... - bailing out!");
+	      else
+ 		printf("\nFatal error... - bailing out!");
+	      exit(retval);
 	    }
 	}
       else
-	prompt_and_pause("Node not found!");
+	{
+	  printf("Node %d removed...!", *pi);
+	  free(pi);
+	}
 
       i++;
     } while (i < nr_of_removes);
@@ -164,15 +170,16 @@ void insert_nodes(Slist list, int nr_of_insertions)
 
 	  if ((SLISTinsnext(list, node, pi)) != 0)
 	    {
-	      printf("Fatal error - exiting...");
+	      printf("\nFatal error - exiting...!");
 	      exit(-1);
 	    }
+	  else
+	    printf("Node 99 inserted after node %d", *(int *)SLISTdata(node));
 	}
       else
-	prompt_and_pause("Node not found!");
+	  printf("Node %d not found...!", tmp);
 
       i++;
-
     } while (i < nr_of_insertions);
 }
 
@@ -185,7 +192,12 @@ int main(void)
   my_clearscrn();
 
   printf("--- INITIALIZING A SINGLY-LINKED LIST, %d NODES, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
-  mylist = SLISTinit(my_destroy); /* Initialize the list */
+  if ((mylist = SLISTinit(my_destroy)) == NULL) /* Initialize the list */
+    {
+      printf("\nFatal error... - bailing out!");
+      exit(-1);
+    }
+
   add_nodes(mylist, NR_OF_ITEMS); /* Populate the list */
   prompt_and_pause("\nNext - let's SORT the list...");
 
@@ -206,7 +218,7 @@ int main(void)
   remove_nodes(mylist, NR_OF_REMOVALS);
   printf("\nCurrent list content(%d nodes): ", SLISTsize(mylist));
   SLISTtraverse(mylist, print, SLIST_FWD);
-  prompt_and_pause("\nFinally - let's ADD some nodes...");
+  prompt_and_pause("\n\nFinally - let's ADD some nodes...");
   
   my_clearscrn();
   printf("--- ADD NODES WITH DATA=99 AFTER %d SPECIFIED NODES ---", NR_OF_INSERTS);

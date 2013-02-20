@@ -7,10 +7,17 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <h4>Changelog</h4>see file <a href="ChangeLog.md">ChangeLog.md</a>
 <h4>License/Disclaimer:</h4> see file "UNLICENSE" above.
 
-<h4>Documentation:</h4> Clone this project, install <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> on your box - and finally run command <b>doxygen</b> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <b>index.html</b> in the the new subdirectory  <b>html</b> - recently created by this command.
+<h4>Documentation:</h4> <b>Clone</b> this project, <b>install</b> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> on your box - and finally <b>run command</b> <i>doxygen</i> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory  <code>html</code> - recently created by this command.
 
-<h4>Demos:</h4> In the <b>demos</b> subdirectory you will find some simple demos (<b>demo1.c, demo2.c, demo3.c</b>) - using the ADT containers. You can build these yourself - by simply using the enclosed makefiles in this directory, accordingly:
+<h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo1.c, demo2.c, demo3.c</code>) - using the ADT containers. You can build these yourself - by simply using the enclosed makefiles in this directory, accordingly:
+<ul>
+  <li><code>linux.mak</code> - uses the native gcc compiler in Linux. <b>Command</b>: <code>make -f linux.mak</code></li>
+  <li><code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <b>Command</b>: <code>mingw32-make -f mingw32.mak</code></li>
+  <li><code>vcwin32.mak</code> - uses Visual C compiler in Win32. <b>Command</b>: <code>nmake -f vcwin32.mak</code></li>
+</ul>
 
-<b>linux.mak</b> - uses the native gcc compiler in Linux. Command: <b>make -f linux.mak</b><br />
-<b>mingw32.mak</b> - uses mingw32 gcc compiler in Win32. Command: <b>mingw32-make -f mingw32.mak</b><br />
-<b>vcwin32.mak</b> - uses Visual C compiler in Win32. Command: <b>nmake -f vcwin32.mak</b><br />
+<!--
+<ul>
+  <li></li>
+</ul>
+-->
