@@ -6,8 +6,8 @@
  *
  * Filename: queue.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Feb 20 10:57:38 GMT 2013
- * Version : 0.25
+ * Date    : Mon Feb 25 16:52:00 GMT 2013
+ * Version : 0.30
  * ---
  * Description: An implementation of a generic, queue ADT. 
  * 

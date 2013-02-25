@@ -7,19 +7,19 @@
  * - Doubly-linked list
  * - Stack
  * - Queue
- * - Hash table
+ * - Chained hash table
+ * - Heap
+ * - Priority queue
  * .
  * Original and major parts of the code written by 
  * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
  * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
  * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
- * @date     Wed Feb 20 12:20:58 2013
- * @version  0.25 (<a href="md__change_log.html">To ChangeLog</a>)
+ * @date     Mon Feb 25 15:58:45 2013
+ * @version  0.30 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par ToDo
  *  Continue making more pure, generic ADT:s - such as:
- * - A heap ADT - **HEAP**\n
- * - A priority queue ADT - **PQUEUE**
- * - A tree ADT - **AVLBST(=AVL Binary Search Tree)**\n
- * - And - in due time - a graph and a set ADT - **GRAPH** and **SET**\n
+ * - An <b>AVL Binary Search Tree</b> ADT\n
+ * - And - in due time - a <b>Graph</b> and a <b>Set</b> ADT\n
  * .
  **/

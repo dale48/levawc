@@ -24,6 +24,10 @@
 #include <time.h>
 #include "chashtbl.h"
 
+#ifndef OK
+#define OK 0
+#endif
+
 #define NR_OF_ITEMS 30
 #define NR_OF_REMOVALS 3
 #define NR_OF_INSERTS 3

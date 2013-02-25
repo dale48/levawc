@@ -7,13 +7,17 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <h4>Changelog</h4>see file <a href="ChangeLog.md">ChangeLog.md</a>
 <h4>License/Disclaimer:</h4> see file "UNLICENSE" above.
 
-<h4>Documentation:</h4> <b>Clone</b> this project, <b>install</b> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> on your box - and finally <b>run command</b> <i>doxygen</i> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory  <code>html</code> - recently created by this command.
+<h4>Documentation:</h4> 
+<p>The <a href="./html/index.html" target="_blank"> project documentation</a> can be found <a href="./html/index.html" target="_blank">here</a>.</p>
 
-<h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo1.c, demo2.c, demo3.c</code>) - using the ADT containers. You can build these yourself - by simply using the enclosed makefiles in this directory, accordingly:
+<p>In case you want to <i>regenerate the documentation locally</i> - on your box:</p>
+<i>Clone</i> (or <i>download zipfile</i> of) this project, <i>install</i> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> - and finally <i>run command:</i> <code>doxygen</code> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory  <code>html</code> - recently created by this command.
+
+<h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo1.c, demo2.c, demo3.c, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this:
 <ul>
-  <li><code>linux.mak</code> - uses the native gcc compiler in Linux. <b>Command</b>: <code>make -f linux.mak</code></li>
-  <li><code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <b>Command</b>: <code>mingw32-make -f mingw32.mak</code></li>
-  <li><code>vcwin32.mak</code> - uses Visual C compiler in Win32. <b>Command</b>: <code>nmake -f vcwin32.mak</code></li>
+  <li><code>linux.mak</code> - uses the native gcc compiler in Linux. <i>Command</i>: <code>make -f linux.mak</code></li>
+  <li><code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <i>Command</i>: <code>mingw32-make -f mingw32.mak</code></li>
+  <li><code>vcwin32.mak</code> - uses Visual C compiler in Win32. <i>Command</i>: <code>nmake -f vcwin32.mak</code></li>
 </ul>
 
 <!--

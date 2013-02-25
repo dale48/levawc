@@ -26,6 +26,10 @@
 #include <time.h>
 #include "dlist.h"
 
+#ifndef OK
+#define OK 0
+#endif
+
 #define NR_OF_ITEMS 10
 #define NR_OF_REMOVALS 3
 #define NR_OF_INSERTS 3
@@ -95,14 +99,16 @@ int my_match(const void *k1, const void *k2)
 /* --- void init_nodes(Dlist list, int nr_of_nodes) --- */
 void add_nodes(Dlist list, int nr_of_nodes)
 {
-  int i=0, *pi;
+  int i=0, *pi, retval;
 
   do
     {
       pi = (int *)malloc(sizeof(int));
       *pi = my_random(1,50);
 
-      i == 0 ? DLISTinsprev(list, NULL, pi) : DLISTinsprev(list, DLISThead(list), pi) ;
+      /* Defensive programming... */
+      i == 0 ? (retval=DLISTinsprev(list, NULL, pi)) : (retval=DLISTinsprev(list, DLISThead(list), pi)) ;
+      assert(retval == OK);
 
     } while (++i < nr_of_nodes);
 

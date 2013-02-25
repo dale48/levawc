@@ -34,30 +34,36 @@ DEBUG ?= 0
 ### Variables: ###
 
 CPPDEPS = -MT$@ -MF$@.d -MD -MP
-LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 LEVAWC_OBJECTS =  \
 	levawc_slist.o \
 	levawc_dlist.o \
 	levawc_stack.o \
 	levawc_queue.o \
-	levawc_chashtbl.o
-DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+	levawc_chashtbl.o \
+	levawc_pqueue.o \
+	levawc_heap.o
+DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO1_OBJECTS =  \
 	demo1_demo1.o
-DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO2_OBJECTS =  \
 	demo2_demo2.o
-DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO3_OBJECTS =  \
 	demo3_demo3.o
-DEMO4_CFLAGS = $(____DEBUG) $(____DEBUG_7) $(____DEBUG_11) $(____DEBUG_10) \
+DEMO4_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO4_OBJECTS =  \
 	demo4_demo4.o
+DEMO5_CFLAGS = $(____DEBUG) $(____DEBUG_11) $(____DEBUG_15) $(____DEBUG_14) \
+	-I.\.. $(CPPFLAGS) $(CFLAGS)
+DEMO5_OBJECTS =  \
+	demo5_demo5.o
 
 ### Conditionally set variables: ###
 
@@ -68,28 +74,28 @@ ifeq ($(DEBUG),1)
 ____DEBUG = 
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_7 = -O2
+____DEBUG_11 = -O2
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_7 = -O0
+____DEBUG_11 = -O0
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_10 = 
+____DEBUG_14 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_10 = -W -Wall
+____DEBUG_14 = -W -Wall
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_11 = 
+____DEBUG_15 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_11 = -g
+____DEBUG_15 = -g
 endif
 
 
 ### Targets: ###
 
-all: liblevawc.a demo1.exe demo2.exe demo3.exe demo4.exe
+all: liblevawc.a demo1.exe demo2.exe demo3.exe demo4.exe demo5.exe
 
 clean: 
 	-if exist .\*.o del .\*.o
@@ -99,6 +105,7 @@ clean:
 	-if exist demo2.exe del demo2.exe
 	-if exist demo3.exe del demo3.exe
 	-if exist demo4.exe del demo4.exe
+	-if exist demo5.exe del demo5.exe
 
 liblevawc.a: $(LEVAWC_OBJECTS)
 	if exist $@ del $@
@@ -106,16 +113,19 @@ liblevawc.a: $(LEVAWC_OBJECTS)
 	ranlib $@
 
 demo1.exe: $(DEMO1_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_15) $(LDFLAGS)  liblevawc.a
 
 demo2.exe: $(DEMO2_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_15) $(LDFLAGS)  liblevawc.a
 
 demo3.exe: $(DEMO3_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_15) $(LDFLAGS)  liblevawc.a
 
 demo4.exe: $(DEMO4_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO4_OBJECTS)  $(____DEBUG_11) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO4_OBJECTS)  $(____DEBUG_15) $(LDFLAGS)  liblevawc.a
+
+demo5.exe: $(DEMO5_OBJECTS) liblevawc.a
+	$(CC) -o $@ $(DEMO5_OBJECTS)  $(____DEBUG_15) $(LDFLAGS)  liblevawc.a
 
 levawc_slist.o: ./../slist.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
@@ -132,6 +142,12 @@ levawc_queue.o: ./../queue.c
 levawc_chashtbl.o: ./../chashtbl.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
 
+levawc_pqueue.o: ./../pqueue.c
+	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
+
+levawc_heap.o: ./../heap.c
+	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
+
 demo1_demo1.o: ./demo1.c
 	$(CC) -c -o $@ $(DEMO1_CFLAGS) $(CPPDEPS) $<
 
@@ -143,6 +159,9 @@ demo3_demo3.o: ./demo3.c
 
 demo4_demo4.o: ./demo4.c
 	$(CC) -c -o $@ $(DEMO4_CFLAGS) $(CPPDEPS) $<
+
+demo5_demo5.o: ./demo5.c
+	$(CC) -c -o $@ $(DEMO5_CFLAGS) $(CPPDEPS) $<
 
 .PHONY: all clean
 

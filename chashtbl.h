@@ -6,8 +6,8 @@
  *
  * Filename: chashtbl.h
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Feb 20 11:10:44 GMT 2013
- * Version : 0.25
+ * Date    : Mon Feb 25 16:52:00 GMT 2013
+ * Version : 0.30
  * ---
  * Description: A chained hash table - implemented as a pure, generic ADT container. 
  * 
@@ -66,7 +66,7 @@ extern "C" {
    * allocation for the ADT was successful - or NULL otherwise. Take 
    * really good care of this return value, since it will be needed
    * as a parameter in subsequent calls - to the majority of other
-   * table functions in the this function interface - i.e. a sort
+   * table functions in this function interface - i.e. a sort
    * of "handle" to the table.
    * @see CHTBLdestroy()
    **/
@@ -136,7 +136,8 @@ extern "C" {
    * successful. The caller is responsible for the future of
    * this memory - deallocating it, for example.
    * 
-   * @return Value 0 --  if the call was OK - that is, node found and removed.\n
+   * @return Value 0 --  if the call was OK - that is, element
+   * found and removed.\n
    *         Value 1 --  node not found.\n
    *         Value -2 -- if match-callback is not set.\n
    *         Value -1 -- otherwise (implies fatal error).

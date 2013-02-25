@@ -1,7 +1,24 @@
+<h2>LevAWC version 0.30</h2>
+<h4>Changes</h4>
+<ul>
+  <li>Added new source: <code>heap.c, heap.h, pqueue.c, pqueue.h</code></li>
+  <li>Added new demo source: <code>demo5.c</code> - showing both the array and tree structure of a priority queue.</li>
+  <li>Improved the documentation - when it comes to describing "in/out" parameters - implemented as double-pointers in C.</li>
+  <li>Improved "defensive programming" in all the demo programs (using assertions and checking return values by if-blocks)
+</ul>
+<h4>New features</h4>
+<ul>
+  <li>Two new container ADT:s - heap and prioity queue - accompanied by a demo (<code>demo5.c</code>).</li>
+</ul>
+<h4>Bugfixes</h4>
+<ul>
+  <li>Minor ones...</li>
+</ul>
+
 <h2>LevAWC version 0.25</h2>
 <h4>Changes</h4>
 <ul>
-  <li>Added new API source: <code>chashtbl.c, chashtbl.h</code> - a chained hash table ADT.</li>
+  <li>Added new source: <code>chashtbl.c, chashtbl.h</code> - a chained hash table ADT.</li>
   <li>Added new demo source for the hashtable ADT: <code>demo4.c</code></li>
   <li>Made following changes to function <code>int SLISTremnode(Slist list, void **data)</code>:<br />
   Changed function name to <code>int SLISTfind_remove(Slist list, void **data)</code><br />
@@ -19,7 +36,7 @@
   <li>Some minor ones...</li>
 </ul>
 
-<h2>LevAWC version 0.2</h2>
+<h2>LevAWC version 0.20</h2>
 <h4>Changes</h4>
 <ul>
   <li>Added new API source: <code>stack.c, stack.h, queue.c, queue.h</code> (mainly simple "wrappers" around code in <code>slist.c</code>)</li>
@@ -34,7 +51,7 @@
   <li>None</li>
 </ul>
 
-<h2>LevAWC version 0.1</h2>
+<h2>LevAWC version 0.10</h2>
 <h4>Changes</h4>
 <ul>
   <li>Added initial API source: <code>slist.c, slist.h, dlist.c, dlist.h</code></li>

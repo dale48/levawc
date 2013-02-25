@@ -22,10 +22,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <assert.h>
 #include "stack.h"
 #include "queue.h"
 
 #define NR_OF_ITEMS 10
+
+#ifndef OK
+#define OK 0
+#endif
 
 /* Function declarations */
 void my_destroy(void *data);
@@ -75,18 +80,19 @@ void prompt_and_pause(char *message)
 /* --- void queue_elements(Queue que, int nr_of_ele) --- */
 void queue_elements(Queue que, int nr_of_ele)
 {
-  int i=0, *pi;
+  int i=0, *pi, retval;
 
   do
     {
       pi = (int *)malloc(sizeof(int));
       *pi = my_random(1,50);
-      QUEUEenqueue(que, pi);
+      retval = QUEUEenqueue(que, pi);
+      assert(retval == OK);
     } while (++i < nr_of_ele);
 
   printf("\nCurrent queue content(%d elements): ", QUEUEsize(que));
   /* This call to SLISTtraverse is possible - although this function is NOT a member
-     of the queue (public) interface - because a queue is also a list ! */
+     of the queue (public) interface - but because a queue is also a list ! */
   SLISTtraverse(que, print, SLIST_FWD);
 }
 
@@ -124,15 +130,19 @@ int main(void)
   for (i = 0; i < nr; ++i)
     {
       void *piq, *pis;
+      int retval;
 
-      QUEUEdequeue(myqueue, &piq);
+      retval = QUEUEdequeue(myqueue, &piq);
+      assert(retval == OK);
+
       sprintf(mess, "QUEUE: Dequeued: %02d (new frontvalue: %02d)", *(int *)piq, *(int *)QUEUEpeek(myqueue));
       prompt_and_pause(mess);
 
       /* Check current stack top... */
       pis = STACKpeek(mystk);
       /* Push the value just dequeued - from our queue... */
-      STACKpush(mystk, piq);
+      retval = STACKpush(mystk, piq);
+      assert(retval == OK);
 
       if (pis == NULL) /* If this is the FIRST stack push... */
 	sprintf(mess, "STACK: Pushed  : %02d (old stacktop  : none)", *(int *)STACKpeek(mystk));

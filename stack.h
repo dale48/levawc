@@ -6,8 +6,8 @@
  *
  * Filename: stack.h
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Feb 20 10:55:46 GMT 2013
- * Version : 0.25
+ * Date    : Mon Feb 25 16:52:00 GMT 2013
+ * Version : 0.30
  * ---
  * Description: A C interface for a generic stack ADT.
  * 

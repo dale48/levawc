@@ -25,6 +25,10 @@
 #include <time.h>
 #include "slist.h"
 
+#ifndef OK
+#define OK 0
+#endif
+
 #define NR_OF_ITEMS 10
 #define NR_OF_REMOVALS 3
 #define NR_OF_INSERTS 3
@@ -94,13 +98,16 @@ int my_match(const void *k1, const void *k2)
 /* --- void init_nodes(Slist list, int nr_of_nodes) --- */
 void add_nodes(Slist list, int nr_of_nodes)
 {
-  int i=0, *pi;
+  int i=0, *pi, retval;
 
   do
     {
       pi = (int *)malloc(sizeof(int));
       *pi = my_random(1,50);
-      SLISTinsnext(list, NULL, pi);
+
+      retval=SLISTinsnext(list, NULL, pi);
+      assert(retval == OK);
+
     } while (++i < nr_of_nodes);
 
   printf("\nCurrent list content(%d nodes): ", SLISTsize(list));

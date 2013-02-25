@@ -6,8 +6,8 @@
  *
  * Filename: chashtbl.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Feb 20 11:10:44 GMT 2013
- * Version : 0.25
+ * Date    : Mon Feb 25 16:52:00 GMT 2013
+ * Version : 0.30
 
  * ---
  * Description: A chained hash table - implemented as a pure, generic ADT container. 
