@@ -8,8 +8,9 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <h4>License/Disclaimer:</h4> see file "UNLICENSE" above.
 
 <h4>Documentation:</h4> 
+<!--
 <p>The <a href="./html/index.html" target="_blank"> project documentation</a> can be found <a href="./html/index.html" target="_blank">here</a>.</p>
-
+-->
 <p>In case you want to <i>regenerate the documentation locally</i> - on your box:</p>
 <i>Clone</i> (or <i>download zipfile</i> of) this project, <i>install</i> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> - and finally <i>run command:</i> <code>doxygen</code> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory  <code>html</code> - recently created by this command.
 
