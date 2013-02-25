@@ -1,0 +1,142 @@
+/*
+Original design: Inland Hembygd (v1.2 - Sep 12, 2012) - A free xhtml/css website template by Andreas Viklund.
+For more information, see http://andreasviklund.com/templates/inland-hembygd/
+Customization and photos by Daniel Carlsson - http://allyourbasearebelongtous.se/
+Includes:
+jQuery v1.7.1 from http://jquery.org/
+Nivo Slider v2.7.1 by Gilbert Pellegrom - http://nivo.dev7studios.com/
+
+*/
+
+*{border:0;font:inherit;font-size:100%;margin:0;padding:0;vertical-align:baseline;}
+
+/* HTML elements */
+
+/* body{background:#fff url(images/bg.jpg) top center fixed;} Uncomment to apply the background image */
+body{background-color:#2a2a2a;color:#666;font-family:'Droid Sans',Tahoma,Arial,sans-serif;font-size:13px;line-height:1.6em;}
+a{color:#000000;text-decoration:none;}
+a:hover{color:#333;text-decoration:none;}
+a img{border:none;}
+h1,h2,h3,h4{clear:left;color:#000000;font-weight:400;margin:0.7em 0;font-family: 'Princess Sofia', cursive;}
+h1{font-size:2.6em;}
+h2{font-size:2.4em;}
+h3{font-size:1.9em;}
+p,ul{margin:0 0 20px 0;}
+
+/* Main wrappers */
+#wrapper1240{background-color:#fff;margin:20px auto;width:1240px;}
+#wrapper960{background-color:#fff;margin:35px auto;width:960px;}
+#wrapper760{background-color:#fff;margin:20px auto;width:760px;}
+#wrapper600{background-color:#fff;margin:0 auto;width:600px;}
+#wrapperfluid{background-color:#fff;margin:0 auto;max-width:1260px;}
+
+/* Layout IDs */
+#header{position:relative;}
+#sitetitle{float:left;margin:30px 0px 10px 30px;}
+#sitetitle h1 {font-size:40px;color:#777;margin:0;padding:0;}
+#header-image{height:300px;margin:0;padding:0;}
+#content{padding:15px 30px;background-color:#fafafa;}
+#extended{padding:15px 30px;background-color:#fff;}
+
+/* Top links menu */
+#toplinks{background-color:#fafafa;padding:0 30px;}
+#toplinks ul{list-style:none;margin:0;text-align:right;}
+#toplinks ul li{display:inline-block;font-size:11px;margin:15px 0 12px 15px;}
+#toplinks ul li a{color:#797777;}
+#toplinks ul li a:hover{color:#2c2b2b;text-decoration:none;}
+
+/* Main navigation menu */
+#nav{float:right;font-family:'Droid Sans',Verdana,Tahoma,sans-serif;text-align:center;}
+#nav ul{list-style:none;margin:30px 30px 26px 20px;}
+#nav ul li{background:none!important;display:inline-block;text-align:right;height:auto;line-height:25px;margin-bottom:0;margin-left:25px;position:relative;}
+#nav ul li a{color:#797777;display:block;font-size:12px;padding-top:0;text-transform:uppercase;}
+#nav ul li a:hover{color:#111;}
+#nav ul li a.current{color:#000;}
+
+/* Columns */
+#sidebar{width:33.3%;}
+#main{width:66.6%;}
+#trio1{float:left;width:33.3%;}
+#trio2{float:left;width:33.3%;}
+#trio3{float:right;width:33.3%;}
+.inner{margin:5px 30px;}
+#trio1 .inner{margin-left:0;}
+#trio2 .inner{margin:0;}
+#trio3 .inner{margin-right:0;}
+.left .inner{margin-left:0;}
+.right .inner{margin-right:0;}
+
+/* Footer */
+#footer{clear:both;background-color:#fafafa;}
+#footer p{color:#777;font-size:12px;margin:0;padding:15px 30px;text-align:center;}
+#footer a{color:#777;}
+#footer a:hover{color:#333;}
+
+/* Image alignment */
+img.alignleft,img.aligncenter,img.alignright{background:#fff;padding:4px;margin-bottom:10px;border:1px solid #ddd;}
+.alignleft{float:left;margin-right:30px;}
+.alignright{float:right;margin-left:30px;}
+.aligncenter{text-align:center;display:block;clear:both;margin:5px auto;}
+img.danflag{float:right;  margin-left: 400px;}
+img.logo{float:left;}
+
+/* Additional classes */
+.shadow{background:url(images/shadow.png) top center no-repeat;}
+.clear{clear:both;}
+.left{float:left;}
+.right{float:right;}
+
+/* Clearing fix */
+.clearfix:after{clear:both;content:".";display:block;height:0;visibility:hidden;}
+* html .clearfix{height:1%;}
+*:first-child+html .clearfix{min-height:1%;}
+
+/* Alternate color scheme, add class="altcolors" to the body tag to apply */
+.altcolors{background-color:#e6e8e8;}
+.altcolors #wrapper600, .altcolors #wrapper760, .altcolors #wrapper960, .altcolors #wrapper1240, .altcolors #wrapperfluid {box-shadow: 0px 0px 28px #888;}
+.altcolors #toplinks, .altcolors #footer{background-color:#eaecec;}
+.altcolors #content{background-color:#f2f4f4;}
+
+/*
+ jQuery Nivo Slider v2.7.1
+ http://nivo.dev7studios.com
+ Copyright 2011, Gilbert Pellegrom
+ Free to use and abuse under the MIT license.
+ http://www.opensource.org/licenses/mit-license.php
+ */
+.nivoSlider{position:relative;}
+.nivoSlider img{float:left;margin-right:auto;margin-left:auto;}
+.nivoSlider a.nivo-imageLink{position:absolute;top:0;left:0;width:100%;height:100%;border:0;padding:0;margin:0;z-index:6;display:none;}
+.nivo-slice{display:block;position:absolute;z-index:5;height:100%;}
+.nivo-box{display:block;position:absolute;z-index:5;}
+.nivo-caption{position:absolute;left:0;bottom:0;background:#000;color:#fff;opacity:0.8;width:100%;z-index:8;}
+.nivo-caption p{padding:5px;margin:0;}
+.nivo-caption a{display:inline!important;}
+.nivo-html-caption{display:none;}
+.nivo-directionNav a{position:absolute;top:45%;z-index:9;cursor:pointer;}
+.nivo-prevNav{left:0;}
+.nivo-nextNav{right:0;}
+.nivo-controlNav a{position:relative;z-index:9;cursor:pointer;}
+.nivo-controlNav a.active{font-weight:700;}
+
+/*
+Skin Name: Nivo Slider Default Theme (modified)
+Skin URI: http://nivo.dev7studios.com
+Skin Type: flexible
+Description: The default skin for the Nivo Slider, modified to work with the Inland One template.
+Version: 1.2
+Author: Gilbert Pellegrom (modified by Andreas Viklund)
+Author URI: http://dev7studios.com
+*/
+.slider-wrapper .nivoSlider{position:relative;margin-left:auto;margin-right:auto;height:367px;width:660px;background:#fafafa url(images/loading.gif) no-repeat 50% 50%;margin-bottom:55px;}
+.slider-wrapper .nivoSlider img{margin-left:auto;margin-right:auto;display:none;}
+.slider-wrapper .nivoSlider a{border:0;display:block;}
+.slider-wrapper .nivo-controlNav{position:absolute;left:50%;bottom:-41px;margin-left:-60px;/* Tweak this to center bullets */}
+.slider-wrapper .nivo-controlNav a{display:block;width:22px;height:22px;background:url(images/bullets.png) no-repeat;text-indent:-9999px;border:0;margin-right:3px;float:left;}
+.slider-wrapper .nivo-controlNav a.active{background-position:0 -22px;}
+.slider-wrapper .nivo-directionNav a{display:block;width:30px;height:30px;background:url(images/arrows.png) no-repeat;text-indent:-9999px;border:0;}
+.slider-wrapper a.nivo-nextNav{background-position:-30px 0;right:15px;}
+.slider-wrapper a.nivo-prevNav{left:15px;}
+.slider-wrapper .nivo-caption{font-family:'Droid Sans',Helvetica,Arial,sans-serif;background:rgba(0, 0, 0, 0.2);text-align:center;text-shadow:0 0 4px #111;}
+.slider-wrapper .nivo-caption a{color:#fff;border-bottom:1px dotted #fff;}
+.slider-wrapper .nivo-caption a:hover{color:#fff;}
