@@ -22,6 +22,14 @@
 
 #include "heap.h"
 
+/**
+ * Macro for level separation when calling HEAPprint()
+ * 
+ * This macro sets the distance - measured in column 
+ * positions - between node levels of the tree when
+ * it is printed on screen as a result of a call to 
+ * HEAPprint()
+ **/
 #define HEAP_PRINT_LEVEL_PADDING 4
 
 struct Heap_ {

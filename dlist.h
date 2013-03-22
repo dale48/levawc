@@ -38,8 +38,16 @@
 extern "C" {
 #endif
 
-#define DLIST_FWD 1   /* Macro for forward traversal of the list */
-#define DLIST_BWD -1  /* Macro for backward traversal of the list */
+/**
+ * Macro for forward traversal of the list
+ * 
+ **/
+#define DLIST_FWD 1
+/**
+ * Macro for backward traversal of the list
+ * 
+ **/
+#define DLIST_BWD -1
 
   /**
    * Use a @b typedef - to hide the interior of @b DList_ - in the 

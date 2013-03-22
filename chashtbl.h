@@ -17,6 +17,7 @@
  * 2013-01-30  Created this file initially
  * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
  *             in/out parameters - i.e. double-pointers.             
+ * 2013-03-21  Minor documentation clarifications.
  *
  */
 
@@ -147,10 +148,14 @@ extern "C" {
   /**
    * Lookup data in the table - without removing it
    * 
-   * Determines whether an element, with key data matching the
-   * data referenced by the parameter @a data - is present in
-   * in the current table @a htbl. If so - the element hit is 
-   * referenced by parameter @a data upon return.
+   * Determines whether an element, with key data matching 
+   * the data referenced by the parameter @a data - is
+   * present in the current table @a htbl. This 2nd parameter,
+   * @a data, should reference an (external, user-defined) 
+   * pointer, that points to the search key data.    
+   * After the call - this referenced, external pointer has been
+   * redirected by this function, to point to the data of the 
+   * element hit - if the call was succesful. 
    * Moreover, a user-defined @b callback @b function, responsible 
    * for doing the @b matching of element data - and data referenced
    * by parameter @a data - must exist for this function to work.
