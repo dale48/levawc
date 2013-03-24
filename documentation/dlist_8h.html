@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -97,11 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a6440cdb7d79f195b0b82680dddb3effc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6440cdb7d79f195b0b82680dddb3effc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>DLIST_FWD</b>&#160;&#160;&#160;1   /* Macro for forward traversal of the list */</td></tr>
+<tr class="memitem:a6440cdb7d79f195b0b82680dddb3effc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlist_8h.html#a6440cdb7d79f195b0b82680dddb3effc">DLIST_FWD</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a6440cdb7d79f195b0b82680dddb3effc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66a9583c49c383487d752358dc898208"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66a9583c49c383487d752358dc898208"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>DLIST_BWD</b>&#160;&#160;&#160;-1  /* Macro for backward traversal of the list */</td></tr>
+<tr class="memitem:a66a9583c49c383487d752358dc898208"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlist_8h.html#a66a9583c49c383487d752358dc898208">DLIST_BWD</a>&#160;&#160;&#160;-1</td></tr>
 <tr class="separator:a66a9583c49c383487d752358dc898208"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -150,6 +148,37 @@ Functions</h2></td></tr>
 <tr class="memitem:a57c354b2f04ec7f5e4875e2b4c4a4119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dlist_8h.html#a57c354b2f04ec7f5e4875e2b4c4a4119">DLISTtraverse</a> (<a class="el" href="dlist_8h.html#aa6741d7dbcf1722511313e1f0158f014">Dlist</a> list, void(*callback)(const void *data), int direction)</td></tr>
 <tr class="separator:a57c354b2f04ec7f5e4875e2b4c4a4119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a66a9583c49c383487d752358dc898208"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DLIST_BWD&#160;&#160;&#160;-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro for backward traversal of the list </p>
+
+<p>Definition at line <a class="el" href="dlist_8h_source.html#l00050">50</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6440cdb7d79f195b0b82680dddb3effc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DLIST_FWD&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro for forward traversal of the list </p>
+
+<p>Definition at line <a class="el" href="dlist_8h_source.html#l00045">45</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a class="anchor" id="aa6741d7dbcf1722511313e1f0158f014"></a>
 <div class="memitem">
@@ -162,7 +191,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Use a <b>typedef</b> - to hide the interior of <b><a class="el" href="struct_d_list__.html">DList_</a></b> - in the implementation file. This is how <em>data</em> <em>hiding</em> can be done in C. </p>
 
-<p>Definition at line <a class="el" href="dlist_8h_source.html#l00049">49</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
+<p>Definition at line <a class="el" href="dlist_8h_source.html#l00057">57</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
 
 </div>
 </div>
@@ -177,7 +206,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Another <b>typedef</b> - for hiding the interior of <b><a class="el" href="struct_d_list_elmt__.html">DListElmt_</a></b> - in the implementation file. </p>
 
-<p>Definition at line <a class="el" href="dlist_8h_source.html#l00056">56</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
+<p>Definition at line <a class="el" href="dlist_8h_source.html#l00064">64</a> of file <a class="el" href="dlist_8h_source.html">dlist.h</a>.</p>
 
 </div>
 </div>
@@ -805,7 +834,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 25 2013 21:48:14 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

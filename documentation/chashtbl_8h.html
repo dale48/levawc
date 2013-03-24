@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -127,7 +127,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Use a <b>typedef</b> - to hide the interior of <b><a class="el" href="struct_c_htbl__.html">CHtbl_</a></b> - in the implementation file. This is how <em>data</em> <em>hiding</em> can be done in C. </p>
 
-<p>Definition at line <a class="el" href="chashtbl_8h_source.html#l00045">45</a> of file <a class="el" href="chashtbl_8h_source.html">chashtbl.h</a>.</p>
+<p>Definition at line <a class="el" href="chashtbl_8h_source.html#l00046">46</a> of file <a class="el" href="chashtbl_8h_source.html">chashtbl.h</a>.</p>
 
 </div>
 </div>
@@ -276,7 +276,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Lookup data in the table - without removing it</p>
-<p>Determines whether an element, with key data matching the data referenced by the parameter <em>data</em> - is present in in the current table <em>htbl</em>. If so - the element hit is referenced by parameter <em>data</em> upon return. Moreover, a user-defined <b>callback</b> <b>function</b>, responsible for doing the <b>matching</b> of element data - and data referenced by parameter <em>data</em> - must exist for this function to work. This user-supplied <b>match-callback</b> was set when the hash table was initialized - see <a class="el" href="chashtbl_8c.html#a51cfbe818dbb70334643beca16e5b22f">CHTBLinit()</a>.</p>
+<p>Determines whether an element, with key data matching the data referenced by the parameter <em>data</em> - is present in the current table <em>htbl</em>. This 2nd parameter, <em>data</em>, should reference an (external, user-defined) pointer, that points to the search key data. After the call - this referenced, external pointer has been redirected by this function, to point to the data of the element hit - if the call was succesful. Moreover, a user-defined <b>callback</b> <b>function</b>, responsible for doing the <b>matching</b> of element data - and data referenced by parameter <em>data</em> - must exist for this function to work. This user-supplied <b>match-callback</b> was set when the hash table was initialized - see <a class="el" href="chashtbl_8c.html#a51cfbe818dbb70334643beca16e5b22f">CHTBLinit()</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">htbl</td><td>- a reference to current table. </td></tr>
@@ -399,7 +399,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 25 2013 21:48:14 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

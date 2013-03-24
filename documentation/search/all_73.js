@@ -4,6 +4,8 @@ var searchData=
   ['slist_2ec',['slist.c',['../slist_8c.html',1,'']]],
   ['slist_2eh',['slist.h',['../slist_8h.html',1,'']]],
   ['slist_5f',['SList_',['../struct_s_list__.html',1,'']]],
+  ['slist_5fbwd',['SLIST_BWD',['../slist_8h.html#afae326856da500e22c4fdcd265c1aecc',1,'slist.h']]],
+  ['slist_5ffwd',['SLIST_FWD',['../slist_8h.html#a6f9eeff1695b1f5ff6657e1a98dd322f',1,'slist.h']]],
   ['slistdata',['SLISTdata',['../slist_8c.html#afcb6129337c4d4064a257ff0bbf3c2e5',1,'SLISTdata(SlistNode node):&#160;slist.c'],['../slist_8h.html#afcb6129337c4d4064a257ff0bbf3c2e5',1,'SLISTdata(SlistNode node):&#160;slist.c']]],
   ['slistdestroy',['SLISTdestroy',['../slist_8c.html#a60f35196ba10e3239319bbce61ad0741',1,'SLISTdestroy(Slist list):&#160;slist.c'],['../slist_8h.html#a60f35196ba10e3239319bbce61ad0741',1,'SLISTdestroy(Slist list):&#160;slist.c']]],
   ['slistelmt_5f',['SListElmt_',['../struct_s_list_elmt__.html',1,'']]],

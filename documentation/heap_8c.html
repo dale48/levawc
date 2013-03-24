@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -100,8 +100,7 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a35c6fc3aac542bc8a950ff4938fdfa98"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35c6fc3aac542bc8a950ff4938fdfa98"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>HEAP_PRINT_LEVEL_PADDING</b>&#160;&#160;&#160;4</td></tr>
+<tr class="memitem:a35c6fc3aac542bc8a950ff4938fdfa98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8c.html#a35c6fc3aac542bc8a950ff4938fdfa98">HEAP_PRINT_LEVEL_PADDING</a>&#160;&#160;&#160;4</td></tr>
 <tr class="separator:a35c6fc3aac542bc8a950ff4938fdfa98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -121,6 +120,23 @@ Functions</h2></td></tr>
 <tr class="memitem:ae16bc0bc6997912fdeef0ba45e4af5ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="heap_8c.html#ae16bc0bc6997912fdeef0ba45e4af5ff">HEAPprint</a> (<a class="el" href="heap_8h.html#a4796b7437694d8ed71adda9bf3dd784c">Heap</a> hp, void(*callback)(const void *data))</td></tr>
 <tr class="separator:ae16bc0bc6997912fdeef0ba45e4af5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a35c6fc3aac542bc8a950ff4938fdfa98"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HEAP_PRINT_LEVEL_PADDING&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Macro for level separation when calling <a class="el" href="heap_8c.html#ae16bc0bc6997912fdeef0ba45e4af5ff">HEAPprint()</a></p>
+<p>This macro sets the distance - measured in column positions - between node levels of the tree when it is printed on screen as a result of a call to <a class="el" href="heap_8c.html#ae16bc0bc6997912fdeef0ba45e4af5ff">HEAPprint()</a> </p>
+
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00033">33</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a14c1fdfaa3e40dd4f46ac90a37c605d0"></a>
 <div class="memitem">
@@ -146,7 +162,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="heap_8c.html#a6dc22924ecacd72d9ed583d4cf83fd05">HEAPinit()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00059">59</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00067">67</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -185,7 +201,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Value 0 &ndash; if the call was OK - that is, element removed.<br/>
  Value -1 &ndash; otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00117">117</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00125">125</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -222,7 +238,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference - to a new, empty heap - if dynamic memory allocation for the ADT was successful - or NULL otherwise. Take really good care of this return value, since it will be needed as a parameter in subsequent calls - to the majority of other heap functions in this function interface - i.e. a sort of "handle" to the heap. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00043">43</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00051">51</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -261,7 +277,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Value 0 - if insertion was succesful<br/>
  Value -1 - otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00074">74</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00082">82</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -287,7 +303,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the top-priority element of the current heap. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00111">111</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00119">119</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -324,7 +340,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00204">204</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00212">212</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
@@ -350,14 +366,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size, that is, the number of elements in the heap. </dd></dl>
 
-<p>Definition at line <a class="el" href="heap_8c_source.html#l00198">198</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
+<p>Definition at line <a class="el" href="heap_8c_source.html#l00206">206</a> of file <a class="el" href="heap_8c_source.html">heap.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Feb 25 2013 21:48:14 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

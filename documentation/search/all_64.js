@@ -4,6 +4,8 @@ var searchData=
   ['dlist_2ec',['dlist.c',['../dlist_8c.html',1,'']]],
   ['dlist_2eh',['dlist.h',['../dlist_8h.html',1,'']]],
   ['dlist_5f',['DList_',['../struct_d_list__.html',1,'']]],
+  ['dlist_5fbwd',['DLIST_BWD',['../dlist_8h.html#a66a9583c49c383487d752358dc898208',1,'dlist.h']]],
+  ['dlist_5ffwd',['DLIST_FWD',['../dlist_8h.html#a6440cdb7d79f195b0b82680dddb3effc',1,'dlist.h']]],
   ['dlistdata',['DLISTdata',['../dlist_8c.html#a308deae4c7325ae34237f511976c9038',1,'DLISTdata(DlistNode node):&#160;dlist.c'],['../dlist_8h.html#a308deae4c7325ae34237f511976c9038',1,'DLISTdata(DlistNode node):&#160;dlist.c']]],
   ['dlistdestroy',['DLISTdestroy',['../dlist_8c.html#a6bfe3b6a0825eb215641d6ed7ef33b2e',1,'DLISTdestroy(Dlist list):&#160;dlist.c'],['../dlist_8h.html#a6bfe3b6a0825eb215641d6ed7ef33b2e',1,'DLISTdestroy(Dlist list):&#160;dlist.c']]],
   ['dlistelmt_5f',['DListElmt_',['../struct_d_list_elmt__.html',1,'']]],
@@ -23,5 +25,7 @@ var searchData=
   ['dlistsize',['DLISTsize',['../dlist_8c.html#ab581ac12fc35764c0af29061aa8f68a3',1,'DLISTsize(Dlist list):&#160;dlist.c'],['../dlist_8h.html#ab581ac12fc35764c0af29061aa8f68a3',1,'DLISTsize(Dlist list):&#160;dlist.c']]],
   ['dlistsort',['DLISTsort',['../dlist_8c.html#a18971072de7bf5a3144645605d8d5844',1,'DLISTsort(Dlist list, int(*cmp)(const void *key1, const void *key2)):&#160;dlist.c'],['../dlist_8h.html#a18971072de7bf5a3144645605d8d5844',1,'DLISTsort(Dlist list, int(*cmp)(const void *key1, const void *key2)):&#160;dlist.c']]],
   ['dlisttail',['DLISTtail',['../dlist_8c.html#af9617d6c8545fde165afc29058da6295',1,'DLISTtail(Dlist list):&#160;dlist.c'],['../dlist_8h.html#af9617d6c8545fde165afc29058da6295',1,'DLISTtail(Dlist list):&#160;dlist.c']]],
-  ['dlisttraverse',['DLISTtraverse',['../dlist_8c.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c'],['../dlist_8h.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c']]]
+  ['dlisttraverse',['DLISTtraverse',['../dlist_8c.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c'],['../dlist_8h.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c']]],
+  ['dn_5flim',['dn_lim',['../utils_8c.html#a64b3094d646d8eb3069101685931231e',1,'dn_lim(int minval, int val):&#160;utils.c'],['../utils_8h.html#a64b3094d646d8eb3069101685931231e',1,'dn_lim(int minval, int val):&#160;utils.c']]],
+  ['dn_5fup_5flim',['dn_up_lim',['../utils_8c.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c'],['../utils_8h.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c']]]
 ];
