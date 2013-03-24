@@ -10,16 +10,17 @@
  * - Chained hash table
  * - Heap
  * - Priority queue
+ * - Binary search tree
+ * - AVL tree
  * .
  * Original and major parts of the code written by 
  * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
  * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
  * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
- * @date     Mon Feb 25 15:58:45 2013
- * @version  0.30 (<a href="md__change_log.html">To ChangeLog</a>)
+ * @date     Fri Mar 22 13:13:19 2013
+ * @version  0.40 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par ToDo
  *  Continue making more pure, generic ADT:s - such as:
- * - An <b>AVL Binary Search Tree</b> ADT\n
- * - And - in due time - a <b>Graph</b> and a <b>Set</b> ADT\n
+ * - A <b>Graph</b>, <b>Set</b> and <b>Circular list</b> ADT - in due time...\n
  * .
  **/

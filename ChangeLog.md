@@ -1,3 +1,20 @@
+<h2>LevAWC version 0.40</h2>
+<h4>Changes</h4>
+<ul>
+  <li>Added new source: <code>bitree.c, bitree.h, avltree.c, avltree.h, utils.c, utils.h</code></li>
+  <li>Added new demo source: <code>demo6.c, demo7.c</code> - showing usage of binary search and AVL trees.</li>
+  <li>Some changes in demo4.c so the user can interactively decide nr of insertions/removals of nodes. </li>
+  <li>Improved the documentation somewhat.</li>
+</ul>
+<h4>New features</h4>
+<ul>
+  <li>Two new container ADT:s - simple binary search tree - and the more advanced AVL tree - accompanied by demos (<code>demo6.c, demo7.c</code>).</li>
+</ul>
+<h4>Bugfixes</h4>
+<ul>
+  <li>Minor ones...</li>
+</ul>
+
 <h2>LevAWC version 0.30</h2>
 <h4>Changes</h4>
 <ul>

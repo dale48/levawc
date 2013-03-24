@@ -6,8 +6,8 @@
  *
  * Filename: slist.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Mon Feb 25 16:52:00 GMT 2013
- * Version : 0.30
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description: A singly-linked list - implemented as a pure, generic ADT.
  *

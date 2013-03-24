@@ -6,8 +6,8 @@
  *
  * Filename: avltree.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Mar 06 09:40:39 2013
- * Version : 0.1 
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description: An AVL Tree - with some extensions. 
  * 
@@ -30,7 +30,7 @@
  * it is printed on screen as a result of a call to 
  * AVLTREEprint()
  **/
-#define HEAP_PRINT_LEVEL_PADDING 4
+#define AVLTREE_PRINT_LEVEL_PADDING 4
 
 struct AvlTreeNode_ 
 {
@@ -534,10 +534,10 @@ static void print_tree(AvlTreeNode node, int level, void (*callback)(const void 
   char *p_msk;
 
   /* Print current element data */
-  p_msk = (char *)malloc((HEAP_PRINT_LEVEL_PADDING*level+1)*sizeof(char));
+  p_msk = (char *)malloc((AVLTREE_PRINT_LEVEL_PADDING*level+1)*sizeof(char));
   assert(p_msk);
-  memset(p_msk, '-', HEAP_PRINT_LEVEL_PADDING*level);
-  p_msk[HEAP_PRINT_LEVEL_PADDING*level] = '\0';
+  memset(p_msk, '-', AVLTREE_PRINT_LEVEL_PADDING*level);
+  p_msk[AVLTREE_PRINT_LEVEL_PADDING*level] = '\0';
   printf("%s", p_msk);
   free(p_msk);
   /* Recursion condition */

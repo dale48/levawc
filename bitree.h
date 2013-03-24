@@ -6,8 +6,8 @@
  *
  * Filename: bitree.h
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Tue Feb 19 19:59:44 2013
- * Version : 0.1 
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description: A basic, binary search tree ADT - written in ANSI C.
  * 

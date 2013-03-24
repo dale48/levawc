@@ -14,7 +14,7 @@
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
  * 130201 Created this program the first time..
- *
+ * 130324 Changed functions "insert_nodes(), remove_nodes()" - and made the loops in them terminated by user interaction.
  * 
  * 
  */
@@ -29,8 +29,6 @@
 #endif
 
 #define NR_OF_ITEMS 30
-#define NR_OF_REMOVALS 3
-#define NR_OF_INSERTS 3
 #define NR_OF_BUCKETS 11
 
 /* Function declarations */
@@ -44,8 +42,8 @@ int my_match(const void *k1, const void *k2);
 int my_hash(const void *key);
 
 void add_nodes(CHtbl list, int nr_of_nodes);
-void remove_nodes(CHtbl list, int nr_of_removes);
-void insert_nodes(CHtbl list, int nr_of_insertions);
+void remove_nodes(CHtbl list);
+void insert_nodes(CHtbl list);
 
 /* Function definitions - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
@@ -133,9 +131,9 @@ void add_nodes(CHtbl tbl, int nr_of_nodes)
 }
 
 /* --- Function: void remove_nodes(CHtbl tbl, int nr_of_removes) --- */
-void remove_nodes(CHtbl tbl, int nr_of_removes)
+void remove_nodes(CHtbl tbl)
 {
-  int i=0, tmp, *pi, retval;
+  int tmp, *pi, retval;
   char mess[BUFSIZ];
 
   do
@@ -144,9 +142,12 @@ void remove_nodes(CHtbl tbl, int nr_of_removes)
       printf("\nCurrent table status(%d elements): ", CHTBLsize(tbl));
       CHTBLprint(tbl, print);
 
-      printf("\nEnter data for element to be removed: ");
+      printf("\nEnter data for element to be removed (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+	break;
 
       pi = &tmp;
       if ((retval = CHTBLremove(tbl, (void **)&pi)) != 0) /* Node removal failed.. */
@@ -172,14 +173,13 @@ void remove_nodes(CHtbl tbl, int nr_of_removes)
 	  free(pi);
 	}
 
-      i++;
-    } while (i < nr_of_removes);
+    } while (1);
 }
 
 /* --- Function: void insert_nodes(CHtbl tbl, int nr_of_insertions) --- */
-void insert_nodes(CHtbl tbl, int nr_of_insertions)
+void insert_nodes(CHtbl tbl)
 {
-  int i=0, tmp, *pi, retval;
+  int tmp, *pi, retval;
   char mess[BUFSIZ];
 
   do
@@ -188,9 +188,12 @@ void insert_nodes(CHtbl tbl, int nr_of_insertions)
       printf("\nCurrent table status(%d elements): ", CHTBLsize(tbl));
       CHTBLprint(tbl, print);
 
-      printf("\nEnter data for element to be inserted: ");
+      printf("\nEnter data for element to be inserted (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+	break;
 
       pi = (int *)malloc(sizeof(int));
       *pi = tmp;
@@ -214,9 +217,8 @@ void insert_nodes(CHtbl tbl, int nr_of_insertions)
 	  sprintf(mess, "Element %d inserted - in bucket %d..", *(int *)pi, (*pi)%NR_OF_BUCKETS);
 	  prompt_and_pause(mess);
 	}
-      i++;
 
-    } while (i < nr_of_insertions);
+    } while (1);
 }
 
 int main(void)
@@ -240,20 +242,20 @@ int main(void)
   /* Initialize - and add elements to the table... */
   add_nodes(mytbl, NR_OF_ITEMS);
 
-  sprintf(msg, "\n\nNow - let's ADD %d elements to the table", NR_OF_INSERTS);
+  sprintf(msg, "\n\nNow - let's ADD some elements to the table");
   prompt_and_pause(msg);
   
   /* Do the manual insertions... */
-  insert_nodes(mytbl, NR_OF_INSERTS);
+  insert_nodes(mytbl);
   my_clearscrn();  
   printf("\nCurrent table status(%d elements): ", CHTBLsize(mytbl));
   CHTBLprint(mytbl, print);
 
-  sprintf(msg, "\n\nNow - let's DELETE %d elements from the table", NR_OF_INSERTS);
+  sprintf(msg, "\n\nNow - let's DELETE some elements from the table");
   prompt_and_pause(msg);
 
   /* Do the manual removals... */
-  remove_nodes(mytbl, NR_OF_REMOVALS);
+  remove_nodes(mytbl);
   my_clearscrn();  
   printf("\nFinal table status(%d elements): ", CHTBLsize(mytbl));
   CHTBLprint(mytbl, print);

@@ -6,8 +6,8 @@
  *
  * Filename: bitree.c
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Tue Feb 19 20:01:48 2013
- * Version : 0.1 
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description : A basic, miminal, binary tree ADT - written in ANSI C.
  * 
@@ -32,7 +32,7 @@
  * it is printed on screen as a result of a call to 
  * BITREEprint()
  **/
-#define HEAP_PRINT_LEVEL_PADDING 4
+#define BITREE_PRINT_LEVEL_PADDING 4
 
 struct BiTreeNode_ 
 {
@@ -469,10 +469,10 @@ static void print_tree(BiTreeNode node, int level, void (*callback)(const void *
   char *p_msk;
 
   /* Print current element data */
-  p_msk = (char *)malloc((HEAP_PRINT_LEVEL_PADDING*level+1)*sizeof(char));
+  p_msk = (char *)malloc((BITREE_PRINT_LEVEL_PADDING*level+1)*sizeof(char));
   assert(p_msk);
-  memset(p_msk, '-', HEAP_PRINT_LEVEL_PADDING*level);
-  p_msk[HEAP_PRINT_LEVEL_PADDING*level] = '\0';
+  memset(p_msk, '-', BITREE_PRINT_LEVEL_PADDING*level);
+  p_msk[BITREE_PRINT_LEVEL_PADDING*level] = '\0';
   printf("%s", p_msk);
   free(p_msk);
   /* Recursion condition */

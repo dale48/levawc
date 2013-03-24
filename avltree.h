@@ -6,8 +6,8 @@
  *
  * Filename: avltree.h
  * Author  : Kyle Loudon/Dan Levin
- * Date    : Wed Mar 06 09:39:16 2013
- * Version : 0.1 
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description: An AVLtree - with some extensions.
  * 
@@ -29,20 +29,20 @@
 extern "C" {
 #endif
 
-/**
- * Balance factor for a "left-heavy" node - in the AVL Tree
- * 
- **/
+  /**
+   * Balance factor for a "left-heavy" node - in the AVL Tree
+   * 
+   **/
 #define            AVL_LFT_HEAVY         1
-/**
- * Balance factor for a "balanced" node - in the AVL Tree
- * 
- **/
+  /**
+   * Balance factor for a "balanced" node - in the AVL Tree
+   * 
+   **/
 #define            AVL_BALANCED          0
-/**
- * Balance factor for a "right-heavy" node - in the AVL Tree
- * 
- **/
+  /**
+   * Balance factor for a "right-heavy" node - in the AVL Tree
+   * 
+   **/
 #define            AVL_RGT_HEAVY        -1
 
   /**
@@ -85,7 +85,7 @@ extern "C" {
    * 
    **/
   AvlTree AVLTREEinit(int (*compare)(const void *key1, const void *key2), 
-		      void (*destroy)(void *data));
+                      void (*destroy)(void *data));
 
   /**
    * Destroy the tree
@@ -366,4 +366,3 @@ extern "C" {
 #endif 
 
 #endif /* _AVLTREE_H_ */
-

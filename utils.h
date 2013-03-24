@@ -6,8 +6,8 @@
  *
  * Filename: utils.h
  * Author  : Dan Levin
- * Date    : Mon Mar 11 08:26:13 2013
- * Version : 0.1 
+ * Date    : Fri Mar 22 12:40:45 GMT 2013
+ * Version : 0.40
  * ---
  * Description: Description: Miscellanenous utility functions
  * 
