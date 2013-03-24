@@ -21,7 +21,7 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
   <li><code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <i>Command</i>: <code>mingw32-make -f mingw32.mak</code></li>
   <li><code>vcwin32.mak</code> - uses Visual C compiler in Win32. <i>Command</i>: <code>nmake -f vcwin32.mak</code></li>
 </ul>
-<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.30.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: "./configure [\-\-prefix=...]", "make" and finally - "[sudo] make install" - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
+<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.30.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [--prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
 <!--
 <ul>
   <li></li>
