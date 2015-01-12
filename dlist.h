@@ -77,7 +77,7 @@ extern "C" {
    * allocation for the ADT was successful - or NULL otherwise. 
    * Take really good care of this return value, since it will be needed
    * as a parameter in subsequent calls - to the majority of other list 
-   * handling functions in the this function interface - i.e. a sort of 
+   * handling functions in this function interface - i.e. a sort of 
    * "handle" to the list.
    * @see DLISTdestroy()
    **/

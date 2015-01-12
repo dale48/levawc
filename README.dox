@@ -5,22 +5,39 @@
  * Some basic dynamic data structures implemented as pure, generic ADT:s, coded in ANSI C.
  * - Singly-linked list
  * - Doubly-linked list
+ * - Circular, singly-linked list
  * - Stack
  * - Queue
+ * - Set
  * - Chained hash table
+ * - Open-addressed hash table
  * - Heap
  * - Priority queue
  * - Binary search tree
  * - AVL tree
- * .
+<!-- * - Graph -->
  * Original and major parts of the code written by 
  * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
  * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
  * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
- * @date     Fri Mar 22 13:13:19 2013
- * @version  0.40 (<a href="md__change_log.html">To ChangeLog</a>)
+ * @date     Fri Jan 09 13:50:19 2015
+ * @version  0.50 (<a href="md__change_log.html">To ChangeLog</a>)
+ * @par Demos
+ * The demos are trying to test and show most of the public interface of the ADT:s - accordingly:
+ * - <code>demo1.c</code> - testing/showing Singly-linked List ADT..
+ * - <code>demo2.c</code> - testing/showing Doubly-linked List ADT..
+ * - <code>demo3.c</code> - testing/showing Stack and Queue ADT..
+ * - <code>demo4.c</code> - testing/showing Chained Hash Table ADT..
+ * - <code>demo5.c</code> - testing/showing Heap and Priority Queue ADT..
+ * - <code>demo6.c</code> - testing/showing Binary Search Tree ADT..
+ * - <code>demo7.c</code> - testing/showing AVL Tree ADT..
+ * - <code>demo8.c</code> - testing/showing Circular, Singly-linked List ADT..
+ * - <code>demo9.c</code> - testing/showing Set ADT..
+ * - <code>demo10.c</code> - testing/showing Open-addressed Hash Table ADT..
+<!-- * - <code>demo11.c</code> - testing/showing Graph ADT.. -->
+ * All demos are tested against memory leaks (Valgrind, Linux)
  * @par ToDo
  *  Continue making more pure, generic ADT:s - such as:
- * - A <b>Graph</b>, <b>Set</b> and <b>Circular list</b> ADT - in due time...\n
+ * - A <b>Graph</b> ADT - in due time...\n
  * .
  **/

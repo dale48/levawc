@@ -234,6 +234,11 @@ void SLISTsetmatch(Slist list, int (*match)(const void *key1, const void *key2))
   list->match = match;
 }
 
+match_callback SLISTgetmatch(Slist list)
+{
+  return list->match;
+}
+
 void SLISTreverse(Slist list)
 {
   SlistNode tmp;

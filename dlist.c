@@ -74,7 +74,6 @@ void DLISTdestroy(Dlist list)
           list->destroy(data);
         }
     }
-  
   free(list);
 }
 
