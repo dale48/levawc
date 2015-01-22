@@ -1,6 +1,5 @@
 TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
-- Convert demo3.c to be menu-driven - check indentation, untabify and mem.leaks
 - Convert demo4.c to be menu-driven - check indentation, untabify and mem.leaks
 - Convert demo5.c to be menu-driven - check indentation, untabify and mem.leaks
 - Convert demo6.c to be menu-driven - check indentation, untabify and mem.leaks
@@ -26,4 +25,4 @@ Completed tasks:
 - Convert demo1.c to be menu-driven (Wed Jan 21 11:23:20 2015) - indentation, untabify and mem.leaks checked. Wed Jan 21 14:05:14 2015
 - Write core code for basic menu-driven demos - in a separate file (./git/levawc/tmp/demos/demo_menu_functions.c) (Wed Jan 21 11:23:45 2015)
 - Convert demo2.c to be menu-driven - check indentation, untabify and mem.leaks Wed Jan 21 16:03:33 2015
-
+- Convert demo3.c to be menu-driven - check indentation, untabify and mem.leaks Thu Jan 22 21:12:49 2015
