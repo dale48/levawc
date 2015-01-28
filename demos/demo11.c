@@ -29,10 +29,10 @@
 #define NR_OF_EDGES 20
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\nMENU: 0=Exit 1=Add_Vertex 2=Remove_Vertex 3=Add_Edge 4=Remove_Edge"
+#define MAIN_MENU_ROW "\nMENU: 0=Exit 1=Add_Vertex 2=Remove_Vertex 3=Add_Edge 4=Remove_Edge 5=Print_Graph"
 #define MAIN_PROMPT "\nSelection <0-4>+<Enter>: "
 
-/* Function declarations */
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -46,14 +46,17 @@ int is_sel_ok(const int sel, const int lowsel, const int hisel);
 int menu(const int low_sel, const int hi_sel);
 
 void create_rand_vertices(Graph gr, int nr_of_nodes);
+
 /* Menu selections */
 void ins_vertex(Graph gr);
 void rem_vertex(Graph gr);
 void ins_edge(Graph gr);
 void rem_edge(Graph gr);
+void print_graph(Graph gr);
 void final_status(Graph gr);
+/* END-OF-FUNCTION-DECLARATIONS */
 
-/* Function definitions - the rest of the program */
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -295,6 +298,12 @@ int menu(const int low_sel, const int hi_sel)
   return selection;
 }
 
+/* --- Function: void print_graph(Graph gr) --- */
+void print_graph(Graph gr)
+{
+  
+}
+
 /* --- Function: void tidy_and_quit(Graph gr) --- */
 void final_status(Graph gr)
 {
@@ -341,6 +350,9 @@ int main(void)
 	  break;
         case 4:
 	  rem_edge(mygraph);
+	  break;
+        case 5:
+	  print_graph(mygraph);
 	  break;
         default:
 	  final_status(mygraph);

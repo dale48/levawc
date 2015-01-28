@@ -28,7 +28,11 @@
 #define NR_OF_ITEMS 7
 #define NR_OF_SLOTS 11
 
-/* Function declarations */
+/* Some string macros for the main menu... */
+#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Print_Table"
+#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -39,11 +43,20 @@ int my_match(const void *k1, const void *k2);
 int my_hash1(const void *key);
 int my_hash2(const void *key);
 
-void add_nodes(OHtbl list, int nr_of_nodes);
-void remove_nodes(OHtbl list);
-void insert_nodes(OHtbl list);
+void create_nodes(OHtbl tbl, int nr_of_nodes);
 
-/* Function definitions - the rest of the program */
+/* Functions handling menu selections */
+void ins_node(OHtbl tbl);
+void rem_node(OHtbl tbl);
+void print_table(OHtbl tbl);
+void final_status(OHtbl tbl);
+
+/* Menu (handling) functions */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel);
+int menu(const int low_sel, const int hi_sel);
+/* END-OF-FUNCTION-DECLARATIONS */
+
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -105,7 +118,7 @@ int my_hash2(const void *key)
 }
 
 /* --- Function: void add_nodes(OHtbl tbl, int nr_of_nodes) --- */
-void add_nodes(OHtbl tbl, int nr_of_nodes)
+void create_nodes(OHtbl tbl, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
@@ -137,12 +150,12 @@ void add_nodes(OHtbl tbl, int nr_of_nodes)
     } while (++i < nr_of_nodes);
 
   printf("\nCurrent table status:");
-  OHTBLprint(tbl, print);
+  print_table(tbl);
   printf("\n%d/%d successful insertions -- %d duplicates rejected...", OHTBLsize(tbl), nr_of_nodes, dupctr);
 }
 
-/* --- Function: void remove_nodes(OHtbl tbl) --- */
-void remove_nodes(OHtbl tbl)
+/* --- Function: void ins_node(OHtbl tbl) --- */
+void ins_node(OHtbl tbl)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -151,52 +164,7 @@ void remove_nodes(OHtbl tbl)
     {
       my_clearscrn();
       printf("\nCurrent table status(%d elements): ", OHTBLsize(tbl));
-      OHTBLprint(tbl, print);
-
-      printf("\nEnter data for element to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-
-      if (tmp == -1)
-	break;
-
-      pi = &tmp;
-      if ((retval = OHTBLremove(tbl, (void **)&pi)) != OK) /* Node removal failed.. */
-	{
-	  /* Removal didn't work - node NOT found... */
-	  if (retval == -1)
-	    {
-	      sprintf(mess, "Element %d not found..!", *(int *)pi);
-	      prompt_and_pause(mess);
-	    }
-	  else
-	    {
-	      printf("Fatal failure - bailing out...");
-	      exit(retval);
-	    }
-	}
-      else
-	{
-	  /* Removal succesful - notify user.. */
-	  sprintf(mess, "Element %d removed..!", *(int *)pi);
-	  prompt_and_pause(mess);
-	  /* Free element - after being removed from table.. */
-	  free(pi);
-	}
-    } while (1);
-}
-
-/* --- Function: void insert_nodes(OHtbl tbl) --- */
-void insert_nodes(OHtbl tbl)
-{
-  int tmp, *pi, retval;
-  char mess[BUFSIZ];
-
-  do
-    {
-      my_clearscrn();
-      printf("\nCurrent table status(%d elements): ", OHTBLsize(tbl));
-      OHTBLprint(tbl, print);
+      print_table(tbl);
 
       printf("\nEnter data for element to be inserted (-1=Quit): ");
       scanf("%d", &tmp);
@@ -235,11 +203,108 @@ void insert_nodes(OHtbl tbl)
     } while (1);
 }
 
+/* --- Function: void remove_nodes(OHtbl tbl) --- */
+void rem_node(OHtbl tbl)
+{
+  int tmp, *pi, retval;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("\nCurrent table status(%d elements): ", OHTBLsize(tbl));
+      print_table(tbl);
+
+      printf("\nEnter data for element to be removed (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+	break;
+
+      pi = &tmp;
+      if ((retval = OHTBLremove(tbl, (void **)&pi)) != OK) /* Node removal failed.. */
+	{
+	  /* Removal didn't work - node NOT found... */
+	  if (retval == -1)
+	    {
+	      sprintf(mess, "Element %d not found..!", *(int *)pi);
+	      prompt_and_pause(mess);
+	    }
+	  else
+	    {
+	      printf("Fatal failure - bailing out...");
+	      exit(retval);
+	    }
+	}
+      else
+	{
+	  /* Removal succesful - notify user.. */
+	  sprintf(mess, "Element %d removed..!", *(int *)pi);
+	  prompt_and_pause(mess);
+	  /* Free element - after being removed from table.. */
+	  free(pi);
+	}
+    } while (1);
+}
+
+/* --- Function: void print_table(parameter_list) --- */
+void print_table(OHtbl tbl)
+{
+  OHTBLprint(tbl, print);
+}
+
+/* --- Function: void final_status(OHtbl tbl) --- */
+void final_status(OHtbl tbl)
+{
+  /* Final list status... */
+  my_clearscrn();
+  printf("\nFinal list contents(%d nodes): ", OHTBLsize(tbl));
+  OHTBLprint(tbl, print);
+}
+
+/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel)
+{
+  int retval;
+
+  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
+}
+
+/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
+int menu(const int low_sel, const int hi_sel)
+{
+  int retval, selection, sel_ok=0;
+
+  do
+    {
+      printf("%s", MAIN_MENU_ROW);
+      printf("%s", MAIN_PROMPT);
+      retval = scanf("%d", &selection);
+
+      if (retval == 1)
+        {
+          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
+          if (!sel_ok)
+            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
+          getchar();   
+        }
+      else
+        {
+          printf("Invalid input - use integer only!");
+          getchar();
+        }
+
+    } while (retval == EOF || !sel_ok);
+
+  return selection;
+}
+
 int main(void)
 {
   /* Declare YOUR variables here ! */
   OHtbl mytbl;
-  char msg[BUFSIZ];
+  int menu_choice;
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
@@ -254,28 +319,50 @@ int main(void)
     }
   
   /* Initialize - and add elements to the table... */
-  add_nodes(mytbl, NR_OF_ITEMS);
+  create_nodes(mytbl, NR_OF_ITEMS);
 
-  sprintf(msg, "\n\nNow - let's DELETE some elements from the table");
-  prompt_and_pause(msg);
+  /* sprintf(msg, "\n\nNow - let's DELETE some elements from the table"); */
+  /* prompt_and_pause(msg); */
 
-  /* Do some manual removals... */
-  remove_nodes(mytbl);
-  my_clearscrn();  
-  printf("\nCurrent table status(%d elements): ", OHTBLsize(mytbl));
-  OHTBLprint(mytbl, print);
+  /* /\* Do some manual removals... *\/ */
+  /* remove_nodes(mytbl); */
+  /* my_clearscrn();   */
+  /* printf("\nCurrent table status(%d elements): ", OHTBLsize(mytbl)); */
+  /* OHTBLprint(mytbl, print); */
 
-  sprintf(msg, "\n\nNow - let's ADD some elements to the table");
-  prompt_and_pause(msg);
+  /* sprintf(msg, "\n\nNow - let's ADD some elements to the table"); */
+  /* prompt_and_pause(msg); */
 
-  /* Do the manual insertions... */
-  insert_nodes(mytbl);
-  my_clearscrn();  
-  printf("\nFinal table status(%d elements): ", OHTBLsize(mytbl));
-  OHTBLprint(mytbl, print);
+  /* /\* Do the manual insertions... *\/ */
+  /* insert_nodes(mytbl); */
+  /* my_clearscrn();   */
+  /* printf("\nFinal table status(%d elements): ", OHTBLsize(mytbl)); */
+  /* OHTBLprint(mytbl, print); */
+
+  /* Enter menu... */
+  do
+    {
+      menu_choice = menu(0, 3);
+
+      switch (menu_choice)
+        {
+        case 1:
+          ins_node(mytbl);
+          break;
+        case 2:
+          rem_node(mytbl);
+          break;
+        case 3:
+          print_table(mytbl);
+          break;
+        default:
+          final_status(mytbl);
+          break;
+        }
+    }
+  while (menu_choice); 
 
   prompt_and_pause("\n\nLet's tidy up and destroy the hashtable - Bye...!");
-
   OHTBLdestroy(mytbl);
 
   return 0;
