@@ -6,11 +6,16 @@
  *
  * Filename: demo9.c
  * Author  : Dan Levin
- * Date    : Wed Apr 17 14:37:59 2013
+ * Date    : Tue Jan 27 11:44:11 2015
  * Version : 0.1 
  * ---
- * Description: A usage demo program - showing/testing the Set ADT 
+ * Description: A usage demo program - showing/testing the Set ADT
  * 
+ * Revision history: (this is where you document the diffs between versions...)
+ * Date   Revision
+ * 150127 Created this program the first time - and made it menu-driven..
+ *
+ *
  */
 
 #include <stdio.h>
@@ -23,9 +28,12 @@
 #endif
 
 #define NR_OF_ITEMS 10
-#define MINLEN 5
 
-/* Function declarations */
+/* Some string macros for the main menu... */
+#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Set1_Add_Node 2=Set2_Add_Node 3=Set1_Rem_Node 4=Set2_Rem_Node 5=Print_Sets"
+#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
+
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -34,11 +42,21 @@ void my_clearscrn(void);
 void prompt_and_pause(char *message);
 int my_match(const void *k1, const void *k2);
 
-void add_random_nodes(Set list, int nr_of_nodes);
-void remove_nodes(Set list);
-void insert_nodes(Set list);
+void create_random_nodes(Set set, int nr_of_nodes);
 
-/* Function definitions - the rest of the program */
+/* Functions handling menu selections */
+void ins_node(Set set);
+void rem_node(Set set);
+void print_sets(Set set1, Set set2);
+void print_union_diff_intersec(Set s1, Set s2);
+void final_status(Set set1, Set set2);
+
+/* Menu (handling) functions */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel);
+int menu(const int low_sel, const int hi_sel);
+/* END-OF-FUNCTION-DECLARATIONS */
+
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -88,7 +106,7 @@ int my_match(const void *k1, const void *k2)
 }
 
 /* --- void add_random_nodes(Set set, int nr_of_nodes) --- */
-void add_random_nodes(Set set, int nr_of_nodes)
+void create_random_nodes(Set set, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
@@ -116,8 +134,63 @@ void add_random_nodes(Set set, int nr_of_nodes)
     } while (i < nr_of_nodes);
 }
 
-/* --- Function: void remove_nodes(Set set) --- */
-void remove_nodes(Set set)
+/* --- Function: void ins_node(Set set) --- */
+void ins_node(Set set)
+{
+  int tmp, *pi, retval;
+  SlistNode node;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- ADD NODE TO SET ---");
+      printf("\nCurrent set status(%d nodes): ", SETsize(set));
+      SETtraverse(set, print, SET_FWD);
+
+      printf("\nEnter nodedata for node to be inserted (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+	break;
+
+      pi = (int *)malloc(sizeof(int));
+      *pi = tmp;
+
+      if ((retval = SETinsert(set, pi)) != 0) /* Insertion failed... */
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              sprintf(mess, "Element %d already present..!", *pi);
+              prompt_and_pause(mess);
+              free(pi); /* Free element - since being duplicate..  */
+            }
+          else
+	    {
+	      if (retval == -2)
+		{
+		  printf("\nMatch-callback is missing... - bailing out!");
+		  prompt_and_pause(mess);
+		}
+	      else
+		{
+		  prompt_and_pause("Fatal error - bailing out..:!");
+		}
+	      free(pi);
+	      exit(-1); /* Bail out - since serious error..  */
+	    }
+        }
+      else
+        {
+          sprintf(mess, "Element %d successfully inserted..", *(int *)pi);
+          prompt_and_pause(mess);
+        }
+    } while (1);
+}
+
+/* --- Function: void rem_node(Set set) --- */
+void rem_node(Set set)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -125,7 +198,7 @@ void remove_nodes(Set set)
   do
     {
       my_clearscrn();
-      printf("--- REMOVE SOME NODES/DATA FROM THE SET ---");
+      printf("--- REMOVE NODE FROM SET ---");
       printf("\nCurrent set status(%d nodes): ", SETsize(set));
       SETtraverse(set, print, SET_FWD);
 
@@ -167,99 +240,163 @@ void remove_nodes(Set set)
     } while (1);
 }
 
-/* --- Function: void insert_nodes(Set set) --- */
-void insert_nodes(Set set)
+/* --- Function: void print_sets(Set set1, Set set2) --- */
+void print_sets(Set set1, Set set2)
 {
-  int tmp, *pi;
-  SlistNode node;
-  char mess[BUFSIZ];
+  printf("\n\nSet 1 (%d nodes): ", SETsize(set1));
+  SETsort(set1, my_cmp);
+  SETtraverse(set1, print, SET_FWD);
+  printf("\nSet 2 (%d nodes): ", SETsize(set2));
+  SETsort(set2, my_cmp);
+  SETtraverse(set2, print, SET_FWD);
+}
+
+/* --- Function: void print_union_diff_intersec(Set s1, Set s2) --- */
+void print_union_diff_intersec(Set s1, Set s2)
+{
+  Set set_union, set_diff1, set_diff2, set_intersec;
+
+  set_union = SETunion(s1, s2);
+  set_diff1 = SETdifference(s1, s2);
+  set_diff2 = SETdifference(s2, s1);
+  set_intersec = SETintersection(s1, s2);
+
+  SETsort(set_union, my_cmp);
+  printf("\nSet1 UNION Set2(%02d nodes) : ", SETsize(set_union));
+  SETtraverse(set_union, print, SET_FWD);
+  printf("\nSet1 DIFF Set2(%02d nodes)  : ", SETsize(set_diff1));
+  SETtraverse(set_diff1, print, SET_FWD);
+  printf("\nSet2 DIFF Set1(%02d nodes)  : ", SETsize(set_diff2));
+  SETtraverse(set_diff2, print, SET_FWD);
+  printf("\nSet1 INTSEC Set2(%02d nodes): ", SETsize(set_intersec));
+  SETtraverse(set_intersec, print, SET_FWD);
+
+  SETdestroy(set_union);
+  SETdestroy(set_diff1);
+  SETdestroy(set_diff2);
+  SETdestroy(set_intersec);
+
+  /* getchar(); */
+  prompt_and_pause("\n\n");
+}
+
+/* --- Function: void final_status(CSlist list) --- */
+void final_status(Set s1, Set s2)
+{
+  /* Final set status... */
+  /* my_clearscrn(); */
+  printf("\nFinal set contents:");
+  print_sets(s1, s2);
+}
+
+/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel)
+{
+  int retval;
+
+  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
+}
+
+/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
+int menu(const int low_sel, const int hi_sel)
+{
+  int retval, selection, sel_ok=0;
 
   do
     {
-      my_clearscrn();
-      printf("--- ADD NODES WITH DATA=99 - AFTER USER-SPECIFIED NODES ---");
-      printf("\nCurrent set status(%d nodes): ", SETsize(set));
-      SETtraverse(set, print, SET_FWD);
+      printf("%s", MAIN_MENU_ROW);
+      printf("%s", MAIN_PROMPT);
+      retval = scanf("%d", &selection);
 
-      printf("\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-
-      if (tmp == -1)
-	break;
-
-      if ((SETis_member(set, &tmp)) == 1) /* Node found */
-	{
-	  /* Insert node after first occurance of user-specified node */
-	  pi = (int *)malloc(sizeof(int));
-	  *pi = 99;
-
-	  if ((SLISTinsnext(set, node, pi)) != 0)
-	    {
-	      printf("\nFatal error - exiting...!");
-	      exit(-1);
-	    }
-	  else
-	    {
-	      sprintf(mess, "Node 99 inserted after node %d", *(int *)SLISTdata(node));
-	      prompt_and_pause(mess);
-	    }
-	}
+      if (retval == 1)
+        {
+          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
+          if (!sel_ok)
+            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
+          getchar();   
+        }
       else
-	{
-	  sprintf(mess, "Node %d not found...!", tmp);
-	  prompt_and_pause(mess);
-	}
+        {
+          printf("Invalid input - use integer only!");
+          getchar();
+        }
 
-    } while (1);
+    } while (retval == EOF || !sel_ok);
+
+  return selection;
 }
 
 int main(void)
 {
   /* Declare YOUR variables here ! */
-  Set myset;
-  char mess[BUFSIZ];
-  int sz;
+  Set myset1, myset2;
+  int menu_choice;
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
 
-  printf("--- INITIALIZING A SET, %d NODES, INTEGER DATA ---", NR_OF_ITEMS);
-  if ((myset = SETinit(my_match, my_destroy)) == NULL) /* Initialize the set */
+  printf("--- INITIALIZING 2 SETS, %d NODES, INTEGER DATA ---", NR_OF_ITEMS);
+  if ((myset1 = SETinit(my_match, my_destroy)) == NULL) /* Initialize the set1... */
     {
       printf("\nFatal error... - bailing out!");
       exit(-1);
     }
 
-  /* Populate the (empty) set.. */
-  add_random_nodes(myset, NR_OF_ITEMS);
-  printf("\nCurrent set status(%d nodes): ", SETsize(myset));
-  SETtraverse(myset, print, SET_FWD);
+  if ((myset2 = SETinit(my_match, my_destroy)) == NULL) /* Initialize the set2... */
+    {
+      printf("\nFatal error... - bailing out!");
+      exit(-1);
+    }
 
-  /* Let the user remove some specified nodes... */
-  /* prompt_and_pause("\nNext - let's REMOVE some nodes.."); */
-  /* SETsetmatch(myset, my_match); */
-  /* remove_nodes(myset); */
+  /* Populate the (empty) sets.. */
+  create_random_nodes(myset1, NR_OF_ITEMS);
+  create_random_nodes(myset2, NR_OF_ITEMS);
 
-  /* Let the user add some nodes - with value=99 - at specified locations.. */
-  /* prompt_and_pause("\nFinally - let's ADD some nodes..."); */
-  /* if ((sz = SETsize(myset)) < MINLEN) */
-  /*   { */
-  /*     sprintf(mess, "\nSet too short - adding %d random nodes..", (MINLEN-sz)); */
-  /*     prompt_and_pause(mess); */
-  /*     add_random_nodes(myset, (MINLEN-sz)); /\* Populate the set *\/ */
-  /*     my_clearscrn(); */
-  /*   } */
-  /* insert_nodes(myset); */
+  printf("\nCurrent set status: ");
+  print_sets(myset1, myset2);
 
-  /* Final set status... */
-  printf("\nFinal set contents(%d nodes): ", SETsize(myset));
-  SETsort(myset, my_cmp);
-  SETtraverse(myset, print, SET_FWD);
+  /* Enter menu... */
+  do
+    {
+      menu_choice = menu(0, 5);
 
+      switch (menu_choice)
+        {
+	/* case 0: */
+	/*   final_status(myset1, myset2); */
+	  /* break; */
+        case 1:
+          ins_node(myset1);
+          break;
+        case 2:
+          ins_node(myset2);
+          break;
+	case 3:
+	  rem_node(myset1);
+	  break;
+	case 4:
+	  rem_node(myset2);
+	  break;
+        case 5:
+	  {
+	    my_clearscrn();
+	    printf("--- PRINT Set1 & Set2 - AND THEIR CORRESPONDING UNION, DIFF AND INTERSECTION ---");
+	    print_sets(myset1, myset2);
+	    printf("\n---");
+	    print_union_diff_intersec(myset1, myset2);
+	  }
+          break;
+        default:
+          final_status(myset1, myset2);
+          break;
+        }
+    }
+  while (menu_choice); 
+
+  /* ..and finally destroy the list. */
   prompt_and_pause("\n\nLet's tidy up and destroy the set.. - Bye!");
-
-  SETdestroy(myset);
+  SETdestroy(myset1);
+  SETdestroy(myset2);
 
   return 0;
 }

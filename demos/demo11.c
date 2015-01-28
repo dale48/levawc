@@ -269,7 +269,7 @@ void rem_edge(Graph gr)
 
 int menu(const int low_sel, const int hi_sel)
 {
-  int retval, selection, sel_ok;
+  int retval, selection, sel_ok=0;
 
   do
     {
@@ -308,7 +308,6 @@ int main(void)
 {
   /* Declare YOUR variables here ! */
   Graph mygraph;
-  char msg[BUFSIZ];
   int menu_choice;
 
   srand((unsigned int)time(NULL));

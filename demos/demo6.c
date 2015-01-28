@@ -6,7 +6,7 @@
  *
  * Filename: demo6.c
  * Author  : Dan Levin
- * Date    : Wed Feb 20 11:59:40 GMT 2013
+ * Date    : Mon Jan 26 14:53:39 2015
  * Version : 0.15
  * ---
  * Description: Usage demo of the binary search tree ADT - in LevAWC. 
@@ -31,7 +31,11 @@
 
 #define NR_OF_ITEMS 9
 
-/* Function declarations */
+/* Some string macros for the main menu... */
+#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Print_Tree"
+#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -39,11 +43,20 @@ int my_random(int start, int stop);
 void my_clearscrn(void);
 void prompt_and_pause(char *message);
 
-void add_nodes(BiTree tree, int nr_of_nodes);
-void remove_nodes(BiTree tree);
-void insert_nodes(BiTree tree);
+void create_nodes(BiTree tree, int nr_of_nodes);
 
-/* Function definitions - the rest of the program */
+/* Functions handling menu selections */
+void rem_node(BiTree tree);
+void ins_node(BiTree tree);
+void print_tree(BiTree tree);
+void final_status(BiTree tree);
+
+/* Menu (handling) functions */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel);
+int menu(const int low_sel, const int hi_sel);
+/* END-OF-FUNCTION-DECLARATIONS */
+
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -86,8 +99,8 @@ void prompt_and_pause(char *message)
   getchar();
 }
 
-/* --- Function: void add_nodes(BiTree tree, int nr_of_nodes) --- */
-void add_nodes(BiTree tree, int nr_of_nodes)
+/* --- Function: void create_nodes(BiTree tree, int nr_of_nodes) --- */
+void create_nodes(BiTree tree, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
@@ -97,75 +110,26 @@ void add_nodes(BiTree tree, int nr_of_nodes)
       *pi = my_random(1,99);
       
       if ((retval = BITREEinsert(tree, pi)) != 0) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      dupctr++;
-	      free(pi); /* Free node - since duplicate..  */
-	    }
-	  else
-	    {
-	      prompt_and_pause("Fatal error - bailing out..!\n");
-	      exit(-1);
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              dupctr++;
+              free(pi); /* Free node - since duplicate..  */
+            }
+          else
+            {
+              prompt_and_pause("Fatal error - bailing out..!\n");
+              exit(-1);
+            }
+        }
     } while (++i < nr_of_nodes);
 
-  BITREEprint(tree, print);
-  printf("INORDER: ");
-  BITREEinorder(tree, print);
-  printf("\n%d/%d successful insertions -- %d duplicates rejected...", BITREEsize(tree), nr_of_nodes, dupctr);
-}
-
-/* --- Function: void remove_nodes(BiTree tree, int nr_of_removes) --- */
-void remove_nodes(BiTree tree)
-{
-  int tmp, *pi, retval;
-  char mess[BUFSIZ];
-
-  do
-    {
-      my_clearscrn();
-      BITREEprint(tree, print);
-      printf("INORDER: ");
-      BITREEinorder(tree, print);
-
-      printf("\nEnter data for node to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-      
-      if (tmp == -1)
-	break;
-
-      pi = &tmp;
-      if ((retval = BITREEremove(tree, (void **)&pi)) != 0) /* Node removal failed.. */
-	{
-	  /* Removal didn't work - node NOT found... */
-	  if (retval == -1)
-	    {
-	      sprintf(mess, "Element %d not found..!", *(int *)pi);
-	      prompt_and_pause(mess);
-	    }
-	  else /* Serious failure..(-1 or -2) */
-	    {
-	      printf("Fatal failure - bailing out...");
-	      getchar();
-	      exit(retval);
-	    }
-	}
-      else
-	{
-	  /* Removal succesful - notify user.. */
-	  sprintf(mess, "Element %d successfully removed..!", *(int *)pi);
-	  prompt_and_pause(mess);
-	  /* Free element - after being removed from tree.. */
-	  free(pi);
-	}
-    } while (1);
+  print_tree(tree);
+  printf("\n%d/%d successful insertions -- %d duplicate(s) rejected...", BITREEsize(tree), nr_of_nodes, dupctr);
 }
 
 /* --- Function: void insert_nodes(BiTree tree, int nr_of_insertions) --- */
-void insert_nodes(BiTree tree)
+void ins_node(BiTree tree)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -173,47 +137,148 @@ void insert_nodes(BiTree tree)
   do
     {
       my_clearscrn();
-      BITREEprint(tree, print);
-      printf("INORDER: ");
-      BITREEinorder(tree, print);
+      printf("--- INSERT NODE ---\n");
+      print_tree(tree);
 
       printf("\nEnter data for node to be inserted (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
-	break;
+        break;
 
       pi = (int *)malloc(sizeof(int));
       *pi = tmp;
 
       if ((retval = BITREEinsert(tree, pi)) != 0) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      sprintf(mess, "Element %d already present..!", *pi);
-	      prompt_and_pause(mess);
-	      free(pi); /* Free element - since being duplicate..  */
-	    }
-	  else
-	    {
-	      prompt_and_pause("Fatal error - bailing out..:!\n");
-	      exit(-1);
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              sprintf(mess, "Element %d already present..!", *pi);
+              prompt_and_pause(mess);
+              free(pi); /* Free element - since being duplicate..  */
+            }
+          else
+            {
+              prompt_and_pause("Fatal error - bailing out..:!\n");
+              exit(-1);
+            }
+        }
       else
-	{
-	  sprintf(mess, "Element %d successfully inserted..", *(int *)pi);
-	  prompt_and_pause(mess);
-	}
+        {
+          sprintf(mess, "Element %d successfully inserted..", *(int *)pi);
+          prompt_and_pause(mess);
+        }
     } while (1);
+}
+
+/* --- Function: void remove_nodes(BiTree tree, int nr_of_removes) --- */
+void rem_node(BiTree tree)
+{
+  int tmp, *pi, retval;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- REMOVE NODE ---\n");
+      print_tree(tree);
+
+      printf("\nEnter data for node to be removed (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+      
+      if (tmp == -1)
+        break;
+
+      pi = &tmp;
+      if ((retval = BITREEremove(tree, (void **)&pi)) != 0) /* Node removal failed.. */
+        {
+          /* Removal didn't work - node NOT found... */
+          if (retval == -1)
+            {
+              sprintf(mess, "Element %d not found..!", *(int *)pi);
+              prompt_and_pause(mess);
+            }
+          else /* Serious failure..(-1 or -2) */
+            {
+              printf("Fatal failure - bailing out...");
+              getchar();
+              exit(retval);
+            }
+        }
+      else
+        {
+          /* Removal succesful - notify user.. */
+          sprintf(mess, "Element %d successfully removed..!", *(int *)pi);
+          prompt_and_pause(mess);
+          /* Free element - after being removed from tree.. */
+          free(pi);
+        }
+    } while (1);
+}
+
+/* --- Function: void print_tree(BiTree tree) --- */
+void print_tree(BiTree tree)
+{
+  BITREEprint(tree, print);
+  printf("INORDER: ");
+  BITREEinorder(tree, print);
+}
+
+/* --- Function: void final_status(Slist list) --- */
+void final_status(BiTree tree)
+{
+  /* Final list status... */
+  my_clearscrn();
+  printf("FINAL TREE STATUS(%d nodes):\n ", BITREEsize(tree));
+  BITREEprint(tree, print);
+  printf("INORDER: ");
+  BITREEinorder(tree, print);
+}
+
+/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel)
+{
+  int retval;
+
+  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
+}
+
+/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
+int menu(const int low_sel, const int hi_sel)
+{
+  int retval, selection, sel_ok=0;
+
+  do
+    {
+      printf("%s", MAIN_MENU_ROW);
+      printf("%s", MAIN_PROMPT);
+      retval = scanf("%d", &selection);
+
+      if (retval == 1)
+        {
+          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
+          if (!sel_ok)
+            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
+          getchar();   
+        }
+      else
+        {
+          printf("Invalid input - use integer only!");
+          getchar();
+        }
+
+    } while (retval == EOF || !sel_ok);
+
+  return selection;
 }
 
 int main(void)
 {
   /* Declare YOUR variables here ! */
   BiTree mytree;
-  char msg[BUFSIZ];
+  int menu_choice;
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
@@ -231,30 +296,33 @@ int main(void)
   BITREEsetcompare(mytree, my_cmp);
 
   /* Initialize - and add elements to the table... */
-  add_nodes(mytree, NR_OF_ITEMS);
+  create_nodes(mytree, NR_OF_ITEMS);
   
-  sprintf(msg, "\nNow - let's ADD some nodes to the tree..");
-  prompt_and_pause(msg);
+  do
+    {
+      menu_choice = menu(0, 3);
 
-  /* Do the manual insertions... */
-  insert_nodes(mytree);
-  my_clearscrn();  
-  BITREEprint(mytree, print);
-  printf("INORDER: ");
-  BITREEinorder(mytree, print);
-
-  sprintf(msg, "\nNow - let's DELETE some nodes in the tree...");
-  prompt_and_pause(msg);
-
-  /* Do the manual removals... */
-  remove_nodes(mytree);
-  my_clearscrn();  
-  BITREEprint(mytree, print);
-  printf("INORDER: ");
-  BITREEinorder(mytree, print);
+      switch (menu_choice)
+        {
+        case 1:
+          ins_node(mytree);
+          break;
+        case 2:
+          rem_node(mytree);
+          break;
+        case 3:
+          my_clearscrn();
+          printf("--- PRINT TREE ---\n");
+          print_tree(mytree);
+          break;
+        default:
+          final_status(mytree);
+          break;
+        }
+    }
+  while (menu_choice); 
 
   prompt_and_pause("\n\nLet's tidy up and destroy the search tree - Bye...!");
-
   BITREEdestroy(mytree);
   
   return 0;

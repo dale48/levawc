@@ -32,7 +32,6 @@
 #endif
 
 #define NR_OF_ITEMS 10
-#define MINLEN 5
 
 /* Some string macros for the main menu... */
 #define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Sort_List"
@@ -256,7 +255,7 @@ int is_sel_ok(const int menusel, const int lowsel, const int hisel)
 /* --- Function: int menu(const int low_sel, const int hi_sel) --- */
 int menu(const int low_sel, const int hi_sel)
 {
-  int retval, selection, sel_ok;
+  int retval, selection, sel_ok=0;
 
   do
     {

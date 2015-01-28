@@ -6,7 +6,7 @@
  *
  * Filename: demo8.c
  * Author  : Dan Levin
- * Date    : Thu Apr 11 09:16:32 GMT 2013
+ * Date    : Tue Jan 27 10:13:10 2015
  * Version : 0.15
  * ---
  * Description: Demo of the library LevAWC - circular singly-linked lists. 
@@ -14,7 +14,8 @@
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
  * 130410 Created this program the first time..
- * 
+ * 150127 Converted this program, demo8.c, to be menu-driven.
+ *
  */
 
 #include <stdio.h>
@@ -27,9 +28,12 @@
 #endif
 
 #define NR_OF_ITEMS 10
-#define MINLEN 5
 
-/* Function declarations */
+/* Some string macros for the main menu... */
+#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Print_List"
+#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -38,11 +42,20 @@ void my_clearscrn(void);
 void prompt_and_pause(char *message);
 int my_match(const void *k1, const void *k2);
 
-void add_random_nodes(CSlist list, int nr_of_nodes);
-void remove_nodes(CSlist list);
-void insert_nodes(CSlist list);
+void create_random_nodes(CSlist list, int nr_of_nodes);
 
-/* Function definitions - the rest of the program */
+/* Functions handling menu selections */
+void rem_node(CSlist list);
+void ins_node(CSlist list);
+void print_cslist(CSlist list);
+void final_status(CSlist list);
+
+/* Menu (handling) functions */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel);
+int menu(const int low_sel, const int hi_sel);
+/* END-OF-FUNCTION-DECLARATIONS */
+
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -91,8 +104,8 @@ int my_match(const void *k1, const void *k2)
   return *(int *)k1 == *(int *)k2;
 }
 
-/* --- void add_random_nodes(CSlist list, int nr_of_nodes) --- */
-void add_random_nodes(CSlist list, int nr_of_nodes)
+/* --- void create_random_nodes(CSlist list, int nr_of_nodes) --- */
+void create_random_nodes(CSlist list, int nr_of_nodes)
 {
   int i=0, *pi, retval;
 
@@ -111,59 +124,8 @@ void add_random_nodes(CSlist list, int nr_of_nodes)
     } while (++i < nr_of_nodes);
 }
 
-/* --- Function: void remove_nodes(CSlist list) --- */
-void remove_nodes(CSlist list)
-{
-  int tmp, *pi, retval;
-  char mess[BUFSIZ];
-
-  do
-    {
-      my_clearscrn();
-      printf("--- REMOVE SOME NODES/DATA FROM THE LIST ---");
-      printf("\nCurrent list status(%d nodes): ", CSLISTsize(list));
-      CSLISTtraverse(list, print);
-
-      printf("\nEnter (key)data for node to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-
-      if (tmp == -1)
-	break;
-
-      /* Remove node - and free memory */
-      pi = &tmp;
-
-      if ((retval = CSLISTfind_remove(list, (void **)&pi)) != 0)
-	{
-	  if (retval == 1)
-	    {
-	      sprintf(mess, "Element %d not found..!", *(int *)pi);
-	      prompt_and_pause(mess);
-	    }
-	  else 
-	    {
-	      if (retval == -2)
-		printf("\nMatch-callback is missing... - bailing out!");
-	      else
- 		printf("\nFatal error... - bailing out!");
-	      exit(retval);
-	    }
-	}
-      else
-	{
-	  /* Removal succesful - notify user.. */
-	  sprintf(mess, "Node %d removed..!", *(int *)pi);
-	  prompt_and_pause(mess);
-	  /* Free element - after being removed from list.. */
-	  free(pi);
-	}
-
-    } while (1);
-}
-
-/* --- Function: void insert_nodes(CSlist list) --- */
-void insert_nodes(CSlist list)
+/* --- Function: void ins_node(CSlist list) --- */
+void ins_node(CSlist list)
 {
   int tmp, *pi;
   CSlistNode node;
@@ -174,9 +136,9 @@ void insert_nodes(CSlist list)
       my_clearscrn();
       printf("--- ADD NODES WITH DATA=99 - AFTER USER-SPECIFIED NODES ---");
       printf("\nCurrent list status(%d nodes): ", CSLISTsize(list));
-      CSLISTtraverse(list, print);
+      print_cslist(list);
 
-      printf("\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
+      printf("\n\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
@@ -209,51 +171,160 @@ void insert_nodes(CSlist list)
     } while (1);
 }
 
+/* --- Function: void rem_node(CSlist list) --- */
+void rem_node(CSlist list)
+{
+  int tmp, *pi, retval;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- REMOVE SOME NODES/DATA FROM THE LIST ---");
+      printf("\nCurrent list status(%d nodes): ", CSLISTsize(list));
+      print_cslist(list);
+
+      printf("\n\nEnter (key)data for node to be removed (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+	break;
+
+      /* Remove node - and free memory */
+      pi = &tmp;
+
+      if ((retval = CSLISTfind_remove(list, (void **)&pi)) != 0)
+	{
+	  if (retval == 1)
+	    {
+	      sprintf(mess, "Element %d not found..!", *(int *)pi);
+	      prompt_and_pause(mess);
+	    }
+	  else 
+	    {
+	      if (retval == -2)
+		printf("\nMatch-callback is missing... - bailing out!");
+	      else
+ 		printf("\nFatal error... - bailing out!");
+	      
+	      exit(retval);
+	    }
+	}
+      else
+	{
+	  /* Removal succesful - notify user.. */
+	  sprintf(mess, "Node %d removed..!", *(int *)pi);
+	  prompt_and_pause(mess);
+	  /* Free element - after being removed from list.. */
+	  free(pi);
+	}
+
+    } while (1);
+}
+
+/* --- Function: void print_cslist(CSlist list) --- */
+void print_cslist(CSlist list)
+{
+  CSLISTtraverse(list, print);
+}
+
+/* --- Function: void final_status(CSlist list) --- */
+void final_status(CSlist list)
+{
+  /* Final list status... */
+  printf("\nFinal list contents(%d nodes): ", CSLISTsize(list));
+  print_cslist(list);
+}
+
+/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel)
+{
+  int retval;
+
+  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
+}
+
+/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
+int menu(const int low_sel, const int hi_sel)
+{
+  int retval, selection, sel_ok=0;
+
+  do
+    {
+      printf("%s", MAIN_MENU_ROW);
+      printf("%s", MAIN_PROMPT);
+      retval = scanf("%d", &selection);
+
+      if (retval == 1)
+        {
+          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
+          if (!sel_ok)
+            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
+          getchar();   
+        }
+      else
+        {
+          printf("Invalid input - use integer only!");
+          getchar();
+        }
+
+    } while (retval == EOF || !sel_ok);
+
+  return selection;
+}
+
 int main(void)
 {
   /* Declare YOUR variables here ! */
-  CSlist myclist;
-  char mess[BUFSIZ];
-  int sz;
+  CSlist mycslist;
+  int menu_choice;
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
 
   printf("--- INITIALIZING A CIRCULAR, SINGLY-LINKED LIST, %d NODES, INTEGER DATA ---", NR_OF_ITEMS);
-  if ((myclist = CSLISTinit(my_destroy)) == NULL) /* Initialize the list */
+  if ((mycslist = CSLISTinit(my_destroy)) == NULL) /* Initialize the list */
     {
       printf("\nFatal error... - bailing out!");
       exit(-1);
     }
 
   /* Populate the (empty) list.. */
-  add_random_nodes(myclist, NR_OF_ITEMS);
-  printf("\nCurrent list status(%d nodes): ", CSLISTsize(myclist));
-  CSLISTtraverse(myclist, print);
+  create_random_nodes(mycslist, NR_OF_ITEMS);
+  printf("\nCurrent list status(%d nodes): ", CSLISTsize(mycslist));
+  print_cslist(mycslist);
 
-  /* Let the user remove some specified nodes... */
-  prompt_and_pause("\nNext - let's REMOVE some nodes..");
-  CSLISTsetmatch(myclist, my_match);
-  remove_nodes(myclist);
+  CSLISTsetmatch(mycslist, my_match);
 
-  /* Let the user add some nodes - with value=99 - at specified locations.. */
-  prompt_and_pause("\nFinally - let's ADD some nodes...");
-  if ((sz = CSLISTsize(myclist)) < MINLEN)
+  /* Enter menu... */
+  do
     {
-      sprintf(mess, "\nList too short - adding %d random nodes..", (MINLEN-sz));
-      prompt_and_pause(mess);
-      add_random_nodes(myclist, (MINLEN-sz)); /* Populate the list */
-      my_clearscrn();
+      menu_choice = menu(0, 3);
+
+      switch (menu_choice)
+        {
+        case 1:
+          ins_node(mycslist);
+          break;
+        case 2:
+          rem_node(mycslist);
+          break;
+        case 3:
+	  my_clearscrn();
+	  printf("--- PRINT CIRCULAR LIST ---\n\nCurrent list status(%d nodes): ", CSLISTsize(mycslist));
+	  print_cslist(mycslist);
+          break;
+        default:
+          final_status(mycslist);
+          break;
+        }
     }
-  insert_nodes(myclist);
+  while (menu_choice); 
 
-  /* Final list status... */
-  printf("\nFinal list contents(%d nodes): ", CSLISTsize(myclist));
-  CSLISTtraverse(myclist, print);
-
+  /* ..and finally destroy the list. */
   prompt_and_pause("\n\nLet's tidy up and destroy the list.. - Bye!");
-
-  CSLISTdestroy(myclist);
+  CSLISTdestroy(mycslist);
 
   return 0;
 }

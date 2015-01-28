@@ -389,7 +389,7 @@ int is_sel_ok(const int menusel, const int lowsel, const int hisel)
 /* --- Function: int menu(const int low_sel, const int hi_sel) --- */
 int menu(const int low_sel, const int hi_sel)
 {
-  int retval, selection, sel_ok;
+  int retval, selection, sel_ok=0;
 
   selection = EOF;
 

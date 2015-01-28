@@ -6,8 +6,8 @@
  *
  * Filename: demo4.c
  * Author  : Dan Levin
- * Date    : Wed Feb 20 11:59:40 GMT 2013
- * Version : 0.15
+ * Date    : Fri Jan 23 14:04:10 2015
+ * Version : 0.5
  * ---
  * Description: Usage demo of the chained hashtable ADT - in LevAWC. 
  *
@@ -15,7 +15,7 @@
  * Date   Revision
  * 130201 Created this program the first time..
  * 130324 Changed functions "insert_nodes(), remove_nodes()" - and made the loops in them terminated by user interaction.
- * 
+ * 150123 Converted demo4.c to be menu-driven.
  * 
  */
 
@@ -28,10 +28,14 @@
 #define OK 0
 #endif
 
+/* Some string macros for the main menu... */
+#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node"
+#define MAIN_PROMPT "\nSelection <0-2>+<Enter>: "
+
 #define NR_OF_ITEMS 30
 #define NR_OF_BUCKETS 11
 
-/* Function declarations */
+/* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -41,11 +45,18 @@ void prompt_and_pause(char *message);
 int my_match(const void *k1, const void *k2);
 int my_hash(const void *key);
 
-void add_nodes(CHtbl list, int nr_of_nodes);
-void remove_nodes(CHtbl list);
-void insert_nodes(CHtbl list);
+void create_nodes(CHtbl list, int nr_of_nodes);
 
-/* Function definitions - the rest of the program */
+/* Functions handling menu selections */
+void ins_nodes(CHtbl list);
+void rem_nodes(CHtbl list);
+
+/* Menu (handling) functions */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel);
+int menu(const int low_sel, const int hi_sel);
+/* END-OF-FUNCTION-DECLARATIONS */
+
+/* FUNCTION DEFINITIONS - the rest of the program */
 /* --- Function: int my_random(int start, int stop) --- */
 int my_random(int start, int stop)
 {
@@ -100,8 +111,8 @@ int my_hash(const void *key)
   return *(int *)key%NR_OF_BUCKETS;
 }
 
-/* --- Function: void add_nodes(CHtbl tbl, int nr_of_nodes) --- */
-void add_nodes(CHtbl tbl, int nr_of_nodes)
+/* --- Function: void create_nodes(CHtbl tbl, int nr_of_nodes) --- */
+void create_nodes(CHtbl tbl, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
@@ -111,73 +122,25 @@ void add_nodes(CHtbl tbl, int nr_of_nodes)
       *pi = my_random(1,99);
       
       if ((retval = CHTBLinsert(tbl, pi)) != 0) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      dupctr++;
-	      free(pi); /* Free node - since duplicate..  */
-	    }
-	  else
-	    {
-	      prompt_and_pause("Fatal error - bailing out..!\n");
-	      exit(-1);
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              dupctr++;
+              free(pi); /* Free node - since duplicate..  */
+            }
+          else
+            {
+              prompt_and_pause("Fatal error - bailing out..!\n");
+              exit(-1);
+            }
+        }
     } while (++i < nr_of_nodes);
 
-  printf("\nCurrent table status:");
-  CHTBLprint(tbl, print);
-  printf("\n%d/%d successful insertions -- %d duplicates rejected...", CHTBLsize(tbl), nr_of_nodes, dupctr);
+  printf("\n\nCreated hash table - %d/%d successful insertions -- %d duplicates rejected...", CHTBLsize(tbl), nr_of_nodes, dupctr);
 }
 
-/* --- Function: void remove_nodes(CHtbl tbl, int nr_of_removes) --- */
-void remove_nodes(CHtbl tbl)
-{
-  int tmp, *pi, retval;
-  char mess[BUFSIZ];
-
-  do
-    {
-      my_clearscrn();
-      printf("\nCurrent table status(%d elements): ", CHTBLsize(tbl));
-      CHTBLprint(tbl, print);
-
-      printf("\nEnter data for element to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-
-      if (tmp == -1)
-	break;
-
-      pi = &tmp;
-      if ((retval = CHTBLremove(tbl, (void **)&pi)) != 0) /* Node removal failed.. */
-	{
-	  /* Removal didn't work - node NOT found... */
-	  if (retval == 1)
-	    {
-	      sprintf(mess, "Element %d not found..!", *(int *)pi);
-	      prompt_and_pause(mess);
-	    }
-	  else /* Serious failure..(-1 or -2) */
-	    {
-	      printf("Fatal failure - bailing out...");
-	      exit(retval);
-	    }
-	}
-      else
-	{
-	  /* Removal succesful - notify user.. */
-	  sprintf(mess, "Element %d removed - from bucket %d..!", *(int *)pi, (*pi)%NR_OF_BUCKETS);
-	  prompt_and_pause(mess);
-	  /* Free element - after being removed from table.. */
-	  free(pi);
-	}
-
-    } while (1);
-}
-
-/* --- Function: void insert_nodes(CHtbl tbl, int nr_of_insertions) --- */
-void insert_nodes(CHtbl tbl)
+/* --- Function: void ins_nodes(CHtbl tbl) --- */
+void ins_nodes(CHtbl tbl)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -193,39 +156,127 @@ void insert_nodes(CHtbl tbl)
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
-	break;
+        break;
 
       pi = (int *)malloc(sizeof(int));
       *pi = tmp;
 
       if ((retval = CHTBLinsert(tbl, pi)) != 0) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      sprintf(mess, "Element %d already present..!", *pi);
-	      prompt_and_pause(mess);
-	      free(pi); /* Free element - since being duplicate..  */
-	    }
-	  else
-	    {
-	      prompt_and_pause("Fatal error - bailing out..:!\n");
-	      exit(-1);
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              sprintf(mess, "Element %d already present..!", *pi);
+              prompt_and_pause(mess);
+              free(pi); /* Free element - since being duplicate..  */
+            }
+          else
+            {
+              prompt_and_pause("Fatal error - bailing out..:!\n");
+              exit(-1);
+            }
+        }
       else
-	{
-	  sprintf(mess, "Element %d inserted - in bucket %d..", *(int *)pi, (*pi)%NR_OF_BUCKETS);
-	  prompt_and_pause(mess);
-	}
-
+        {
+          sprintf(mess, "Element %d inserted - in bucket %d..", *(int *)pi, (*pi)%NR_OF_BUCKETS);
+          prompt_and_pause(mess);
+        }
     } while (1);
+}
+
+/* --- Function: void rem_nodes(CHtbl tbl) --- */
+void rem_nodes(CHtbl tbl)
+{
+  int tmp, *pi, retval;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("\nCurrent table status(%d elements): ", CHTBLsize(tbl));
+      CHTBLprint(tbl, print);
+
+      printf("\nEnter data for element to be removed (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+        break;
+
+      pi = &tmp;
+      if ((retval = CHTBLremove(tbl, (void **)&pi)) != 0) /* Node removal failed.. */
+        {
+          /* Removal didn't work - node NOT found... */
+          if (retval == 1)
+            {
+              sprintf(mess, "Element %d not found..!", *(int *)pi);
+              prompt_and_pause(mess);
+            }
+          else /* Serious failure..(-1 or -2) */
+            {
+              printf("Fatal failure - bailing out...");
+              exit(retval);
+            }
+        }
+      else
+        {
+          /* Removal succesful - notify user.. */
+          sprintf(mess, "Element %d removed - from bucket %d..!", *(int *)pi, (*pi)%NR_OF_BUCKETS);
+          prompt_and_pause(mess);
+          /* Free element - after being removed from table.. */
+          free(pi);
+        }
+    } while (1);
+}
+/* --- Function: void final_status(CHtbl tbl) --- */
+void final_status(CHtbl tbl)
+{
+  /* Final table status... */
+  printf("\nFinal table status(%d elements): ", CHTBLsize(tbl));
+  CHTBLprint(tbl, print);
+}
+
+/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
+int is_sel_ok(const int menusel, const int lowsel, const int hisel)
+{
+  int retval;
+
+  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
+}
+
+/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
+int menu(const int low_sel, const int hi_sel)
+{
+  int retval, selection, sel_ok=0;
+
+  do
+    {
+      printf("%s", MAIN_MENU_ROW);
+      printf("%s", MAIN_PROMPT);
+      retval = scanf("%d", &selection);
+
+      if (retval == 1)
+        {
+          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
+          if (!sel_ok)
+            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
+          getchar();   
+        }
+      else
+        {
+          printf("Invalid input - use integer only!");
+          getchar();
+        }
+
+    } while (retval == EOF || !sel_ok);
+
+  return selection;
 }
 
 int main(void)
 {
   /* Declare YOUR variables here ! */
   CHtbl mytbl;
-  char msg[BUFSIZ];
+  int menu_choice;
 
   srand((unsigned int)time(NULL));
   my_clearscrn();
@@ -240,25 +291,27 @@ int main(void)
     }
   
   /* Initialize - and add elements to the table... */
-  add_nodes(mytbl, NR_OF_ITEMS);
+  create_nodes(mytbl, NR_OF_ITEMS);
 
-  sprintf(msg, "\n\nNow - let's ADD some elements to the table");
-  prompt_and_pause(msg);
-  
-  /* Do the manual insertions... */
-  insert_nodes(mytbl);
-  my_clearscrn();  
-  printf("\nCurrent table status(%d elements): ", CHTBLsize(mytbl));
-  CHTBLprint(mytbl, print);
+  /* Enter menu loop */
+  do
+    {
+      menu_choice = menu(0, 2);
 
-  sprintf(msg, "\n\nNow - let's DELETE some elements from the table");
-  prompt_and_pause(msg);
-
-  /* Do the manual removals... */
-  remove_nodes(mytbl);
-  my_clearscrn();  
-  printf("\nFinal table status(%d elements): ", CHTBLsize(mytbl));
-  CHTBLprint(mytbl, print);
+      switch (menu_choice)
+        {
+        case 1:
+          ins_nodes(mytbl);
+          break;
+        case 2:
+          rem_nodes(mytbl);
+          break;
+        default:
+          final_status(mytbl);
+          break;
+        }
+    }
+  while (menu_choice); 
 
   prompt_and_pause("\n\nLet's tidy up and destroy the hashtable - Bye...!");
 
