@@ -19,6 +19,7 @@
  * 130205 Further editing - more extensive error handling than before..
  * 130411 Extended user interaction when inserting/removing nodes. User determines the number of operations..
  * 150121 Converted demo2.c to be menu-driven. 
+ * 150205 Source ready for version 0.5!
  *
  */
 
@@ -32,8 +33,8 @@
 #endif
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Sort_List"
-#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+#define MAIN_MENU_ROW "\n--- DOUBLY-LINKED LIST DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Sort 5=Print"
+#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
 
 #define NR_OF_ITEMS 10
 #define MINLEN 5
@@ -52,6 +53,10 @@ void create_random_nodes(Dlist list, int nr_of_nodes);
 /* Functions handling menu selections */
 void rem_nodes(Dlist list);
 void ins_nodes(Dlist list);
+void search_node(Dlist lst);
+void sort_list(Dlist list);
+void print_list(Dlist lst);
+void final_status(Dlist list);
 
 /* Menu (handling) functions */
 int is_sel_ok(const int menusel, const int lowsel, const int hisel);
@@ -112,6 +117,11 @@ void create_random_nodes(Dlist list, int nr_of_nodes)
 {
   int i=0, *pi, retval;
 
+  my_clearscrn();
+
+  /* Initialize the list.. */
+  printf("--- CREATED A DOUBLY-LINKED LIST(%d NODES) - RANDOM INTEGER DATA ---", NR_OF_ITEMS);
+
   do
     {
       pi = (int *)malloc(sizeof(int));
@@ -126,6 +136,63 @@ void create_random_nodes(Dlist list, int nr_of_nodes)
       assert(retval == OK);
 
     } while (++i < nr_of_nodes);
+
+  /* Display the list... */
+  printf("\n\nCurrent list status(%d nodes): ", DLISTsize(list));
+  printf("\nAscending : ");
+  DLISTtraverse(list, print, DLIST_FWD);
+  printf("\nDescending: ");
+  DLISTtraverse(list, print, DLIST_BWD);
+  prompt_and_pause("\n\n");
+}
+
+/* --- Function: void ins_nodes(Dlist list) --- */
+void ins_nodes(Dlist list)
+{
+  int tmp, *pi;
+  DlistNode node;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- ADD NODE WITH DATA=99 - AFTER USER-SPECIFIED NODE ---\n");
+      printf("\nCurrent list status(%d nodes): ", DLISTsize(list));
+      printf("\nAscending : ");
+      DLISTtraverse(list, print, DLIST_FWD);
+      /* printf("\nDescending: "); */
+      /* DLISTtraverse(list, print, DLIST_BWD); */
+
+      printf("\n\nEnter nodedata, after which new node(data=99) to be inserted (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+        break;
+
+      if ((node = DLISTfindnode(list, &tmp)) != NULL) /* Node found */
+        {
+          /* Insert node after first occurance of user-specified node */
+          pi = (int *)malloc(sizeof(int));
+          *pi = 99;
+
+          if ((DLISTinsnext(list, node, pi)) != OK)
+            {
+              printf("Fatal error - exiting...");
+              exit(-1);
+            }
+          else
+            {
+              sprintf(mess, "Node 99 will be inserted after node %d", *(int *)DLISTdata(node));
+              prompt_and_pause(mess);
+            }
+        }
+      else
+        {
+          sprintf(mess, "Node %d not found...!", tmp);
+          prompt_and_pause(mess);
+        }
+    } while (1);
 }
 
 /* --- Function: void rem_nodes(Dlist list) --- */
@@ -137,11 +204,11 @@ void rem_nodes(Dlist list)
   do
     {
       my_clearscrn();
-      printf("--- REMOVE SOME NODES/DATA FROM THE LIST ---");
+      printf("--- REMOVE NODE FROM LIST ---\n");
       printf("\nCurrent list status(%d nodes): ", DLISTsize(list));
-      printf("\nForwards : ");
+      printf("\nAscending : ");
       DLISTtraverse(list, print, DLIST_FWD);
-      printf("\nBackwards: ");
+      printf("\nDescending: ");
       DLISTtraverse(list, print, DLIST_BWD);
 
       printf("\n\nEnter keydata for node to be removed (-1=Quit): ");
@@ -154,11 +221,11 @@ void rem_nodes(Dlist list)
       /* Remove node - and free memory */
       pi = &tmp;
 
-      if ((retval = DLISTfind_remove(list, (void **)&pi)) != 0)
+      if ((retval = DLISTfind_remove(list, (void **)&pi)) != OK)
         {
           if (retval == 1)
             {
-              sprintf(mess, "Element %d not found..!", tmp);
+              sprintf(mess, "Node %d not found..!", tmp);
               prompt_and_pause(mess);
             }
           else 
@@ -173,59 +240,43 @@ void rem_nodes(Dlist list)
       else
         {
           /* Removal succesful - notify user.. */
-          sprintf(mess, "Node %d removed..!", *(int *)pi);
+          sprintf(mess, "Node %d will be removed..!", *(int *)pi);
           prompt_and_pause(mess);
-          /* Free element - after being removed from list.. */
-          free(pi);
+          /* Free node - after being removed from list.. */
+          my_destroy(pi);
         }
 
     } while (1);
 }
-
-/* --- Function: void ins_nodes(Dlist list) --- */
-void ins_nodes(Dlist list)
+/* --- Function: void search_node(Dlist lst) --- */
+void search_node(Dlist lst)
 {
-  int tmp, *pi;
-  DlistNode node;
+  int tmp;
   char mess[BUFSIZ];
 
   do
     {
       my_clearscrn();
-      printf("--- ADD NODES WITH DATA=99 - AFTER USER-SPECIFIED NODES ---");
-      printf("\nCurrent list status(%d nodes): ", DLISTsize(list));
-      printf("\nForwards : ");
-      DLISTtraverse(list, print, DLIST_FWD);
-      printf("\nBackwards: ");
-      DLISTtraverse(list, print, DLIST_BWD);
+      printf("--- SEARCH NODE ---\n");
+      printf("\nCurrent list status(%d nodes): ", DLISTsize(lst));
+      DLISTtraverse(lst, print, DLIST_FWD);
 
-      printf("\n\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
+      printf("\n\nEnter keydata for node to be found (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
         break;
 
-      if ((node = DLISTfindnode(list, &tmp)) != NULL) /* Node found */
+      if (DLISTfindnode(lst, &tmp) == NULL) /* Node not found.. */
         {
-          /* Insert node after first occurance of user-specified node */
-          pi = (int *)malloc(sizeof(int));
-          *pi = 99;
-
-          if ((DLISTinsnext(list, node, pi)) != 0)
-            {
-              printf("Fatal error - exiting...");
-              exit(-1);
-            }
-          else
-            {
-              sprintf(mess, "Node 99 inserted after node %d", *(int *)DLISTdata(node));
-              prompt_and_pause(mess);
-            }
+          sprintf(mess, "Node %d NOT found..!", tmp);
+          prompt_and_pause(mess);
         }
       else
         {
-          sprintf(mess, "Node %d not found...!", tmp);
+          /* Search succesful - notify user.. */
+          sprintf(mess, "Node %d FOUND!", tmp);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -235,23 +286,40 @@ void ins_nodes(Dlist list)
 void sort_list(Dlist list)
 {
   my_clearscrn();
-  printf("--- SORTED LIST ---");
+  printf("--- SORT LIST ---\n");
   DLISTsort(list, my_cmp);
   printf("\nCurrent list status(%d nodes): ", DLISTsize(list));
-  printf("\nForwards : ");
+  printf("\nAscending : ");
   DLISTtraverse(list, print, DLIST_FWD);
-  printf("\nBackwards: ");
+  printf("\nDescending: ");
   DLISTtraverse(list, print, DLIST_BWD);
+  prompt_and_pause("\n\n");
+}
+
+/* --- Function: void print_list(Dlist lst) --- */
+void print_list(Dlist lst)
+{
+  my_clearscrn();
+  printf("--- PRINT LIST ---\n");
+  /* Print list status... */
+  printf("\nCurrent list contents(%d nodes): ", DLISTsize(lst));
+  printf("\nAscending : ");
+  DLISTtraverse(lst, print, DLIST_FWD);
+  printf("\nDescending: ");
+  DLISTtraverse(lst, print, DLIST_BWD);
+  prompt_and_pause("\n\n");
 }
 
 /* --- Function: void final_status(Dlist list) --- */
 void final_status(Dlist list)
 {
+  my_clearscrn();
+  printf("--- FINAL STATUS ---\n");
   /* Final list status... */
   printf("\nFinal list contents(%d nodes): ", DLISTsize(list));
-  printf("\nForwards : ");
+  printf("\nAscending : ");
   DLISTtraverse(list, print, DLIST_FWD);
-  printf("\nBackwards: ");
+  printf("\nDescending: ");
   DLISTtraverse(list, print, DLIST_BWD);
 }
 
@@ -268,6 +336,8 @@ int is_sel_ok(const int menusel, const int lowsel, const int hisel)
 int menu(const int low_sel, const int hi_sel)
 {
   int retval, selection, sel_ok=0;
+
+  my_clearscrn();
 
   do
     {
@@ -301,10 +371,7 @@ int main(void)
 
   /* Seed to random generator and clear the screen.. */
   srand((unsigned int)time(NULL));
-  my_clearscrn();
 
-  /* Initialize the list.. */
-  printf("--- CREATED A DOUBLY-LINKED LIST(%d NODES) - WITH RANDOM INTEGER DATA ---", NR_OF_ITEMS);
   if ((mylist = DLISTinit(my_destroy)) == NULL)
     {
       printf("\nFatal error... - bailing out!");
@@ -317,16 +384,9 @@ int main(void)
   /* Populate the (empty) list.. */
   create_random_nodes(mylist, NR_OF_ITEMS);
 
-  /* Display the list... */
-  printf("\nCurrent list status(%d nodes): ", DLISTsize(mylist));
-  printf("\nForwards : ");
-  DLISTtraverse(mylist, print, DLIST_FWD);
-  printf("\nBackwards: ");
-  DLISTtraverse(mylist, print, DLIST_BWD);
-
   do
     {
-      menu_choice = menu(0, 3);
+      menu_choice = menu(0, 5);
 
       switch (menu_choice)
         {
@@ -337,7 +397,13 @@ int main(void)
           rem_nodes(mylist);
           break;
         case 3:
+          search_node(mylist);
+          break;
+        case 4:
           sort_list(mylist);
+          break;
+        case 5:
+          print_list(mylist);
           break;
         default:
           final_status(mylist);
@@ -347,7 +413,7 @@ int main(void)
   while (menu_choice); 
 
   /* ..and finally destroy the list. */
-  prompt_and_pause("\n\nLet's tidy up and destroy the list.. - Bye!");
+  prompt_and_pause("\n\nLet's tidy up and destroy the list..- Bye!");
   DLISTdestroy(mylist);
 
   return 0;

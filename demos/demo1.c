@@ -19,6 +19,7 @@
  * 130205 Further editing - more extensive error handling than before..
  * 130411 Extended user interaction when inserting/removing nodes. User determines the number of operations..
  * 150120 Started making demo1.c menu-driven. 
+ * 150205 Source ready for version 0.5!
  *
  */
 
@@ -34,8 +35,8 @@
 #define NR_OF_ITEMS 10
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Sort_List"
-#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+#define MAIN_MENU_ROW "\n--- SINGLY-LINKED LIST DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Sort 5=Print"
+#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
 
 /* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
@@ -51,7 +52,9 @@ void create_random_nodes(Slist list, int nr_of_nodes);
 /* Functions handling menu selections */
 void ins_nodes(Slist list);
 void rem_nodes(Slist list);
+void search_node(Slist lst);
 void sort_list(Slist list);
+void print_list(Slist lst);
 void final_status(Slist list);
 
 /* Menu (handling) functions */
@@ -113,6 +116,10 @@ void create_random_nodes(Slist list, int nr_of_nodes)
 {
   int i=0, *pi, retval;
 
+  my_clearscrn();
+  /* Initialize the list.. */
+  printf("--- CREATED A SINGLY-LINKED LIST(%d NODES)- RANDOM INTEGER DATA ---", NR_OF_ITEMS);
+
   do
     {
       pi = (int *)malloc(sizeof(int));
@@ -122,6 +129,57 @@ void create_random_nodes(Slist list, int nr_of_nodes)
       assert(retval == OK);
 
     } while (++i < nr_of_nodes);
+
+  /* Display the list... */
+  printf("\n\nCurrent list status(%d nodes): ", SLISTsize(list));
+  SLISTtraverse(list, print, SLIST_FWD);
+  prompt_and_pause("\n\n");
+}
+
+/* --- Function: void ins_nodes(Slist list) --- */
+void ins_nodes(Slist list)
+{
+  int tmp, *pi;
+  SlistNode node;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- ADD NODE - WITH DATA=99 - AFTER USER-SPECIFIED NODE ---\n");
+      printf("\nCurrent list status(%d nodes): ", SLISTsize(list));
+      SLISTtraverse(list, print, SLIST_FWD);
+
+      printf("\n\nEnter nodedata, after which new node(data=99) to be inserted (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+
+      if (tmp == -1)
+        break;
+
+      if ((node = SLISTfindnode(list, &tmp)) != NULL) /* Node found */
+        {
+          /* Insert node after first occurance of user-specified node */
+          pi = (int *)malloc(sizeof(int));
+          *pi = 99;
+
+          if ((SLISTinsnext(list, node, pi)) != OK)
+            {
+              printf("\nFatal error - exiting...!");
+              exit(-1);
+            }
+          else
+            {
+              sprintf(mess, "Node 99 will be inserted after node %d", *(int *)SLISTdata(node));
+              prompt_and_pause(mess);
+            }
+        }
+      else
+        {
+          sprintf(mess, "Node %d not found...!", tmp);
+          prompt_and_pause(mess);
+        }
+    } while (1);
 }
 
 /* --- Function: void rem_nodes(Slist list) --- */
@@ -133,7 +191,7 @@ void rem_nodes(Slist list)
   do
     {
       my_clearscrn();
-      printf("--- REMOVE SOME NODES/DATA FROM THE LIST ---");
+      printf("--- REMOVE NODE FROM LIST ---\n");
       printf("\nCurrent list status(%d nodes): ", SLISTsize(list));
       SLISTtraverse(list, print, SLIST_FWD);
 
@@ -147,11 +205,11 @@ void rem_nodes(Slist list)
       /* Remove node - and free memory */
       pi = &tmp;
 
-      if ((retval = SLISTfind_remove(list, (void **)&pi)) != 0)
+      if ((retval = SLISTfind_remove(list, (void **)&pi)) != OK)
         {
           if (retval == 1)
             {
-              sprintf(mess, "Element %d not found..!", tmp);
+              sprintf(mess, "Node %d not found..!", tmp);
               prompt_and_pause(mess);
             }
           else 
@@ -166,56 +224,43 @@ void rem_nodes(Slist list)
       else
         {
           /* Removal succesful - notify user.. */
-          sprintf(mess, "Node %d removed..!", *(int *)pi);
+          sprintf(mess, "Node %d will be removed..!", *(int *)pi);
           prompt_and_pause(mess);
-          /* Free element - after being removed from list.. */
-          free(pi);
+          /* Free node - after being removed from list.. */
+          my_destroy(pi);
         }
-
     } while (1);
 }
 
-/* --- Function: void ins_nodes(Slist list) --- */
-void ins_nodes(Slist list)
+/* --- Function: void search_node(Slist lst) --- */
+void search_node(Slist lst)
 {
-  int tmp, *pi;
-  SlistNode node;
+  int tmp;
   char mess[BUFSIZ];
 
   do
     {
       my_clearscrn();
-      printf("--- ADD NODES WITH DATA=99 - AFTER USER-SPECIFIED NODES ---");
-      printf("\nCurrent list status(%d nodes): ", SLISTsize(list));
-      SLISTtraverse(list, print, SLIST_FWD);
+      printf("--- SEARCH NODE ---\n");
+      printf("\nCurrent list status(%d nodes): ", SLISTsize(lst));
+      SLISTtraverse(lst, print, SLIST_FWD);
 
-      printf("\n\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
+      printf("\n\nEnter keydata for node to be found (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
         break;
 
-      if ((node = SLISTfindnode(list, &tmp)) != NULL) /* Node found */
+      if (SLISTfindnode(lst, &tmp) == NULL) /* Node not found.. */
         {
-          /* Insert node after first occurance of user-specified node */
-          pi = (int *)malloc(sizeof(int));
-          *pi = 99;
-
-          if ((SLISTinsnext(list, node, pi)) != 0)
-            {
-              printf("\nFatal error - exiting...!");
-              exit(-1);
-            }
-          else
-            {
-              sprintf(mess, "Node 99 inserted after node %d", *(int *)SLISTdata(node));
-              prompt_and_pause(mess);
-            }
+          sprintf(mess, "Node %d NOT found..!", tmp);
+          prompt_and_pause(mess);
         }
       else
         {
-          sprintf(mess, "Node %d not found...!", tmp);
+          /* Search succesful - notify user.. */
+          sprintf(mess, "Node %d FOUND!", tmp);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -225,20 +270,32 @@ void ins_nodes(Slist list)
 void sort_list(Slist list)
 {
   my_clearscrn();
-  printf("--- SORTED LIST ---");
+  printf("--- SORT LIST ---\n");
   SLISTsort(list, my_cmp);
-  printf("\nCurrent list status(%d nodes): ", SLISTsize(list));
+  printf("\nCurrent list status(%d nodes, ascending) : ", SLISTsize(list));
   SLISTtraverse(list, print, SLIST_FWD);
 
-  /* Traverse the list - backwards.. */
-  printf("\n--- SORTED, BACKWARDS ---");
-  printf("\nCurrent list status(%d nodes): ", SLISTsize(list));
+  printf("\nCurrent list status(%d nodes, descending): ", SLISTsize(list));
   SLISTtraverse(list, print, SLIST_BWD);
+  prompt_and_pause("\n\n");
+}
+
+/* --- Function: void print_list(Slist lst) --- */
+void print_list(Slist lst)
+{
+  my_clearscrn();
+  printf("--- PRINT LIST ---\n");
+  /* List status... */
+  printf("\nCurrent list status(%d nodes): ", SLISTsize(lst));
+  SLISTtraverse(lst, print, SLIST_FWD);
+  prompt_and_pause("\n\n");
 }
 
 /* --- Function: void final_status(Slist list) --- */
 void final_status(Slist list)
 {
+  my_clearscrn();
+  printf("--- FINAL STATUS ---\n");
   /* Final list status... */
   printf("\nFinal list contents(%d nodes): ", SLISTsize(list));
   SLISTtraverse(list, print, SLIST_FWD);
@@ -256,6 +313,8 @@ int is_sel_ok(const int menusel, const int lowsel, const int hisel)
 int menu(const int low_sel, const int hi_sel)
 {
   int retval, selection, sel_ok=0;
+
+  my_clearscrn();
 
   do
     {
@@ -289,10 +348,6 @@ int main(void)
 
   /* Seed to random generator and clear the screen.. */
   srand((unsigned int)time(NULL));
-  my_clearscrn();
-
-  /* Initialize the list.. */
-  printf("--- CREATED A SINGLY-LINKED LIST(%d NODES)- WITH RANDOM INTEGER DATA ---", NR_OF_ITEMS);
 
   if ((mylist = SLISTinit(my_destroy)) == NULL)
     {
@@ -305,14 +360,11 @@ int main(void)
 
   /* Populate the (empty) list.. */
   create_random_nodes(mylist, NR_OF_ITEMS);
-  /* Display the list... */
-  printf("\nCurrent list status(%d nodes): ", SLISTsize(mylist));
-  SLISTtraverse(mylist, print, SLIST_FWD);
 
-  /* Enter menu... */
+  /* Enter menu loop... */
   do
     {
-      menu_choice = menu(0, 3);
+      menu_choice = menu(0, 5);
 
       switch (menu_choice)
         {
@@ -323,7 +375,13 @@ int main(void)
           rem_nodes(mylist);
           break;
         case 3:
+          search_node(mylist);
+          break;
+        case 4:
           sort_list(mylist);
+          break;
+        case 5:
+          print_list(mylist);
           break;
         default:
           final_status(mylist);
@@ -333,7 +391,7 @@ int main(void)
   while (menu_choice); 
 
   /* ..and finally destroy the list. */
-  prompt_and_pause("\n\nLet's tidy up and destroy the list.. - Bye!");
+  prompt_and_pause("\n\nLet's tidy up and destroy the list..- Bye!");
   SLISTdestroy(mylist);
 
   return 0;

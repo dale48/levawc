@@ -1,12 +1,14 @@
 TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
-- Convert demo4.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo5.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo6.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo7.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo8.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo9.c to be menu-driven - check indentation, untabify and mem.leaks
-- Convert demo10.c to be menu-driven - check indentation, untabify and mem.leaks
+- Check return values for inserting/removing edges in graphes - additional needed?
+- Write code for graph alg. "Shortest path"
+- Create demo12.c - "EU CITY CRISS-CROSS-VISIT"..
+
+
+
+
+
+
 
 
 
@@ -22,6 +24,19 @@ TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
 Completed tasks:
 ---------------------------------------------------------------
+
+- Make all demos ready for version 0.5..! Fri Feb  6 11:44:26 2015
+- Fix a 'my_clearscrn()'- call in all printout functions/menuhandlers, all demos Fri Feb  6 11:43:25 2015
+- Fix a blank line before/after printing contents of container, all demos Fri Feb  6 11:41:57 2015
+- Change 'free(pi)' to 'my_destroy(pi)' at all distances, all demos Wed Feb  4 08:21:00 2015
+- Convert demo11.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:18:04 2015
+- Convert demo10.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:17:43 2015
+- Convert demo9.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:17:27 2015
+- Convert demo8.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:17:15 2015
+- Convert demo7.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:16:57 2015
+- Convert demo6.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:16:39 2015
+- Convert demo5.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:16:25 2015
+- Convert demo4.c to be menu-driven - check indentation, untabify and mem.leaks Sat Jan 31 09:15:56 2015
 - Convert demo1.c to be menu-driven (Wed Jan 21 11:23:20 2015) - indentation, untabify and mem.leaks checked. Wed Jan 21 14:05:14 2015
 - Write core code for basic menu-driven demos - in a separate file (./git/levawc/tmp/demos/demo_menu_functions.c) (Wed Jan 21 11:23:45 2015)
 - Convert demo2.c to be menu-driven - check indentation, untabify and mem.leaks Wed Jan 21 16:03:33 2015

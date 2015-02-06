@@ -16,7 +16,8 @@
  * 130122 Created this file - the first time..
  * 130123 Completed the code - and debugged/tested it as well..
  * 150121 Made this demo3.c menu-driven
- * 
+ * 150205 Source ready for version 0.5!
+ *
  */
 
 #include <stdio.h>
@@ -33,8 +34,8 @@
 #endif
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Enqueue 2=Dequeue 3=Push 4=Pop 5=Dequeue/Push"
-#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
+#define MAIN_MENU_ROW "\n--- QUEUE/STACK DEMO ---\nMENU: 0=Exit 1=Enqueue 2=Dequeue 3=Push 4=Pop 5=Dequeue/Push 6=Print"
+#define MAIN_PROMPT "\nSelection <0-6>+<Enter>: "
 
 
 /* FUNCTION DECLARATIONS */
@@ -50,6 +51,7 @@ void enqueue_node(Queue que);
 void dequeue_node(Queue que);
 void push_node(Stack stk);
 void pop_node(Stack stk);
+void print_queue_stack(Queue que, Stack stk);
 void dequeue_push_node(Queue que, Stack stk);
 void final_status(Queue que, Stack stk);
 
@@ -95,10 +97,13 @@ void prompt_and_pause(char *message)
   getchar();
 }
 
-/* --- Function: void queue_elements(Queue que, Stack stk, int nr_of_ele) --- */
+/* --- Function: void queue_nodess(Queue que, Stack stk, int nr_of_ele) --- */
 void enqueue_push_nodes(Queue que, Stack stk, int nr_of_ele)
 {
   int i=0, *pi, retval;
+
+  my_clearscrn();
+  printf("--- CREATING QUEUE AND STACK (%d nodes each), RANDOM INTEGER DATA ---\n", NR_OF_ITEMS);
 
   do
     {
@@ -114,13 +119,12 @@ void enqueue_push_nodes(Queue que, Stack stk, int nr_of_ele)
       assert(retval == OK);
     } while (++i < nr_of_ele);
 
-  printf("\nCurrent queue(%d elements) and stack(%d elements) contents: ", QUEUEsize(que), STACKsize(stk));
-  /* The following calls to SLISTtraverse are possible - although this function is NOT a member
-     of the queue/stack (public) interfaces - but because a queue/stack is also a list ! */
-  printf("\nQueue: ");
+  printf("\nCurrent queue and stack status: ");
+  printf("\nQueue(%d nodes): ", QUEUEsize(que));
   SLISTtraverse(que, print, SLIST_FWD);
-  printf("\nStack: ");
+  printf("\nStack(%d nodes): ", STACKsize(stk));
   SLISTtraverse(stk, print, SLIST_FWD);
+  prompt_and_pause("\n\n");
 }
 
 /* --- Function: void enqueue_node(Queue que) --- */
@@ -132,7 +136,7 @@ void enqueue_node(Queue que)
   do
     {
       my_clearscrn();
-      printf("--- ENQUEUE NODES ---");
+      printf("--- ENQUEUE NODE TO QUEUE ---\n");
       printf("\nCurrent queue status(%d nodes): ", QUEUEsize(que));
       SLISTtraverse(que, print, SLIST_FWD);
 
@@ -153,7 +157,7 @@ void enqueue_node(Queue que)
         }
       else
         {
-          sprintf(mess, "Node %d enqueued!", *pi);
+          sprintf(mess, "Node %d will be enqueued!", *pi);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -170,13 +174,13 @@ void dequeue_node(Queue que)
 
   do
     {
-      my_clearscrn();
-      printf("--- DEQUEUE NODES ---");
-      printf("\nCurrent queue status(%d nodes): ", QUEUEsize(que));
-      SLISTtraverse(que, print, SLIST_FWD);
-
       if (tmp == -1)
         break;
+
+      my_clearscrn();
+      printf("--- DEQUEUE NODE FROM QUEUE ---\n");
+      printf("\nCurrent queue status(%d nodes): ", QUEUEsize(que));
+      SLISTtraverse(que, print, SLIST_FWD);
 
       ptmp = (int *)QUEUEpeek(que);
 
@@ -201,9 +205,9 @@ void dequeue_node(Queue que)
                 }
               else
                 {
-                  sprintf(mess, "Node %d dequeued!", *pi);
+                  sprintf(mess, "Node %d will be dequeued!", *pi);
                   prompt_and_pause(mess);
-                  free(pi);
+                  my_destroy(pi);
                 }
             }
           else
@@ -221,7 +225,7 @@ void push_node(Stack stk)
   do
     {
       my_clearscrn();
-      printf("--- PUSH NODES ---");
+      printf("--- PUSH NODE ON STACK ---\n");
       printf("\nCurrent stack status(%d nodes): ", STACKsize(stk));
       SLISTtraverse(stk, print, SLIST_FWD);
 
@@ -242,7 +246,7 @@ void push_node(Stack stk)
         }
       else
         {
-          sprintf(mess, "Node %d pushed on stack!", *pi);
+          sprintf(mess, "Node %d will be pushed on stack!", *pi);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -259,13 +263,13 @@ void pop_node(Stack stk)
 
   do
     {
-      my_clearscrn();
-      printf("--- POP NODES ---");
-      printf("\nCurrent stack status(%d nodes): ", STACKsize(stk));
-      SLISTtraverse(stk, print, SLIST_FWD);
-
       if (tmp == -1)
         break;
+
+      my_clearscrn();
+      printf("--- POP NODE FROM STACK ---\n");
+      printf("\nCurrent stack status(%d nodes): ", STACKsize(stk));
+      SLISTtraverse(stk, print, SLIST_FWD);
 
       ptmp = (int *)STACKpeek(stk);
 
@@ -290,9 +294,9 @@ void pop_node(Stack stk)
                 }
               else
                 {
-                  sprintf(mess, "Node %d popped!", *pi);
+                  sprintf(mess, "Node %d will be popped!", *pi);
                   prompt_and_pause(mess);
-                  free(pi);
+                  my_destroy(pi);
                 }
             }
           else
@@ -312,8 +316,11 @@ void dequeue_push_node(Queue que, Stack stk)
 
   do
     {
+      if (tmp == -1)
+        break;
+
       my_clearscrn();
-      printf("--- DEQUEUE/PUSH NODES ---");
+      printf("--- DEQUEUE NODE FROM QUEUE AND PUSH ON STACK ---\n");
       printf("\nCurrent queue/stack status: ");
       printf("\nQueue: ");
       SLISTtraverse(que, print, SLIST_FWD);
@@ -321,9 +328,6 @@ void dequeue_push_node(Queue que, Stack stk)
       printf("\nStack: ");
       SLISTtraverse(stk, print, SLIST_FWD);
       printf(" (%d nodes)", STACKsize(stk));
-
-      if (tmp == -1)
-        break;
 
       ptmp = (int *)QUEUEpeek(que);
 
@@ -334,7 +338,7 @@ void dequeue_push_node(Queue que, Stack stk)
         }
       else
         {
-          sprintf(mess, "\nAbout to dequeue node %d - and push it onto stack..", *ptmp);
+          sprintf(mess, "\nAbout to dequeue node %d - and push it on stack..", *ptmp);
           printf("\n%s - Continue? (y/n+Enter): ", mess); 
           ans = getchar();
           getchar(); /* Remove '\n' from keyb. buffer */
@@ -354,7 +358,7 @@ void dequeue_push_node(Queue que, Stack stk)
                       exit(-1);
                     }
 
-                  sprintf(mess, "Node %d dequeued - and pushed..!", *pi);
+                  sprintf(mess, "Node %d will be dequeued - and pushed on stack..!", *pi);
                   prompt_and_pause(mess);
                 }
             }
@@ -364,11 +368,28 @@ void dequeue_push_node(Queue que, Stack stk)
     } while (1);
 }
 
+/* --- Function: void print_queue_stack(Queue que, Stack stk) --- */
+void print_queue_stack(Queue que, Stack stk)
+{
+  my_clearscrn();
+  printf("--- PRINT QUEUE AND STACK ---\n");
+  printf("\nCurrent contents: ");
+  printf("\nQueue: ");
+  SLISTtraverse(que, print, SLIST_FWD);
+  printf(" (%d nodes)", QUEUEsize(que));
+  printf("\nStack: ");
+  SLISTtraverse(stk, print, SLIST_FWD);
+  printf(" (%d nodes)", STACKsize(stk));
+  prompt_and_pause("\n\n");
+}
+
 /* --- Function: void final_status(Queue que, Stack stk) --- */
 void final_status(Queue que, Stack stk)
 {
   /* Final list status... */
-  printf("\n\nFinal list contents: ");
+  my_clearscrn();
+  printf("--- FINAL STATUS ---\n");
+  printf("\nFinal list contents: ");
   printf("\nQueue: ");
   SLISTtraverse(que, print, SLIST_FWD);
   printf(" (%d nodes)", QUEUEsize(que));
@@ -391,7 +412,7 @@ int menu(const int low_sel, const int hi_sel)
 {
   int retval, selection, sel_ok=0;
 
-  selection = EOF;
+  my_clearscrn();
 
   do
     {
@@ -425,7 +446,6 @@ int main(void)
   int menu_choice;
 
   srand((unsigned int)time(NULL));
-  my_clearscrn();
 
   if ((myqueue = QUEUEinit(my_destroy)) == NULL) /* Create new queue... */
     {
@@ -440,12 +460,11 @@ int main(void)
     }
 
   /* Create and initialize queue and stack... */
-  printf("--- CREATING QUEUE AND STACK (%d nodes each), RANDOM INTEGER DATA ---", NR_OF_ITEMS);
   enqueue_push_nodes(myqueue, mystack, NR_OF_ITEMS);
 
   do
     {
-      menu_choice = menu(0, 5);
+      menu_choice = menu(0, 6);
 
       switch (menu_choice)
         {
@@ -464,6 +483,9 @@ int main(void)
         case 5:
           dequeue_push_node(myqueue, mystack);
           break;
+        case 6:
+          print_queue_stack(myqueue, mystack);
+          break;
         default:
           final_status(myqueue, mystack);
           break;
@@ -471,7 +493,7 @@ int main(void)
     }
   while (menu_choice); 
 
-  prompt_and_pause("\n\nLet's tidy up (destroy queue/stack) - Bye!");
+  prompt_and_pause("\n\nLet's tidy up (destroy queue/stack)..- Bye!");
 
   STACKdestroy(mystack);
   QUEUEdestroy(myqueue);

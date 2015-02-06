@@ -7,12 +7,14 @@
  * Filename: demo10.c
  * Author  : Dan Levin
  * Date    : Thu Jan 08 20:06:18 2015
- * Version : 0.1 
+ * Version : 0.5
  * ---
  * Description: A demo program testing/showing the Open-addressed Hash Table ADT 
  * 
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
+ * 150104 Made this demo10.c menu-driven.
+ * 150206 This source is ready for version 0.5!
  *
  */
 
@@ -29,8 +31,8 @@
 #define NR_OF_SLOTS 11
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Print_Table"
-#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+#define MAIN_MENU_ROW "\n--- OPEN-ADDRESSED HASH TABLE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print"
+#define MAIN_PROMPT "\nSelection <0-4>+<Enter>: "
 
 /* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
@@ -48,6 +50,7 @@ void create_nodes(OHtbl tbl, int nr_of_nodes);
 /* Functions handling menu selections */
 void ins_node(OHtbl tbl);
 void rem_node(OHtbl tbl);
+void search_node(OHtbl tbl);
 void print_table(OHtbl tbl);
 void final_status(OHtbl tbl);
 
@@ -122,36 +125,40 @@ void create_nodes(OHtbl tbl, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
+  my_clearscrn();
+  printf("--- INITIALIZING A OPEN-ADDRESSED HASHTABLE, %d NODES, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
+
   do
     {
       pi = (int *)malloc(sizeof(int));
       *pi = my_random(1,99);
       
       if ((retval = OHTBLinsert(tbl, pi)) != OK) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      dupctr++;
-	      free(pi); /* Free node - since duplicate..  */
-	    }
-	  else
-	    {
-	      if (retval == -1)
-		{
-		  prompt_and_pause("Table full - or fatal error..!\n");
-		}
-	      else
-		{
-		  prompt_and_pause("Fatal error - bailing out..!\n");
-		  exit(-1);
-		}
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              dupctr++;
+              my_destroy(pi); /* Free node - since duplicate..  */
+            }
+          else
+            {
+              if (retval == -1)
+                {
+                  prompt_and_pause("Table full - or fatal error..!\n");
+                }
+              else
+                {
+                  prompt_and_pause("Fatal error - bailing out..!\n");
+                  exit(-1);
+                }
+            }
+        }
     } while (++i < nr_of_nodes);
 
-  printf("\nCurrent table status:");
+  printf("\n\nCurrent table status:");
   print_table(tbl);
-  printf("\n%d/%d successful insertions -- %d duplicates rejected...", OHTBLsize(tbl), nr_of_nodes, dupctr);
+  printf("\n\n%d/%d successful insertions -- %d duplicate(s) rejected...", OHTBLsize(tbl), nr_of_nodes, dupctr);
+  prompt_and_pause("\n\n");
 }
 
 /* --- Function: void ins_node(OHtbl tbl) --- */
@@ -163,43 +170,44 @@ void ins_node(OHtbl tbl)
   do
     {
       my_clearscrn();
-      printf("\nCurrent table status(%d elements): ", OHTBLsize(tbl));
+      printf("--- INSERT NODE ---");
+      printf("\n\nCurrent table status(%d nodes): ", OHTBLsize(tbl));
       print_table(tbl);
 
-      printf("\nEnter data for element to be inserted (-1=Quit): ");
+      printf("\n\nEnter data for node to be inserted (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
-	break;
+        break;
 
       pi = (int *)malloc(sizeof(int));
       *pi = tmp;
 
       if ((retval = OHTBLinsert(tbl, pi)) != OK) /* Insertion failed... */
-	{
-	  if (retval == 1) /* Duplicate key value.. */
-	    {
-	      sprintf(mess, "Element %d already present..!", *pi);
-	      prompt_and_pause(mess);
-	      free(pi); /* Free element - since being duplicate..  */
-	    }
-	  else if (retval == -1)
-	    {
-	      prompt_and_pause("Table full - no more insertions possible..!\n");
-	      free(pi); /* Free element - since being duplicate..  */
-	    }
-	  else
-	    {
-	      prompt_and_pause("Fatal error - bailing out..!\n");
-	      exit(-1);
-	    }
-	}
+        {
+          if (retval == 1) /* Duplicate key value.. */
+            {
+              sprintf(mess, "Node %d already present..!", *pi);
+              prompt_and_pause(mess);
+              my_destroy(pi); /* Free node - since being duplicate..  */
+            }
+          else if (retval == -1)
+            {
+              prompt_and_pause("Table full - no more insertions possible..!\n");
+              my_destroy(pi); /* Free node - since being duplicate..  */
+            }
+          else
+            {
+              prompt_and_pause("Fatal error - bailing out..!\n");
+              exit(-1);
+            }
+        }
       else
-	{
-	  sprintf(mess, "Element %d inserted..", *(int *)pi);
-	  prompt_and_pause(mess);
-	}
+        {
+          sprintf(mess, "Node %d will be inserted..", *(int *)pi);
+          prompt_and_pause(mess);
+        }
     } while (1);
 }
 
@@ -212,39 +220,84 @@ void rem_node(OHtbl tbl)
   do
     {
       my_clearscrn();
-      printf("\nCurrent table status(%d elements): ", OHTBLsize(tbl));
+      printf("--- REMOVE NODE ---");
+      printf("\n\nCurrent table status(%d nodes): ", OHTBLsize(tbl));
       print_table(tbl);
 
-      printf("\nEnter data for element to be removed (-1=Quit): ");
+      printf("\n\nEnter data for node to be removed (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
       if (tmp == -1)
-	break;
+        break;
 
       pi = &tmp;
       if ((retval = OHTBLremove(tbl, (void **)&pi)) != OK) /* Node removal failed.. */
-	{
-	  /* Removal didn't work - node NOT found... */
-	  if (retval == -1)
-	    {
-	      sprintf(mess, "Element %d not found..!", *(int *)pi);
-	      prompt_and_pause(mess);
-	    }
-	  else
-	    {
-	      printf("Fatal failure - bailing out...");
-	      exit(retval);
-	    }
-	}
+        {
+          /* Removal didn't work - node NOT found... */
+          if (retval == -1)
+            {
+              sprintf(mess, "Node %d not found..!", *(int *)pi);
+              prompt_and_pause(mess);
+            }
+          else
+            {
+              printf("Fatal failure - bailing out...");
+              exit(retval);
+            }
+        }
       else
-	{
-	  /* Removal succesful - notify user.. */
-	  sprintf(mess, "Element %d removed..!", *(int *)pi);
-	  prompt_and_pause(mess);
-	  /* Free element - after being removed from table.. */
-	  free(pi);
-	}
+        {
+          /* Removal succesful - notify user.. */
+          sprintf(mess, "Node %d will be removed..!", *(int *)pi);
+          prompt_and_pause(mess);
+          /* Free node - after being removed from table.. */
+          my_destroy(pi);
+        }
+    } while (1);
+}
+
+/* --- Function: void search_node(OHtbl tbl) --- */
+void search_node(OHtbl tbl)
+{
+  int tmp, *pi, retval;
+  char mess[BUFSIZ];
+
+  do
+    {
+      my_clearscrn();
+      printf("--- SEARCH NODE ---\n");
+      print_table(tbl);
+      printf("\n\nEnter data for node to be found (-1=Quit): ");
+      scanf("%d", &tmp);
+      getchar(); /* Remove CR from input buffer */
+      
+      if (tmp == -1)
+        break;
+
+      pi = &tmp;
+
+      if ((retval = OHTBLlookup(tbl, (void **)&pi)) != OK) /* Node search failed.. */
+        {
+          /* Searching didn't work - node NOT found... */
+          if (retval == -1)
+            {
+              sprintf(mess, "Node %d NOT found..!", *(int *)pi);
+              prompt_and_pause(mess);
+            }
+          else /* Should not get here.. */
+            {
+              printf("Fatal failure - bailing out...");
+              getchar();
+              exit(retval);
+            }
+        }
+      else
+        {
+          /* Removal succesful - notify user.. */
+          sprintf(mess, "Node %d FOUND..!", *(int *)pi);
+          prompt_and_pause(mess);
+        }
     } while (1);
 }
 
@@ -259,7 +312,8 @@ void final_status(OHtbl tbl)
 {
   /* Final list status... */
   my_clearscrn();
-  printf("\nFinal list contents(%d nodes): ", OHTBLsize(tbl));
+  printf("--- FINAL STATUS ---");
+  printf("\n\nFinal table contents(%d nodes): ", OHTBLsize(tbl));
   OHTBLprint(tbl, print);
 }
 
@@ -275,6 +329,8 @@ int is_sel_ok(const int menusel, const int lowsel, const int hisel)
 int menu(const int low_sel, const int hi_sel)
 {
   int retval, selection, sel_ok=0;
+
+  my_clearscrn();
 
   do
     {
@@ -307,10 +363,6 @@ int main(void)
   int menu_choice;
 
   srand((unsigned int)time(NULL));
-  my_clearscrn();
-
-
-  printf("--- INITIALIZING A OPEN-ADDRESSED HASHTABLE, %d ELEMENTS, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
 
   if ((mytbl = OHTBLinit(NR_OF_SLOTS, my_hash1, my_hash2, my_match, my_destroy)) == NULL)
     {
@@ -318,31 +370,13 @@ int main(void)
       exit(-1);
     }
   
-  /* Initialize - and add elements to the table... */
+  /* Initialize - and add nodes to the table... */
   create_nodes(mytbl, NR_OF_ITEMS);
 
-  /* sprintf(msg, "\n\nNow - let's DELETE some elements from the table"); */
-  /* prompt_and_pause(msg); */
-
-  /* /\* Do some manual removals... *\/ */
-  /* remove_nodes(mytbl); */
-  /* my_clearscrn();   */
-  /* printf("\nCurrent table status(%d elements): ", OHTBLsize(mytbl)); */
-  /* OHTBLprint(mytbl, print); */
-
-  /* sprintf(msg, "\n\nNow - let's ADD some elements to the table"); */
-  /* prompt_and_pause(msg); */
-
-  /* /\* Do the manual insertions... *\/ */
-  /* insert_nodes(mytbl); */
-  /* my_clearscrn();   */
-  /* printf("\nFinal table status(%d elements): ", OHTBLsize(mytbl)); */
-  /* OHTBLprint(mytbl, print); */
-
-  /* Enter menu... */
+  /* Enter menu loop... */
   do
     {
-      menu_choice = menu(0, 3);
+      menu_choice = menu(0, 4);
 
       switch (menu_choice)
         {
@@ -353,7 +387,14 @@ int main(void)
           rem_node(mytbl);
           break;
         case 3:
+          search_node(mytbl);
+          break;
+        case 4:
+          my_clearscrn();
+          printf("--- PRINT TABLE ---");
+          printf("\n\nFinal table contents(%d nodes): ", OHTBLsize(mytbl));
           print_table(mytbl);
+          prompt_and_pause("\n\n");
           break;
         default:
           final_status(mytbl);
@@ -362,7 +403,7 @@ int main(void)
     }
   while (menu_choice); 
 
-  prompt_and_pause("\n\nLet's tidy up and destroy the hashtable - Bye...!");
+  prompt_and_pause("\n\nLet's tidy up and destroy the hashtable..- Bye!");
   OHTBLdestroy(mytbl);
 
   return 0;

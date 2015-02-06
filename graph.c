@@ -231,7 +231,7 @@ void GRAPHprint(Graph graph, void (*vtxcallback)(const void *data), void (*edgec
     {
       printf("\nVertex#%02d: ", nr);
       (*vtxcallback)(((Vertex)SLISTdata(element))->vertexdata);
-      printf("\nEdges    : ");
+      printf("\nEdges #%02d: ", nr);
       SLISTtraverse(((Vertex)SLISTdata(element))->adj_vertices, edgecallback, SLIST_FWD);
       nr++;
     }

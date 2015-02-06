@@ -15,6 +15,8 @@
  * Date   Revision
  * 130220 Created this program the first time..
  * 150124 Converted this file, demo5.c - to be menu-driven.
+ * 150205 Source ready for version 0.5! 
+ * 
  * 
  */
 
@@ -30,8 +32,8 @@
 #define NR_OF_INSERTS 3
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n\nMENU: 0=Exit 1=Add_Node 2=Remove_Node 3=Heapsort_intro"
-#define MAIN_PROMPT "\nSelection <0-3>+<Enter>: "
+#define MAIN_MENU_ROW "\n--- HEAP/PRIORITY QUEUE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Heapsort_Intro 4=Print"
+#define MAIN_PROMPT "\nSelection <0-4>+<Enter>: "
 
 #ifndef OK
 #define OK 0
@@ -46,12 +48,13 @@ void my_clearscrn(void);
 void prompt_and_pause(char *message);
 
 void create_nodes(PQueue pq, int nr_of_ele);
-void move_elements(PQueue pq, Slist mylst, int nr_of_moves);
+void move_nodes(PQueue pq, Slist mylst, int nr_of_moves);
 
 /* Functions handling menu selections */
 void add_node(PQueue pq);
 void rem_node(PQueue pq);
-void heapsort_intro(PQueue pq, int nr_of_ele);
+void heapsort_intro(PQueue pq);
+void print_pqueue(PQueue pq);
 void final_status(PQueue pq);
 
 /* Menu (handling) functions */
@@ -107,6 +110,9 @@ void create_nodes(PQueue pq, int nr_of_ele)
 {
   int i=0, *pi, retval;
 
+  my_clearscrn();
+  printf("--- INITIALIZING A PRIORITY QUEUE, %d NODES, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
+
   do
     {
       /* Get a random integer */
@@ -120,10 +126,10 @@ void create_nodes(PQueue pq, int nr_of_ele)
 
     } while (++i < nr_of_ele);
 
-  printf("\nCurrent queue status -- after %d successful insertions...", PQUEUEsize(pq));
+  printf("\n\nCurrent queue status -- after %d successful insertions...", PQUEUEsize(pq));
   PQUEUEprint(pq, print);
-  printf("\nRead the \"Tree\" view(above) - columnwise, up -> down - and compare to \"Heap\" view..\n");
-  printf("..do you see any pattern?\n--------");
+  printf("\nRead \"Tree\" view(above) - columnwise, up-->down - and compare to \"Heap\" view..\n");
+  prompt_and_pause("..do you see any pattern..?");
 }
 
 /* --- Function: void ins_node(PQueue pq) --- */
@@ -136,10 +142,10 @@ void ins_node(PQueue pq)
     {
       my_clearscrn();
       printf("--- INSERT NODES ---");
-      printf("\nCurrent priority queue status(%d nodes): ", PQUEUEsize(pq));
+      printf("\n\nCurrent priority queue status(%d nodes): ", PQUEUEsize(pq));
       PQUEUEprint(pq, print);
 
-      printf("\n\nEnter integer data of node to be inserted (-1=Quit): ");
+      printf("\nEnter integer data of node to be inserted (-1=Quit): ");
       scanf("%d", &tmp);
       getchar(); /* Remove CR from input buffer */
 
@@ -156,7 +162,7 @@ void ins_node(PQueue pq)
         }
       else
         {
-          sprintf(mess, "Node %d inserted!", *pi);
+          sprintf(mess, "Node %d will be inserted!", *pi);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -204,9 +210,9 @@ void rem_node(PQueue pq)
                 }
               else
                 {
-                  sprintf(mess, "(Top) node %d removed!", *pi);
+                  sprintf(mess, "(Top) node %d will be removed!", *pi);
                   prompt_and_pause(mess);
-                  free(pi);
+                  my_destroy(pi);
                 }
             }
           else
@@ -216,10 +222,10 @@ void rem_node(PQueue pq)
 }
 
 
-/* --- Function: void heapsort_intro(PQueue pq, int nr_of_ele) --- */
-void heapsort_intro(PQueue pq, int nr_of_ele)
+/* --- Function: void heapsort_intro(PQueue pq) --- */
+void heapsort_intro(PQueue pq)
 {
-  int i=0, *pv, retval;
+  int *pv, retval;
   Slist tmplst;
 
   if (PQUEUEsize(pq) == 0)
@@ -235,43 +241,47 @@ void heapsort_intro(PQueue pq, int nr_of_ele)
       exit(-1);
     }
     
-  printf ("\nNow, let's move the high priority element, value=%d, from the priority queue..\n", *(int *)PQUEUEpeek(pq));
-  prompt_and_pause("..and insert it - at the front of a fresh list");
-
   do
     {
       my_clearscrn();
-      /* Extract the top priority element from the queueu... */
-      retval = PQUEUEextract(pq, (void **)&pv);
-      /* Defensive programming... */
-      assert(retval == OK);
-      /* Insert this element at the front of a linked list... */
-      retval = SLISTinsnext(tmplst, NULL, pv);
-      /* Defensive programming... */
-      assert(retval == OK);
-      /* Print the contents of the priority queue... */
-      PQUEUEprint(pq, print);
-      /* Print the list - from the beginning... */
-      printf("\n*******************************************************************************");
-      printf("\nList: ");
-      SLISTtraverse(tmplst, print, SLIST_FWD);
-      printf("\n*******************************************************************************\n");
+      printf("--- HEAPSORT INTRODUCTION ---\n");
 
       if (PQUEUEpeek(pq))
         {
-          printf ("Now - move the high priority element, value=%d, from the priority queue...\n", *(int *)PQUEUEpeek(pq));
+          /* Print the contents of the priority queue... */
+          PQUEUEprint(pq, print);
+          /* Print the list - from the beginning... */
+          printf("=====");
+          printf("\nList: ");
+          SLISTtraverse(tmplst, print, SLIST_FWD);
+          printf ("\n\nNow - move the high priority node, value=%d, from the priority queue...\n", *(int *)PQUEUEpeek(pq));
           prompt_and_pause("..and insert it - at the front of the list...");
+          /* Extract the top priority node from the queue... */
+          retval = PQUEUEextract(pq, (void **)&pv);
+          /* Defensive programming... */
+          assert(retval == OK);
+          /* Insert this node at the front of a linked list... */
+          retval = SLISTinsnext(tmplst, NULL, pv);
+          /* Defensive programming... */
+          assert(retval == OK);
         }
       else
         {
-          printf("\nThe priority queue is now - empty..!");
+          printf("\nHeap:  (empty)");
+          printf("\nTree:  (empty)\n");
+
+          /* Print the list - from the beginning... */
+          printf("=====");
+          printf("\nList: ");
+          SLISTtraverse(tmplst, print, SLIST_FWD);
+          prompt_and_pause("\n\nEvidently - the priority queue is now empty..!");
+          break;
         }
 
-      i++;
-    } while (i < nr_of_ele);
+    } while (1);
 
-  printf("\n\n---\nHey - it looks like the priority queue can be used for sorting things.. :-)!");
-  prompt_and_pause("\n\nThis is, indeed, the case - just Google for \'Heapsort\'...");
+  printf("\n---\nHey - it looks like the priority queue can be used for sorting things.. :-)!");
+  prompt_and_pause("\nTRUE, indeed! Just Google \'Heapsort\' for more..");
 
   /* Move data back from list - to priority queue.. */
   while (SLISTsize(tmplst))
@@ -285,10 +295,22 @@ void heapsort_intro(PQueue pq, int nr_of_ele)
   SLISTdestroy(tmplst);
 }
 
+/* --- Function: void print_pueue(PQueue pq) --- */
+void print_pqueue(PQueue pq)
+{
+  my_clearscrn();
+  printf("--- PRINT PRIORITY QUEUE ---");
+  printf("\n\nCurrent priority queue contents(%d nodes): ", PQUEUEsize(pq));
+  PQUEUEprint(pq, print);
+  prompt_and_pause("\n");
+}
+
 /* --- Function: void final_status(Slist list) --- */
 void final_status(PQueue pq)
 {
-  printf("\nFinal priority queue contents(%d nodes): ", PQUEUEsize(pq));
+  my_clearscrn();
+  printf("--- FINAL STATUS ---");
+  printf("\n\nFinal priority queue contents(%d nodes): ", PQUEUEsize(pq));
   PQUEUEprint(pq, print);
 }
 
@@ -305,6 +327,8 @@ int menu(const int low_sel, const int hi_sel)
 {
   int retval, selection, sel_ok=0;
 
+  my_clearscrn();
+  
   do
     {
       printf("%s", MAIN_MENU_ROW);
@@ -336,9 +360,6 @@ int main(void)
   int menu_choice;
 
   srand((unsigned int)time(NULL));
-  my_clearscrn();
-
-  printf("--- INITIALIZING A PRIORITY QUEUE, %d ELEMENTS, RANDOM INTEGER DATA ---", NR_OF_ITEMS);
   
   /* Initialize  the priority queue and linked list - defensive programming...... */
   if ((mypq = PQUEUEinit(my_cmp, my_destroy)) == NULL)
@@ -352,7 +373,7 @@ int main(void)
 
   do
     {
-      menu_choice = menu(0, 3);
+      menu_choice = menu(0, 4);
 
       switch (menu_choice)
         {
@@ -363,7 +384,10 @@ int main(void)
           rem_node(mypq);
           break;
         case 3:
-          heapsort_intro(mypq, PQUEUEsize(mypq));
+          heapsort_intro(mypq);
+          break;
+        case 4:
+          print_pqueue(mypq);
           break;
         default:
           final_status(mypq);
@@ -372,7 +396,7 @@ int main(void)
     }
   while (menu_choice); 
 
-  prompt_and_pause("\nLet's tidy up and destroy the priority queue - Bye...!");
+  prompt_and_pause("\nLet's tidy up and destroy the prio.queue..- Bye!");
   PQUEUEdestroy(mypq);
 
   return 0;
