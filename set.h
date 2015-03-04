@@ -130,7 +130,7 @@ extern "C" {
    * 
    * @param set1 - one of the given sets, taking
    * part of building the union.
-   * @param set2 - the other partial set that
+   * @param set2 - the other set, that
    * comprises the union together with @a set1.
    * @return A new set - equal to the union of
    * @a set1 and @a set2 - i.e. mathematically
@@ -145,7 +145,7 @@ extern "C" {
    * 
    * @param set1 - one of the given sets, taking
    * part of building the intersection.
-   * @param set2 - the other partial set that
+   * @param set2 - the other set, that
    * comprises the intersection together with 
    * @a set1.
    * @return A new set - equal to the intersection of

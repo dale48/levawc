@@ -1,4 +1,4 @@
-/**
+/*
  *       _____
  * ANSI / ___/
  *     / /__  
@@ -6,7 +6,7 @@
  *
  * Filename: demo8.c
  * Author  : Dan Levin
- * Date    : Tue Jan 27 10:13:10 2015
+ * Date    : Fri Feb 20 11:48:45 2015
  * Version : 0.5
  * ---
  * Description: Demo of the library LevAWC - circular singly-linked lists. 
@@ -15,7 +15,8 @@
  * Date   Revision
  * 130410 Created this program the first time..
  * 150127 Converted this program, demo8.c, to be menu-driven.
- * 150206 Source ready for version 0.5!
+ * 150220 Moved some utility functions from here - to file ../utils.c
+ * 150220 Source ready for version 0.5!
  *
  */
 
@@ -23,6 +24,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "cslist.h"
+#include "utils.h"
 
 #ifndef OK
 #define OK 0
@@ -31,19 +33,13 @@
 #define NR_OF_ITEMS 10
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n--- CIRCULAR SINGLY-LINKED LIST DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print"
-#define MAIN_PROMPT "\nSelection <0-4>+<Enter>: "
+#define MAIN_MENU_ROW "--- CIRCULAR SINGLY-LINKED LIST DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
+/* Application-specific callbacks */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
-int my_random(int start, int stop);
-void my_clearscrn(void);
-void prompt_and_pause(char *message);
-int my_match(const void *k1, const void *k2);
-
-void create_random_nodes(CSlist list, int nr_of_nodes);
 
 /* Functions handling menu selections */
 void rem_node(CSlist list);
@@ -52,18 +48,11 @@ void search_node(CSlist lst);
 void print_cslist(CSlist list);
 void final_status(CSlist list);
 
-/* Menu (handling) functions */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel);
-int menu(const int low_sel, const int hi_sel);
+/* Misc. application functions.. */
+void create_random_nodes(CSlist list, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
-/* --- Function: int my_random(int start, int stop) --- */
-int my_random(int start, int stop)
-{
-  return start+rand()%(stop-start+1);
-}
-
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -82,24 +71,6 @@ int my_cmp(const void *key1, const void *key2)
   return (*(int *)key1 - *(int *)key2);
 }
 
-/* --- Function: void my_clearscrn(void) --- */
-void my_clearscrn(void)
-{
-#ifdef __unix__
-  system("clear");
-#elif _WIN32
-  system("cls");
-#endif
-}
-
-/* --- Function: void prompt_and_pause(char *message) --- */
-void prompt_and_pause(char *message)
-{
-  printf("%s", message);
-  printf(" - Hit <Enter> to continue...");
-  getchar();
-}
-
 /* --- Function: int my_match(const void *k1, const void *k2) --- */
 int my_match(const void *k1, const void *k2)
 {
@@ -114,7 +85,7 @@ void create_random_nodes(CSlist list, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,50);
+      *pi = rand_int(1,50);
 
       if (!CSLISTsize(list))
         retval=CSLISTinsnext(list, NULL, pi);
@@ -146,9 +117,7 @@ void ins_node(CSlist list)
       printf("\n\nCurrent list status(%d nodes): ", CSLISTsize(list));
       print_cslist(list);
 
-      printf("\n\nEnter nodedata of node after which 99 should be inserted (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter nodedata, after which new node(data=99) to be inserted (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -191,9 +160,7 @@ void rem_node(CSlist list)
       printf("\n\nCurrent list status(%d nodes): ", CSLISTsize(list));
       print_cslist(list);
 
-      printf("\n\nEnter (key)data for node to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter (key)data for node to be removed (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -245,9 +212,7 @@ void search_node(CSlist lst)
       printf("\n\nCurrent list status(%d nodes): ", CSLISTsize(lst));
       print_cslist(lst);
 
-      printf("\n\nEnter nodedata of node to search (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter (key)data for node to be found (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -281,45 +246,6 @@ void final_status(CSlist list)
   print_cslist(list);
 }
 
-/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel)
-{
-  int retval;
-
-  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
-}
-
-/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
-int menu(const int low_sel, const int hi_sel)
-{
-  int retval, selection, sel_ok=0;
-
-  my_clearscrn();
-
-  do
-    {
-      printf("%s", MAIN_MENU_ROW);
-      printf("%s", MAIN_PROMPT);
-      retval = scanf("%d", &selection);
-
-      if (retval == 1)
-        {
-          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
-          if (!sel_ok)
-            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
-          getchar();   
-        }
-      else
-        {
-          printf("Invalid input - use integer only!");
-          getchar();
-        }
-
-    } while (retval == EOF || !sel_ok);
-
-  return selection;
-}
-
 int main(void)
 {
   /* Declare YOUR variables here ! */
@@ -342,7 +268,7 @@ int main(void)
   /* Enter menu loop... */
   do
     {
-      menu_choice = menu(0, 4);
+      menu_choice = menu(MAIN_MENU_ROW, 0, 4);
 
       switch (menu_choice)
         {

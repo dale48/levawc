@@ -1,4 +1,4 @@
-/**
+/*
  *       _____
  * ANSI / ___/
  *     / /__  
@@ -6,7 +6,7 @@
  *
  * Filename: demo6.c
  * Author  : Dan Levin
- * Date    : Mon Jan 26 14:53:39 2015
+ * Date    : Fri Feb 20 11:17:57 2015
  * Version : 0.5
  * ---
  * Description: Usage demo of the binary search tree ADT - in LevAWC. 
@@ -15,7 +15,8 @@
  * Date   Revision
  * 130312 Created this program the first time..
  * 150206 Made this demo6.c menu-driven.
- * 150206 Source reade for version 0.5!
+ * 150220 Moved some utility functions from here - to file ../utils.c
+ * 150220 Source reade for version 0.5!
  * 
  * 
  */
@@ -33,18 +34,13 @@
 #define NR_OF_ITEMS 9
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n--- BINARY SEARCH TREE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print"
-#define MAIN_PROMPT "\nSelection <0-4>+<Enter>: "
+#define MAIN_MENU_ROW "--- BINARY SEARCH TREE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
+/* Application-specific callbacks */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
-int my_random(int start, int stop);
-void my_clearscrn(void);
-void prompt_and_pause(char *message);
-
-void create_nodes(BiTree tree, int nr_of_nodes);
 
 /* Functions handling menu selections */
 void ins_node(BiTree tree);
@@ -53,18 +49,11 @@ void search_node(BiTree tree);
 void print_tree(BiTree tree);
 void final_status(BiTree tree);
 
-/* Menu (handling) functions */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel);
-int menu(const int low_sel, const int hi_sel);
+/* Misc. application functions.. */
+void create_nodes(BiTree tree, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
-/* --- Function: int my_random(int start, int stop) --- */
-int my_random(int start, int stop)
-{
-  return start+rand()%(stop-start+1);
-}
-
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -83,24 +72,6 @@ int my_cmp(const void *key1, const void *key2)
   return (*(int *)key1 - *(int *)key2);
 }
 
-/* --- Function: void my_clearscrn(void) --- */
-void my_clearscrn(void)
-{
-#ifdef __unix__
-  system("clear");
-#elif _WIN32
-  system("cls");
-#endif
-}
-
-/* --- Function: void prompt_and_pause(char *message) --- */
-void prompt_and_pause(char *message)
-{
-  printf("%s", message);
-  printf(" - Hit <Enter> to continue...");
-  getchar();
-}
-
 /* --- Function: void create_nodes(BiTree tree, int nr_of_nodes) --- */
 void create_nodes(BiTree tree, int nr_of_nodes)
 {
@@ -109,7 +80,7 @@ void create_nodes(BiTree tree, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,99);
+      *pi = rand_int(1,99);
       
       if ((retval = BITREEinsert(tree, pi)) != 0) /* Insertion failed... */
         {
@@ -145,9 +116,7 @@ void ins_node(BiTree tree)
       printf("--- INSERT NODE ---\n");
       print_tree(tree);
 
-      printf("\n\nEnter data for node to be inserted (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter integer data for node to be inserted (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -189,10 +158,8 @@ void rem_node(BiTree tree)
       printf("--- REMOVE NODE ---\n");
       print_tree(tree);
 
-      printf("\n\nEnter data for node to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-      
+      tmp = read_int("\nEnter data for node to be removed (-1=Quit): ", 0, 0);
+
       if (tmp == -1)
         break;
 
@@ -235,10 +202,8 @@ void search_node(BiTree tree)
       printf("--- SEARCH NODE ---\n");
       print_tree(tree);
 
-      printf("\n\nEnter data for node to be searched for (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-      
+      tmp = read_int("\nEnter data for node to be found (-1=Quit): ", 0, 0);
+
       if (tmp == -1)
         break;
 
@@ -286,45 +251,6 @@ void final_status(BiTree tree)
   BITREEinorder(tree, print);
 }
 
-/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel)
-{
-  int retval;
-
-  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
-}
-
-/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
-int menu(const int low_sel, const int hi_sel)
-{
-  int retval, selection, sel_ok=0;
-
-  my_clearscrn();
-
-  do
-    {
-      printf("%s", MAIN_MENU_ROW);
-      printf("%s", MAIN_PROMPT);
-      retval = scanf("%d", &selection);
-
-      if (retval == 1)
-        {
-          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
-          if (!sel_ok)
-            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
-          getchar();   
-        }
-      else
-        {
-          printf("Invalid input - use integer only!");
-          getchar();
-        }
-
-    } while (retval == EOF || !sel_ok);
-
-  return selection;
-}
-
 int main(void)
 {
   /* Declare YOUR variables here ! */
@@ -347,7 +273,7 @@ int main(void)
   
   do
     {
-      menu_choice = menu(0, 4);
+      menu_choice = menu(MAIN_MENU_ROW, 0, 4);
 
       switch (menu_choice)
         {

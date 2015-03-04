@@ -1,8 +1,14 @@
 TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
-- Check return values for inserting/removing edges in graphes - additional needed?
-- Write code for graph alg. "Shortest path"
-- Create demo12.c - "EU CITY CRISS-CROSS-VISIT"..
+
+- Test code in ALGObfs() and ALGOdfs() - in demo11.c
+- Test just interactive graph handling - in demo12.c
+- Test code in ALGOmst(), ALGOdsp() and ALGOtsp() - in demo13.c
+- Make EU Criss-Cross Tour demo14.c
+- Make new tarballs for version 0.5
+- Make new documentation for circular list, set, open-addressed hashtable and graph
+
+
 
 
 
@@ -24,7 +30,23 @@ TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
 Completed tasks:
 ---------------------------------------------------------------
-
+- Check return values for inserting/removing edges in graphes - additional code needed? Wed Mar 04 14:19:32 2015
+- Fix code for ALGOmst() Wed Feb 25 16:59:33 2015
+- Fix code for ALGObfs() and  ALGOdfs() Wed Feb 25 16:57:52 2015
+- Clean up code in graph.c/graph.h Fixed: Mon Feb 23 15:29:51 2015
+- Establish macros for TRUE and FALSE in utils.c - and perhaps more files Mon Feb 23 11:15:05 2015
+- Test demo12.c - together with the ALGOdsp()-function time Sun Feb 22 20:09:10 2015
+- Move some utility functions from demo??.c - to file ../utils.c Sun Feb 22 20:08:49 2015
+- Write code for graph alg. "Shortest path" Thu Feb 19 07:54:28 2015
+- Create demo12.c - "EU CITY CRISS-CROSS-TOUR".. - not finished.. - Thu Feb 19 07:53:26 2015
+- Create new interface graph functions:
+  3. VertexNode GRAPHgetvertexhead(Graph gr); Wed Feb 11 11:38:09 2015
+  4. EdgeNode GRAPHgetedgehead(Graph gr, const void* vtxdata); Wed Feb 11 11:38:13 2015
+  5. VertexNode GRAPHgetvertexnext(VertexNode node); Wed Feb 11 11:38:17 2015
+  6. EdgeNode GRAPHgetedgenext(EdgeNode node); Wed Feb 11 11:38:22 2015
+  2. void *GRAPHgetedgedata(EdgeNode node); Tue Feb 10 15:49:41 2015
+  1. void *GRAPHgetvtxdata(VertexNode node); Tue Feb 10 15:49:22 2015
+- Create a function print_vertices() - that reads and displays menuitems from a graph Wed Feb 11 11:34:38 2015
 - Make all demos ready for version 0.5..! Fri Feb  6 11:44:26 2015
 - Fix a 'my_clearscrn()'- call in all printout functions/menuhandlers, all demos Fri Feb  6 11:43:25 2015
 - Fix a blank line before/after printing contents of container, all demos Fri Feb  6 11:41:57 2015

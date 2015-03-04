@@ -1,4 +1,4 @@
-/**
+/*
  *       _____
  * ANSI / ___/
  *     / /__  
@@ -6,7 +6,7 @@
  *
  * Filename: demo3.c
  * Author  : Dan Levin
- * Date    : Thu Jan 22 21:10:38 2015
+ * Date    : Fri Feb 20 10:09:46 2015
  * Version : 0.5
  * ---
  * Description: A demo of stack/queue ADT usage - in LevAWC
@@ -16,8 +16,9 @@
  * 130122 Created this file - the first time..
  * 130123 Completed the code - and debugged/tested it as well..
  * 150121 Made this demo3.c menu-driven
- * 150205 Source ready for version 0.5!
- *
+ * 150220 Moved some utility functions from here - to file ../utils.c
+ * 150220 Source ready for version 0.5!
+ * 
  */
 
 #include <stdio.h>
@@ -26,6 +27,7 @@
 #include <assert.h>
 #include "stack.h"
 #include "queue.h"
+#include "utils.h"
 
 #define NR_OF_ITEMS 8
 
@@ -34,17 +36,12 @@
 #endif
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n--- QUEUE/STACK DEMO ---\nMENU: 0=Exit 1=Enqueue 2=Dequeue 3=Push 4=Pop 5=Dequeue/Push 6=Print"
-#define MAIN_PROMPT "\nSelection <0-6>+<Enter>: "
-
+#define MAIN_MENU_ROW "--- QUEUE/STACK DEMO ---\nMENU: 0=Exit 1=Enqueue 2=Dequeue 3=Push 4=Pop 5=Dequeue/Push 6=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
+/* Application-specific callbacks */
 void my_destroy(void *data);
 void print(const void *data);
-int my_random(int start, int stop);
-void my_clearscrn(void);
-void prompt_and_pause(char *message);
-void enqueue_push_nodes(Queue que, Stack stk, int nr_of_ele);
 
 /* Functions handling menu selections */
 void enqueue_node(Queue que);
@@ -55,18 +52,11 @@ void print_queue_stack(Queue que, Stack stk);
 void dequeue_push_node(Queue que, Stack stk);
 void final_status(Queue que, Stack stk);
 
-/* Menu (handling) functions */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel);
-int menu(const int low_sel, const int hi_sel);
+/* Misc. application functions.. */
+void enqueue_push_nodes(Queue que, Stack stk, int nr_of_ele);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - that is, the rest of the program */
-/* --- Function: int my_random(int start, int stop) --- */
-int my_random(int start, int stop)
-{
-  return start+rand()%(stop-start+1);
-}
-
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -77,24 +67,6 @@ void my_destroy(void *data)
 void print(const void *data)
 {
   printf(" %02d", *(int *)data);
-}
-
-/* --- Function: void my_clearscrn(void) --- */
-void my_clearscrn(void)
-{
-#ifdef __unix__
-  system("clear");
-#elif _WIN32
-  system("cls");
-#endif
-}
-
-/* --- Function: void prompt_and_pause(char *message) --- */
-void prompt_and_pause(char *message)
-{
-  printf("%s", message);
-  printf(" - Hit <Enter> to continue...");
-  getchar();
 }
 
 /* --- Function: void queue_nodess(Queue que, Stack stk, int nr_of_ele) --- */
@@ -109,12 +81,12 @@ void enqueue_push_nodes(Queue que, Stack stk, int nr_of_ele)
     {
       /* Create dyn. memory, store random nr - and enqueue... */
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,50);
+      *pi = rand_int(1,50);
       retval = QUEUEenqueue(que, pi);
       assert(retval == OK);
       /* Create dyn. memory, store random nr - and push... */
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,50);
+      *pi = rand_int(1,50);
       retval = STACKpush(stk, pi);
       assert(retval == OK);
     } while (++i < nr_of_ele);
@@ -140,9 +112,10 @@ void enqueue_node(Queue que)
       printf("\nCurrent queue status(%d nodes): ", QUEUEsize(que));
       SLISTtraverse(que, print, SLIST_FWD);
 
-      printf("\n\nEnter integer data of node to be enqueued (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      /* printf("\n\nEnter integer data of node to be enqueued (-1=Quit): "); */
+      /* scanf("%d", &tmp); */
+      /* getchar(); /\* Remove CR from input buffer *\/ */
+      tmp = read_int("\nEnter integer data of node to be enqueued (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -229,10 +202,10 @@ void push_node(Stack stk)
       printf("\nCurrent stack status(%d nodes): ", STACKsize(stk));
       SLISTtraverse(stk, print, SLIST_FWD);
 
-      printf("\n\nEnter integer data of node to be pushed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
-
+      /* printf("\n\nEnter integer data of node to be pushed (-1=Quit): "); */
+      /* scanf("%d", &tmp); */
+      /* getchar(); /\* Remove CR from input buffer *\/ */
+      tmp = read_int("\nEnter integer data of node to be pushed (-1=Quit): ", 0, 0);
       if (tmp == -1)
         break;
 
@@ -398,46 +371,6 @@ void final_status(Queue que, Stack stk)
   printf(" (%d nodes)", STACKsize(stk));
 }
 
-
-/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel)
-{
-  int retval;
-
-  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
-}
-
-/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
-int menu(const int low_sel, const int hi_sel)
-{
-  int retval, selection, sel_ok=0;
-
-  my_clearscrn();
-
-  do
-    {
-      printf("%s", MAIN_MENU_ROW);
-      printf("%s", MAIN_PROMPT);
-      retval = scanf("%d", &selection);
-
-      if (retval == 1)
-        {
-          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
-
-          if (!sel_ok)
-            printf("Invalid selection/input - use <%d> to <%d>...!", low_sel, hi_sel);        
-          getchar();   
-        }
-      else
-        {
-          printf("Invalid input - use integer only!");
-          getchar();
-        }
-    } while (retval != 1 || !sel_ok);
-
-  return selection;
-}
-
 int main(void)
 {
   /* Declare YOUR variables here ! */
@@ -464,7 +397,7 @@ int main(void)
 
   do
     {
-      menu_choice = menu(0, 6);
+      menu_choice = menu(MAIN_MENU_ROW, 0, 6);
 
       switch (menu_choice)
         {

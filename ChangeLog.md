@@ -1,7 +1,29 @@
+<h2>LevAWC version 0.50 (Tue Feb 24 09:16:13 2015)</h2>
+<h4>Changes</h4>
+<p>Since this is a <i>major revision</i>, the changes are numerous. Now all the data structures in Kyle's book are included in this version, AFAIK. Some graph algorithms are present, too.</p>
+<ul>
+  <li>Added <i>new container source</i>: <code>cslist.c, cslist.h, set.c, set.h, ohashtbl.c, ohashtbl.h, graph.c, graph.h, algo.c, algo.h</code></li>
+  <li>Added <i>new demo</i> source: <code>demo8.c, demo9.c, demo10.c, demo11.c</code> - showing usage of Circular List, Set, Open-Addressed Hashtable and Graph, respectivly.</li>
+  <li>Demo program <code>demo12.c</code> is a more extensive graph demo - implementing the "Dijkstra's Shortest Path" algorithm.</li>
+  <li>Made all demos <i>menu-driven</i> - with <i>rudimentary error handling</i></li>
+  <li><i>Moved</i> some <i>utility functions</i> from the demo source files - to file <code>utils.c</code> and <code>utils.h</code>.</li>
+</ul>
+<h4>New features</h4>
+<ul>
+  <li>Four new container ADT:s - Circular List, Set, Open-Addressed Hashtable and Graph - accompanied by demos (<code>demo8.c, demo9.c, demo10.c, demo11.c</code>)</li>
+  <li>More extensiv demo: <code>demo12.c</code></li>
+  <li>Introducing Graph Algorithms (in files <code>algo.c algo.h)</code></li>
+  <li>Extended and fine-tuned the documentation accordingly...</li>
+</ul>
+<h4>Bugfixes</h4>
+<ul>
+  <li>A lot...</li>
+</ul>
+
 <h2>LevAWC version 0.40</h2>
 <h4>Changes</h4>
 <ul>
-  <li>Added new source: <code>bitree.c, bitree.h, avltree.c, avltree.h, utils.c, utils.h</code></li>
+  <li>Added new source: <code>bitree.cp, bitree.h, avltree.c, avltree.h, utils.c, utils.h</code></li>
   <li>Added new demo source: <code>demo6.c, demo7.c</code> - showing usage of binary search and AVL trees.</li>
   <li>Some changes in demo4.c so the user can interactively decide nr of insertions/removals of nodes. </li>
   <li>Improved the documentation somewhat.</li>

@@ -1,4 +1,4 @@
-/**
+/*
  *       _____
  * ANSI / ___/
  *     / /__  
@@ -6,15 +6,16 @@
  *
  * Filename: demo11.c
  * Author  : Dan Levin
- * Date    : Thu Jan 08 20:06:18 2015
+ * Date    : Fri Feb 20 13:23:46 2015
  * Version : 0.5
  * ---
  * Description: A demo program testing/showing the Graph ADT 
  * 
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
- * 150204 Made this demo11.c menu-driven.
- * 150206 This source is now ready for version 0.5!
+ * 150204 Created this demo - and made it menu-driven.
+ * 150220 Moved some utility functions from here - to file ../utils.c
+ * 150220 This source ready for version 0.5!
  *
  */
 
@@ -22,6 +23,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "graph.h"
+#include "utils.h"
 
 #ifndef OK
 #define OK 0
@@ -31,23 +33,13 @@
 #define NR_OF_EDGES 20
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n--- GRAPH DEMO ---\nMENU: 0=Exit 1=Add_Vertex 2=Rem_Vertex 3=Add_Edge 4=Rem_Edge 5=Print"
-#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
+#define MAIN_MENU_ROW "--- GRAPH DEMO ---\nMENU: 0=Exit 1=Add_Vertex 2=Rem_Vertex 3=Add_Edge 4=Rem_Edge 5=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
-int my_random(int start, int stop);
-void my_clearscrn(void);
-void prompt_and_pause(char *message);
 int my_match(const void *k1, const void *k2);
-
-/* Menu functions */
-int is_sel_ok(const int sel, const int lowsel, const int hisel);
-int menu(const int low_sel, const int hi_sel);
-
-void create_rand_vertices(Graph gr, int nr_of_nodes);
 
 /* Menu selections */
 void ins_vertex(Graph gr);
@@ -56,15 +48,12 @@ void ins_edge(Graph gr);
 void rem_edge(Graph gr);
 void print_graph(Graph gr);
 void final_status(Graph gr);
+
+/* Misc. application functions.. */
+void create_rand_vertices(Graph gr, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
-/* --- Function: int my_random(int start, int stop) --- */
-int my_random(int start, int stop)
-{
-  return start+rand()%(stop-start+1);
-}
-
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -89,35 +78,10 @@ int my_cmp(const void *key1, const void *key2)
   return (*(int *)key1 - *(int *)key2);
 }
 
-/* --- Function: void my_clearscrn(void) --- */
-void my_clearscrn(void)
-{
-#ifdef __unix__
-  system("clear");
-#elif _WIN32
-  system("cls");
-#endif
-}
-
-/* --- Function: void prompt_and_pause(char *message) --- */
-void prompt_and_pause(char *message)
-{
-  printf("%s", message);
-  printf(" - Hit <Enter> to continue...");
-  getchar();
-}
-
 /* --- Function: int my_match(const void *k1, const void *k2) --- */
 int my_match(const void *k1, const void *k2)
 {
   return *(int *)k1 == *(int *)k2;
-}
-
-int is_sel_ok(const int menusel, const int lowsel, const int hisel)
-{
-  int retval;
-
-  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
 }
 
 /* --- Function: void add_nodes(Graph gr, int nr_of_nodes) --- */
@@ -128,7 +92,7 @@ void create_rand_vertices(Graph gr, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,99);
+      *pi = rand_int(1,99);
       
       if ((retval = GRAPHinsvertex(gr, pi)) != OK) /* Insertion failed... */
         {
@@ -173,9 +137,7 @@ void ins_vertex(Graph gr)
       printf("\n\nCurrent graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr));
       print_graph(gr);
 
-      printf("\n\nEnter data for vertex to be inserted (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter data for vertex to be inserted (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -187,15 +149,15 @@ void ins_vertex(Graph gr)
         {
           if (retval == 1) /* Duplicate key value.. */
             {
-              sprintf(mess, "Vertex %d already present..!", *pi);
+              sprintf(mess, "Vertex %d already present in graph..!", *pi);
               prompt_and_pause(mess);
               my_destroy(pi); /* Free node - since being duplicate..  */
             }
-          else if (retval == -1) /* Vertex missing - or error.. */
-            {
-              prompt_and_pause("Vertex missing - or fatal error - insertion failed..!\n");
-              my_destroy(pi); /* Free node - due to error..  */
-            }
+          /* else if (retval == -1) /\* Vertex missing - or error.. *\/ */
+          /*   { */
+          /*     prompt_and_pause("Error - insertion failed..!\n"); */
+          /*     my_destroy(pi); /\* Free node - due to error..  *\/ */
+          /*   } */
           else
             {
               prompt_and_pause("Fatal error - bailing out..!\n");
@@ -223,9 +185,7 @@ void rem_vertex(Graph gr)
       printf("\n\nCurrent graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr));
       print_graph(gr);
 
-      printf("\n\nEnter data for vertex to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter data for vertex to be removed (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -235,14 +195,14 @@ void rem_vertex(Graph gr)
       if ((retval = GRAPHremvertex(gr, (void **)&pi)) != OK) /* Vertex removal failed.. */
         {
           /* Removal didn't work - node NOT found... */
-          if (retval == 1)
+          if (retval == -2)
             {
               sprintf(mess, "Vertex %d not found..!", *(int *)pi);
               prompt_and_pause(mess);
             }
           else
             {
-              if (retval == -2)
+              if (retval == -3)
                 {
                   sprintf(mess, "Vertex %d not isolated - can't be removed..!", *(int *)pi);
                   prompt_and_pause(mess);
@@ -278,15 +238,12 @@ void ins_edge(Graph gr)
       printf("\n\nCurrent graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr));
       print_graph(gr);
 
-      printf("\n\nEnter data for first vertex of the edge to be created (-1=Quit)   : ");
-      scanf("%d", &tmp1);
-      getchar(); /* Remove CR from input buffer */
+      tmp1 = read_int("\nEnter data for first vertex of edge to be created (-1=Quit): ", 0, 0);
+
       if (tmp1 == -1)
         break;
 
-      printf("Enter data for adjacent vertex of the edge to be created (-1=Quit): ");
-      scanf("%d", &tmp2);
-      getchar(); /* Remove CR from input buffer */
+      tmp2 = read_int("Enter data for adjacent vertex of edge to be created (-1=Quit): ", 0, 0);
 
       if (tmp2 == -1)
         break;
@@ -305,9 +262,9 @@ void ins_edge(Graph gr)
             }
           else
             {
-              if (retval == -1)
+              if (retval == -2)
                 {
-                  sprintf(mess, "Vertex missing - or fatal error..!");
+                  sprintf(mess, "Vertices missing in graph - edge could not be created..!");
                   prompt_and_pause(mess);
                   my_destroy(pi);
                 }
@@ -340,16 +297,12 @@ void rem_edge(Graph gr)
       printf("\n\nCurrent graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr));
       print_graph(gr);
 
-      printf("\n\nEnter data for first vertex of the edge to be removed (-1=Quit)   : ");
-      scanf("%d", &tmp1);
-      getchar(); /* Remove CR from input buffer */
+      tmp1 = read_int("\nEnter data for first vertex of edge to be removed (-1=Quit): ", 0, 0);
 
       if (tmp1 == -1)
         break;
 
-      printf("Enter data for adjacent vertex of the edge to be removed (-1=Quit): ");
-      scanf("%d", &tmp2);
-      getchar(); /* Remove CR from input buffer */
+      tmp2 = read_int("Enter data for adjacent vertex of edge to be removed (-1=Quit): ", 0, 0);
 
       if (tmp2 == -1)
         break;
@@ -359,11 +312,16 @@ void rem_edge(Graph gr)
       if ((retval = GRAPHremedge(gr, &tmp1, (void **)&pi)) != OK) /* Edge removal failed.. */
         {
           /* Removal didn't work -  adj vertices not found... */
-          if (retval == -1)
+          if (retval == 1)
             {
-              sprintf(mess, "Edge connecting vertices %d and %d not found - or other error..!", tmp1, *(int *)pi);
+              sprintf(mess, "Error - edge connecting vertices %d and %d not found..!\n", tmp1, *(int *)pi);
               prompt_and_pause(mess);
             }
+	  else
+	    {
+	      printf("Fatal error - bailing out...");
+	      exit(retval);
+	    }
         }
       else
         {
@@ -376,42 +334,13 @@ void rem_edge(Graph gr)
     } while (1);
 }
 
-int menu(const int low_sel, const int hi_sel)
-{
-  int retval, selection, sel_ok=0;
-
-  my_clearscrn();
-
-  do
-    {
-      printf("%s", MAIN_MENU_ROW);
-      printf("%s", MAIN_PROMPT);
-      retval = scanf("%d", &selection);
-
-      if (retval == 1)
-        {
-          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
-          if (!sel_ok)
-            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
-          getchar();   
-        }
-      else
-        {
-          printf("Invalid input - integer only!");
-          getchar();
-        }
-    } while (retval == EOF || !sel_ok);
-
-  return selection;
-}
-
 /* --- Function: void print_graph(Graph gr) --- */
 void print_graph(Graph gr)
 {
   GRAPHprint(gr, printvtx, printedge);  
 }
 
-/* --- Function: void tidy_and_quit(Graph gr) --- */
+/* --- Function: void final_status(Graph gr) --- */
 void final_status(Graph gr)
 {
   my_clearscrn();
@@ -419,7 +348,6 @@ void final_status(Graph gr)
   printf("\n\nFinal graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr));
   GRAPHprint(gr, printvtx, printedge);
 }
-
 
 int main(void)
 {
@@ -441,7 +369,7 @@ int main(void)
   /* Enter menu loop.. */
   do
     {
-      menu_choice = menu(0, 5);
+      menu_choice = menu(MAIN_MENU_ROW, 0, 5);
 
       switch (menu_choice)
         {

@@ -1,4 +1,4 @@
-/**
+/*
  *       _____
  * ANSI / ___/
  *     / /__  
@@ -6,7 +6,7 @@
  *
  * Filename: demo9.c
  * Author  : Dan Levin
- * Date    : Tue Jan 27 11:44:11 2015
+ * Date    : Fri Feb 20 12:02:43 2015
  * Version : 0.5
  * ---
  * Description: A usage demo program - showing/testing the Set ADT
@@ -14,7 +14,8 @@
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
  * 150127 Created this program the first time - and made it menu-driven..
- * 150206 This source ready for version 0.5!
+ * 150220 Moved some utility functions from here - to file ../utils.c
+ * 150220 This source ready for version 0.5!
  *
  */
 
@@ -22,6 +23,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "set.h"
+#include "utils.h"
 
 #ifndef OK
 #define OK 0
@@ -30,19 +32,14 @@
 #define NR_OF_ITEMS 10
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "\n--- SET DEMO ---\nMENU: 0=Exit 1=Set1_Add 2=Set2_Add 3=Set1_Rem 4=Set2_Rem 5=Print"
-#define MAIN_PROMPT "\nSelection <0-5>+<Enter>: "
+#define MAIN_MENU_ROW "--- SET DEMO ---\nMENU: 0=Exit 1=Set1_Add 2=Set2_Add 3=Set1_Rem 4=Set2_Rem 5=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
+/* Application-specific callbacks */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
-int my_random(int start, int stop);
-void my_clearscrn(void);
-void prompt_and_pause(char *message);
 int my_match(const void *k1, const void *k2);
-
-void create_random_nodes(Set set, int nr_of_nodes);
 
 /* Functions handling menu selections */
 void ins_node(Set set);
@@ -51,18 +48,11 @@ void print_sets(Set set1, Set set2);
 void print_union_diff_intersec(Set s1, Set s2);
 void final_status(Set set1, Set set2);
 
-/* Menu (handling) functions */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel);
-int menu(const int low_sel, const int hi_sel);
+/* Misc. application functions.. */
+void create_random_nodes(Set set, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
-/* --- Function: int my_random(int start, int stop) --- */
-int my_random(int start, int stop)
-{
-  return start+rand()%(stop-start+1);
-}
-
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -81,24 +71,6 @@ int my_cmp(const void *key1, const void *key2)
   return (*(int *)key1 - *(int *)key2);
 }
 
-/* --- Function: void my_clearscrn(void) --- */
-void my_clearscrn(void)
-{
-#ifdef __unix__
-  system("clear");
-#elif _WIN32
-  system("cls");
-#endif
-}
-
-/* --- Function: void prompt_and_pause(char *message) --- */
-void prompt_and_pause(char *message)
-{
-  printf("%s", message);
-  printf(" - Hit <Enter> to continue...");
-  getchar();
-}
-
 /* --- Function: int my_match(const void *k1, const void *k2) --- */
 int my_match(const void *k1, const void *k2)
 {
@@ -113,7 +85,7 @@ void create_random_nodes(Set set, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
-      *pi = my_random(1,50);
+      *pi = rand_int(1,50);
 
       if ((retval = SETinsert(set, pi)) != OK) /* Insertion failed... */
         {
@@ -147,9 +119,7 @@ void ins_node(Set set)
       printf("\nCurrent set status(%d nodes): ", SETsize(set));
       SETtraverse(set, print, SET_FWD);
 
-      printf("\n\nEnter nodedata for node to be inserted (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter nodedata for node to be inserted (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -201,9 +171,7 @@ void rem_node(Set set)
       printf("\nCurrent set status(%d nodes): ", SETsize(set));
       SETtraverse(set, print, SET_FWD);
 
-      printf("\n\nEnter (key)data for node to be removed (-1=Quit): ");
-      scanf("%d", &tmp);
-      getchar(); /* Remove CR from input buffer */
+      tmp = read_int("\nEnter (key)data for node to be removed (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -288,45 +256,6 @@ void final_status(Set s1, Set s2)
   print_sets(s1, s2);
 }
 
-/* --- Function: int is_sel_ok(const int menusel, const int lowsel, const int hisel) --- */
-int is_sel_ok(const int menusel, const int lowsel, const int hisel)
-{
-  int retval;
-
-  return (retval = menusel>=lowsel && menusel<=hisel) ? 1 : 0;
-}
-
-/* --- Function: int menu(const int low_sel, const int hi_sel) --- */
-int menu(const int low_sel, const int hi_sel)
-{
-  int retval, selection, sel_ok=0;
-
-  my_clearscrn();
-
-  do
-    {
-      printf("%s", MAIN_MENU_ROW);
-      printf("%s", MAIN_PROMPT);
-      retval = scanf("%d", &selection);
-
-      if (retval == 1)
-        {
-          sel_ok = is_sel_ok(selection, low_sel, hi_sel);
-          if (!sel_ok)
-            printf("Invalid selection - use <%d> to <%d>...!", low_sel, hi_sel);              
-          getchar();   
-        }
-      else
-        {
-          printf("Invalid input - use integer only!");
-          getchar();
-        }
-
-    } while (retval == EOF || !sel_ok);
-
-  return selection;
-}
-
 int main(void)
 {
   /* Declare YOUR variables here ! */
@@ -361,7 +290,7 @@ int main(void)
   /* Enter menu loop... */
   do
     {
-      menu_choice = menu(0, 5);
+      menu_choice = menu(MAIN_MENU_ROW, 0, 5);
 
       switch (menu_choice)
         {

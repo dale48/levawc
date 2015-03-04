@@ -34,7 +34,7 @@ DEBUG ?= 0
 ### Variables: ###
 
 CPPDEPS = -MT$@ -MF$@.d -MD -MP
-LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+LEVAWC_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 LEVAWC_OBJECTS =  \
 	levawc_slist.o \
@@ -49,52 +49,68 @@ LEVAWC_OBJECTS =  \
 	levawc_cslist.o \
 	levawc_set.o \
 	levawc_ohashtbl.o \
-	levawc_graph.o \
-	levawc_utils.o
-DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	levawc_graph.o
+DEMO1_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO1_OBJECTS =  \
-	demo1_demo1.o
-DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo1_demo1.o \
+	demo1_utils.o
+DEMO2_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO2_OBJECTS =  \
-	demo2_demo2.o
-DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo2_demo2.o \
+	demo2_utils.o
+DEMO3_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO3_OBJECTS =  \
-	demo3_demo3.o
-DEMO4_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo3_demo3.o \
+	demo3_utils.o
+DEMO4_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO4_OBJECTS =  \
-	demo4_demo4.o
-DEMO5_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo4_demo4.o \
+	demo4_utils.o
+DEMO5_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO5_OBJECTS =  \
-	demo5_demo5.o
-DEMO6_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo5_demo5.o \
+	demo5_utils.o
+DEMO6_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO6_OBJECTS =  \
-	demo6_demo6.o
-DEMO7_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo6_demo6.o \
+	demo6_utils.o
+DEMO7_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO7_OBJECTS =  \
-	demo7_demo7.o
-DEMO8_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo7_demo7.o \
+	demo7_utils.o
+DEMO8_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO8_OBJECTS =  \
-	demo8_demo8.o
-DEMO9_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo8_demo8.o \
+	demo8_utils.o
+DEMO9_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO9_OBJECTS =  \
-	demo9_demo9.o
-DEMO10_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo9_demo9.o \
+	demo9_utils.o
+DEMO10_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO10_OBJECTS =  \
-	demo10_demo10.o
-DEMO11_CFLAGS = $(____DEBUG) $(____DEBUG_35) $(____DEBUG_39) $(____DEBUG_38) \
+	demo10_demo10.o \
+	demo10_utils.o
+DEMO11_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
 	-I.\.. $(CPPFLAGS) $(CFLAGS)
 DEMO11_OBJECTS =  \
-	demo11_demo11.o
+	demo11_demo11.o \
+	demo11_utils.o
+DEMO12_CFLAGS = $(____DEBUG) $(____DEBUG_39) $(____DEBUG_43) $(____DEBUG_42) \
+	-I.\.. $(CPPFLAGS) $(CFLAGS)
+DEMO12_OBJECTS =  \
+	demo12_demo12.o \
+	demo12_algo.o \
+	demo12_utils.o
 
 ### Conditionally set variables: ###
 
@@ -105,28 +121,28 @@ ifeq ($(DEBUG),1)
 ____DEBUG = 
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_35 = -O2
+____DEBUG_39 = -O2
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_35 = -O0
+____DEBUG_39 = -O0
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_38 = 
+____DEBUG_42 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_38 = -W -Wall
+____DEBUG_42 = -W -Wall
 endif
 ifeq ($(DEBUG),0)
-____DEBUG_39 = 
+____DEBUG_43 = 
 endif
 ifeq ($(DEBUG),1)
-____DEBUG_39 = -g
+____DEBUG_43 = -g
 endif
 
 
 ### Targets: ###
 
-all: liblevawc.a demo1.exe demo2.exe demo3.exe demo4.exe demo5.exe demo6.exe demo7.exe demo8.exe demo9.exe demo10.exe demo11.exe
+all: liblevawc.a demo1.exe demo2.exe demo3.exe demo4.exe demo5.exe demo6.exe demo7.exe demo8.exe demo9.exe demo10.exe demo11.exe demo12.exe
 
 clean: 
 	-if exist .\*.o del .\*.o
@@ -143,6 +159,7 @@ clean:
 	-if exist demo9.exe del demo9.exe
 	-if exist demo10.exe del demo10.exe
 	-if exist demo11.exe del demo11.exe
+	-if exist demo12.exe del demo12.exe
 
 liblevawc.a: $(LEVAWC_OBJECTS)
 	if exist $@ del $@
@@ -150,37 +167,40 @@ liblevawc.a: $(LEVAWC_OBJECTS)
 	ranlib $@
 
 demo1.exe: $(DEMO1_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO1_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo2.exe: $(DEMO2_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO2_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo3.exe: $(DEMO3_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO3_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo4.exe: $(DEMO4_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO4_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO4_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo5.exe: $(DEMO5_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO5_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO5_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo6.exe: $(DEMO6_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO6_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO6_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo7.exe: $(DEMO7_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO7_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO7_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo8.exe: $(DEMO8_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO8_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO8_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo9.exe: $(DEMO9_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO9_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO9_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo10.exe: $(DEMO10_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO10_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO10_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 demo11.exe: $(DEMO11_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO11_OBJECTS)  $(____DEBUG_39) $(LDFLAGS)  liblevawc.a
+	$(CC) -o $@ $(DEMO11_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
+
+demo12.exe: $(DEMO12_OBJECTS) liblevawc.a
+	$(CC) -o $@ $(DEMO12_OBJECTS)  $(____DEBUG_43) $(LDFLAGS)  liblevawc.a
 
 levawc_slist.o: ./../slist.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
@@ -221,41 +241,80 @@ levawc_ohashtbl.o: ./../ohashtbl.c
 levawc_graph.o: ./../graph.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
 
-levawc_utils.o: ./../utils.c
-	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<
-
 demo1_demo1.o: ./demo1.c
+	$(CC) -c -o $@ $(DEMO1_CFLAGS) $(CPPDEPS) $<
+
+demo1_utils.o: ./../utils.c
 	$(CC) -c -o $@ $(DEMO1_CFLAGS) $(CPPDEPS) $<
 
 demo2_demo2.o: ./demo2.c
 	$(CC) -c -o $@ $(DEMO2_CFLAGS) $(CPPDEPS) $<
 
+demo2_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO2_CFLAGS) $(CPPDEPS) $<
+
 demo3_demo3.o: ./demo3.c
+	$(CC) -c -o $@ $(DEMO3_CFLAGS) $(CPPDEPS) $<
+
+demo3_utils.o: ./../utils.c
 	$(CC) -c -o $@ $(DEMO3_CFLAGS) $(CPPDEPS) $<
 
 demo4_demo4.o: ./demo4.c
 	$(CC) -c -o $@ $(DEMO4_CFLAGS) $(CPPDEPS) $<
 
+demo4_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO4_CFLAGS) $(CPPDEPS) $<
+
 demo5_demo5.o: ./demo5.c
+	$(CC) -c -o $@ $(DEMO5_CFLAGS) $(CPPDEPS) $<
+
+demo5_utils.o: ./../utils.c
 	$(CC) -c -o $@ $(DEMO5_CFLAGS) $(CPPDEPS) $<
 
 demo6_demo6.o: ./demo6.c
 	$(CC) -c -o $@ $(DEMO6_CFLAGS) $(CPPDEPS) $<
 
+demo6_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO6_CFLAGS) $(CPPDEPS) $<
+
 demo7_demo7.o: ./demo7.c
+	$(CC) -c -o $@ $(DEMO7_CFLAGS) $(CPPDEPS) $<
+
+demo7_utils.o: ./../utils.c
 	$(CC) -c -o $@ $(DEMO7_CFLAGS) $(CPPDEPS) $<
 
 demo8_demo8.o: ./demo8.c
 	$(CC) -c -o $@ $(DEMO8_CFLAGS) $(CPPDEPS) $<
 
+demo8_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO8_CFLAGS) $(CPPDEPS) $<
+
 demo9_demo9.o: ./demo9.c
+	$(CC) -c -o $@ $(DEMO9_CFLAGS) $(CPPDEPS) $<
+
+demo9_utils.o: ./../utils.c
 	$(CC) -c -o $@ $(DEMO9_CFLAGS) $(CPPDEPS) $<
 
 demo10_demo10.o: ./demo10.c
 	$(CC) -c -o $@ $(DEMO10_CFLAGS) $(CPPDEPS) $<
 
+demo10_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO10_CFLAGS) $(CPPDEPS) $<
+
 demo11_demo11.o: ./demo11.c
 	$(CC) -c -o $@ $(DEMO11_CFLAGS) $(CPPDEPS) $<
+
+demo11_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO11_CFLAGS) $(CPPDEPS) $<
+
+demo12_demo12.o: ./demo12.c
+	$(CC) -c -o $@ $(DEMO12_CFLAGS) $(CPPDEPS) $<
+
+demo12_algo.o: ./../algo.c
+	$(CC) -c -o $@ $(DEMO12_CFLAGS) $(CPPDEPS) $<
+
+demo12_utils.o: ./../utils.c
+	$(CC) -c -o $@ $(DEMO12_CFLAGS) $(CPPDEPS) $<
 
 .PHONY: all clean
 

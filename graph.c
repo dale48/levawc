@@ -135,17 +135,17 @@ int GRAPHinsedge(Graph graph, const void *vtxdata, const void *adjdata)
   /* Do not allow insertion of an edge without both its vertices present.. */
   /* Therefore - check for presence of 'adjdata' in the vertex collection.. */
   if (GRAPHfindvertex(graph, adjdata) == NULL) /* --- Vertex not found --- */
-    return -1;
+    return -2;
 
-  /* Check for presence of 'data1' among vertices.. */
+  /* Check for presence of 'vtxdata' among vertices.. */
   if ((node = GRAPHfindvertex(graph, vtxdata)) == NULL) /* --- Vertex not found --- */
-    return -1;
+    return -2;
 
   /* Do not allow insertion of duplicate edges for 'node'.. */
   if (SLISTfindnode(((Vertex)SLISTdata(node))->adj_vertices, adjdata) != NULL) /* --- If duplicate.. --- */
     return 1;    
 
-  /* Insert 'data2' into the edge collection of the vertex containing 'data1'.. */
+  /* Insert 'adjdata' into the edge collection of the vertex containing data 'vtxdata'.. */
   if ((retval = SLISTinsnext(((Vertex)SLISTdata(node))->adj_vertices, NULL, adjdata)) !=0)
     return retval;
 
@@ -162,13 +162,12 @@ int GRAPHremvertex(Graph graph, void **data)
   Vertex vtx;
 
   /* Search for vertex matching 'data'... */
-  /* Return 1 if NOT found */
-  if ((node = GRAPHfindvertex(graph, *data)) == NULL)
-    return 1;
+  if ((node = GRAPHfindvertex(graph, *data)) == NULL) /* Vertex not found */
+    return -2;   /* Return -2 if NOT found */
 
-  /* --- Return -2 if searched vertex is NOT isolated.. --- */
+  /* --- Return -3 if searched vertex is NOT isolated.. --- */
   if (GRAPHis_isolated(graph, *data) == 0)
-    return -2;
+    return -3;
 
   prev = NULL;
 
@@ -176,7 +175,7 @@ int GRAPHremvertex(Graph graph, void **data)
     {
       /* --- Test for a hit - if so - leave the loop.. --- */
       if (graph->match(*data, ((Vertex)SLISTdata(tmp))->vertexdata))
-	break;
+        break;
 
       /* Keep a pointer to the vertex BEFORE the vertex to be removed.. */
       prev = tmp;
@@ -186,7 +185,7 @@ int GRAPHremvertex(Graph graph, void **data)
   if (SLISTremnext(graph->vertices, prev, (void **)&vtx) != 0)
     return -1;
 
-   /* Return vertex data to caller */
+  /* Return vertex data to caller */
   *data = vtx->vertexdata;
   
   /* Destroy the (empty) edge collection.. */
@@ -204,16 +203,21 @@ int GRAPHremvertex(Graph graph, void **data)
 
 int GRAPHremedge(Graph graph, void *vtxdata, void **edgedata)
 {
-  SlistNode vtx;
+  SlistNode vtxnode;
+  int retval;
 
-  vtx = GRAPHfindvertex(graph, vtxdata);
+  /* If edge is NOT found.. */
+  if ((vtxnode = GRAPHfindvertex(graph, vtxdata)) == NULL)
+    return -2;
 
-  if (vtx == NULL)
-    return -1;
-
-  /* Remove the second vertex from the adjacency list of the first vertex */
-  if (SLISTfind_remove(((Vertex)SLISTdata(vtx))->adj_vertices, edgedata) != 0)
-    return -1;
+  /* Remove the second vertex(='edgedata') - from the adjacency list of the first(='vtxdata') */
+  if ((retval = SLISTfind_remove(((Vertex)SLISTdata(vtxnode))->adj_vertices, edgedata)) != 0)
+    {
+      if (retval == 1)
+        return -2;
+      else
+        return -1;
+    }
 
   /* Adjust the edge count to account for the removed edge */
   graph->ecount--;
@@ -248,21 +252,36 @@ void GRAPHtraverse(Graph graph, void (*vtxcallback)(const void *data), void (*ed
     }
 }
 
-Vertexcollection GRAPHgetvertices(Graph graph)
+void *GRAPHgetvertexdata(VertexNode vtxnode)
 {
-  return graph->vertices;
+  return ((Vertex)SLISTdata(vtxnode))->vertexdata;
 }
 
-Edgecollection GRAPHgetedges(Graph graph, const void *vtxdata)
+void *GRAPHgetedgedata(EdgeNode edgenode)
 {
-  SlistNode node;
+  return SLISTdata(edgenode);
+}
 
-  node = GRAPHfindvertex(graph, vtxdata);
+VertexNode GRAPHgetvertexhead(Graph graph)
+{
+  return SLISThead(graph->vertices);
+}
 
-  if (node != NULL)
-    return ((Vertex)node)->adj_vertices;
- 
+EdgeNode GRAPHgetedgehead(VertexNode vtxnode)
+{
+  if (vtxnode != NULL)
+    return SLISThead(((Vertex)SLISTdata(vtxnode))->adj_vertices);
   return NULL;
+}
+
+VertexNode GRAPHgetvertexnext(VertexNode node)
+{
+  return SLISTnext(node);
+}
+
+EdgeNode GRAPHgetedgenext(EdgeNode node)
+{
+  return SLISTnext(node);
 }
 
 int GRAPHvcount(Graph graph)
@@ -277,18 +296,6 @@ int GRAPHecount(Graph graph)
 
 int GRAPHis_adjacent(const Graph graph, const void *vtxdata, const void *adjdata)
 {
-  /* SlistNode node; */
-  
-  /* --- Find the vertex containing 'vtxdata'.. --- */
-  /* node = GRAPHfindvertex(graph, vtxdata); */
-
-  /* if (node == NULL) */
-  /*   return 0; */
-
-  /* Return whether the adjacent vertex collection of 'node'
-     - contains a vertex corresponding to 'edgedata'.. */
-  /* return SLISTfindnode(((Vertex)SLISTdata(node))->adj_vertices, edgedata) == NULL ? 0 : 1;  */
-
   return GRAPHfindedge(graph, vtxdata, adjdata) == NULL ? 0 : 1;
 }
 
@@ -302,7 +309,7 @@ int GRAPHis_isolated(const Graph graph, const void *data)
     {
       /* --- If 'data' is member of ANY adjacent vertex collection.. --- */
       if (SLISTfindnode(((Vertex)SLISTdata(node))->adj_vertices, data) != NULL)
-	break;
+        break;
     }
 
   if (node != NULL) /* --- Edges directed TO 'node' exist! --- */
@@ -324,25 +331,24 @@ int GRAPHis_isolated(const Graph graph, const void *data)
 }
 
 /* --- Function: SlistNode GRAPHfindvertex(const Graph graph, const void *data) --- */
-SlistNode GRAPHfindvertex(const Graph graph, const void *data)
+VertexNode GRAPHfindvertex(const Graph graph, const void *data)
 {
   SlistNode vtx = NULL;
   Slist list;
-  /* match_callback vtxmatch; */
 
   list = graph->vertices;
 
-  for (vtx = SLISThead(list); vtx != NULL; vtx = SLISTnext(vtx)) 
+  for (vtx = SLISThead(list); vtx != NULL; vtx = SLISTnext(vtx))
     {
       if (graph->match(data, ((Vertex)SLISTdata(vtx))->vertexdata))
-	break;
+        break;
     }
  
-  return vtx;  
+  return vtx;
 }
 
 /* --- Function: SlistNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edgedata) --- */
-SlistNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edgedata)
+EdgeNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edgedata)
 {
   SlistNode node;
   
@@ -352,7 +358,7 @@ SlistNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edge
   if (node == NULL)
     return node;
 
-  /* Return whether the adjacent vertex collection of 'node'
+  /* Return whether the adjacent vertices of 'node'
      - contains a vertex corresponding to 'edgedata'.. */
   return SLISTfindnode(((Vertex)SLISTdata(node))->adj_vertices, edgedata);
 }

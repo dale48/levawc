@@ -15,12 +15,14 @@
  * - Priority queue
  * - Binary search tree
  * - AVL tree
-<!-- * - Graph -->
- * Original and major parts of the code written by 
+ * - Graph
+ *
+ * @par Source
+ *  Original and major parts of the code written by 
  * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
  * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
  * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
- * @date     Fri Jan 09 13:50:19 2015
+ * @date     <b>Wed Feb 18 08:52:13 2015</b>
  * @version  0.50 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par Demos
  * The demos are trying to test and show most of the public interface of the ADT:s - accordingly:
@@ -34,10 +36,15 @@
  * - <code>demo8.c</code> - testing/showing Circular, Singly-linked List ADT..
  * - <code>demo9.c</code> - testing/showing Set ADT..
  * - <code>demo10.c</code> - testing/showing Open-addressed Hash Table ADT..
-<!-- * - <code>demo11.c</code> - testing/showing Graph ADT.. -->
- * All demos are tested against memory leaks (Valgrind, Linux)
+ * - <code>demo11.c</code> - testing/showing Graph ADT..
+ * - <code>demo12.c</code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm.
+ * A (low-cost) criss-cross flight <a href="eu.pdf" target="_blank">within EU</a>.
+ * @par Testing
+ * All demos have been tested on both Windows and Linux. Memory leak detection/tracing was done with Valgrind (Linux).
  * @par ToDo
- *  Continue making more pure, generic ADT:s - such as:
- * - A <b>Graph</b> ADT - in due time...\n
+ * - Publishing version 1.0 (probably next version uploaded to GitHub..)
+ * - Adding more Graph Algorithms(=Minimal Spanning Tree, Traveling Salesmans Problem, Breadth- and Depth-First Search)...\n
+ * - Adding a function - <code>AVLTREEhard_remove()</code> - which <i>physically</i> removes a node from an AVL Tree. Ok - no performance gain - but a personal coding challenge ;-)
+ * - Extending and fine-tuning Project Documentation - still some issues to fix here..
  * .
  **/

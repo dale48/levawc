@@ -53,8 +53,8 @@ extern "C" {
    **/
   typedef struct Graph_ *Graph;
 
-  typedef Slist Vertexcollection;
-  typedef Slist Edgecollection;
+  typedef SlistNode VertexNode;
+  typedef SlistNode EdgeNode;
 
   /* FUNCTION DECLARATIONS/PUBLIC INTERFACE */
   /* --- Maintenance functions --- */
@@ -98,15 +98,33 @@ extern "C" {
    **/
   void GRAPHdestroy(Graph graph);
 
+  /* --- Data manipulation functions --- */
   /**
    * Insert a vertex into the graph
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - reference to data of vertex to be inserted.
+   * @return Value 0 - if the insertion was successful\n
+   *         Value 1 - if vertex containing @a vtxdata already exists in the graph\n
+   *         Value -1 - otherwise, indicating some other (fatal) error
+   *
    **/
-  int GRAPHinsvertex(Graph graph, const void *data);
+  int GRAPHinsvertex(Graph graph, const void *vtxdata);
 
   /**
    * Insert vertex data, referenced by 'adjdata'
-   * among the adjacent vertices of vertex referenced by 'vtxdata'
+   * into the adjacent vertices of vertex, referenced by 'vtxdata'
+   *
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - a reference to data of the vert
+   * @param[in] adjdata - 
+   * @return Value 0 - if the insertion was successful\n
+   *         Value 1 - if edge containing vertices ref. by @a vtxdata and @a adjdata 
+   *  already exists in the graph - i.e. you are trying to insert a duplicate edge\n
+   *         Value -2 - one - or both vertices holding @a vtxdata and @a adjdata
+   * is/are missing in the graph. Both must exist prior to successful insertion of 
+   * an edge.\n
+   *         Value -1 - otherwise, indicating some other (fatal) error
    * 
    **/
   int GRAPHinsedge(Graph graph, const void *vtxdata, const void *adjdata);
@@ -114,49 +132,115 @@ extern "C" {
   /**
    * Remove vertex with data referenced by 'vtxdata'
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in,out] vtxdata - 
+   * @return Value 0 - it the removal was successful\n
+   *         Value -2 - if vertex referenced by @a vtxdata is
+   * missing\n
+   *         Value -3 - if the vertex referenced by @a vtxdata is not isolated, i.e. \n
+   *         Value -1 - otherwise, indicating some other (fatal) error
    **/
   int GRAPHremvertex(Graph graph, void **vtxdata);
 
   /**
    * Remove edge from vertex referenced by 'vtxdata'  - to vertex ref. by 'edgedata'
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - 
+   * @param[in,out] edgedata - 
+   * @return Value 0 - if removal of edge was successful\n
+   *         Value -2 - if one or both of the vertices constituting the edge are
+   * missing.\n
+   *         Value -1 - otherwise, indicating some other (fatal) errror.
+   *
    **/
   int GRAPHremedge(Graph graph, void *vtxdata, void **edgedata);
 
+  /* --- Getter functions --- */
   /**
-   * Determine whether 2 vertices are adjacent
+   * Get the first vertex node
+   * 
+   * @param[in] graph - a reference to current graph.
+   * @return A reference to the first vertex node in the graph.
    * 
    **/
-  int GRAPHis_adjacent(const Graph graph, const void *vtxdata, const void *adjdata);
+  VertexNode GRAPHgetvertexhead(Graph graph);
 
   /**
-   * Get a collection of vertices constituting the graph
-   * 
+   * Get the first edge node
+   *
+   * @param[in] vtxnode - reference to a valid vertex node in the
+   * graph. 
+   * @return A reference to the first node in the collection of
+   * adjacent nodes - of argument @a vtxnode.
    **/
-  Vertexcollection GRAPHgetvertices(Graph graph);
+  EdgeNode GRAPHgetedgehead(VertexNode vtxnode);
 
   /**
-   * Get a collection of edges connected to a vertex referenced by
-   * 'vtxdata'
+   * Get next vertex node
    * 
+   * @param[in] vtxnode - reference to a valid vertex node in the
+   * graph.
+   * @return A reference to the next vertex node in the graph.
    **/
-  Edgecollection GRAPHgetedges(Graph graph, const void *vtxdata);
+  VertexNode GRAPHgetvertexnext(VertexNode vtxnode);
 
   /**
-   * Get the vertex count of the graph
+   * Get next edge node
    * 
+   * @param[in] enode - reference to a valid node in an adjacency
+   * list of a vertex node in the graph.
+   * @return A reference to the next node in the adjacency list.
+   *
+   **/
+  EdgeNode GRAPHgetedgenext(EdgeNode enode);
+
+  /**
+   * Get data from a vertex
+   * 
+   * @param[in] vtxnode - reference to a valid vertex node in
+   * the graph.
+   * @return A reference to the data part of argument @a vtxnode.
+   *   
+   **/
+  void *GRAPHgetvertexdata(VertexNode vtxnode);
+
+  /**
+   * Get data from an edge
+   * 
+   * @param[in] enode - reference to a valid node in an adjacency
+   * list of a vertex node in the graph.
+   * @return A reference to the data part of argument @a enode.
+   *
+   **/
+  void *GRAPHgetedgedata(EdgeNode enode);
+
+  /**
+   * Get total number of vertices
+   * 
+   * @param[in] graph - a reference to current graph.
+   * @return The total number of vertices contained in @a graph.
    **/
   int GRAPHvcount(Graph graph);
 
   /**
-   * Get the edge count of the graph
+   * Get total number of edges
    * 
+   * @param[in] graph - a reference to current graph.
+   * @return The total number of edges contained in @a graph.
+   *
    **/
   int GRAPHecount(Graph graph);
 
+  /* --- Traversal functions --- */
   /**
    * Print all vertex and edge data of the graph - on screen
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxcallback - a reference to current graph.
+   * @param[in] edgecallback - a reference to current graph.
+   * @return Nothing.
+   *
    **/
   void GRAPHprint(Graph graph, void (*vtxcallback)(const void *data),
                   void (*edgecallback)(const void *data));
@@ -164,36 +248,51 @@ extern "C" {
   /**
    * Traverse all vertices/edges of the graph
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxcallback - a reference to current graph.
+   * @param[in] edgecallback - a reference to current graph.
+   * @return Nothing.
    **/
   void GRAPHtraverse(Graph graph, void (*vtxcallback)(const void *data), void (*edgecallback)(const void *data));
 
   /* --- Search functions --- */
   /**
-   * Find vertex with its data referenced by 'vtxdata'
-   * 
+   * Find vertex node containing data referenced by @a vtxdata
+   *
+   * @param[in] graph - a reference to current graph. 
+   * @param[in] vtxdata - 
+   * @return A reference to vertex node containing data referenced by @a vtxdata, if found - or NULL otherwise.
    **/
-  SlistNode GRAPHfindvertex(const Graph graph, const void *vtxdata);
+  VertexNode GRAPHfindvertex(const Graph graph, const void *vtxdata);
 
   /**
-   * Find edge from vertex ref. by 'vtxdata' to vertex ref. by 'edgedata' - if any
+   * Find edge of vertex referenced by @a vtxdata to vertex ref. by @a edgedata - if any
    * 
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - 
+   * @param[in] edgedata - 
+   * @return A reference to a node in the adjacency list of vertex node ref. by @a vtxdata, if found - or NULL otherwise.
+   *
    **/
-  SlistNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edgedata);
-
-  /* --- Setter/Getter functions --- */
-
+  EdgeNode GRAPHfindedge(const Graph graph, const void *vtxdata, const void *edgedata);
 
   /* --- Miscellaneous functions --- */
-
   /**
    * Determine if 2 vertices are adjacent - i.e. an edge connecting them 
    *
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - 
+   * @param[in] edgedata - 
+   * @return 
    **/
   int GRAPHis_adjacent(const Graph graph, const void *vtxdata, const void *edgedata); 
 
   /**
    * Determine if a vertex is isolated - i.e. has no edges 
    *
+   * @param[in] graph - a reference to current graph.
+   * @param[in] vtxdata - 
+   * @return 
    **/
   int GRAPHis_isolated(const Graph graph, const void *vtxdata);
 

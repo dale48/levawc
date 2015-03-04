@@ -58,14 +58,14 @@ extern "C" {
    * @param[in] destroy - A reference to a user-made function, reponsible
    * for freeing node data, when the list is deleted. If @a destroy is 
    * NULL - then node data will be left untouched when the list is 
-   * destroyed.
+   * destroyed. This function has a lot in common with @b SLISTinit().
    * @return A reference - to a new, empty list - if dynamic memory
    * allocation for the ADT was successful - or NULL otherwise. Take 
    * really good care  of this return value, since it will be needed as
    * a parameter in subsequent calls - to the majority of other list 
    * handling functions in this function interface - i.e. a sort of
    * "handle" to the list.
-   * @see CSLISTdestroy()
+   * @see CSLISTdestroy(), SLISTinit()
    **/
   CSlist CSLISTinit(void (*destroy)(void *data));
 
@@ -79,7 +79,7 @@ extern "C" {
    * all nodes and data have been deallocated - the list header is 
    * deallocated, too.
    * 
-   * @param[in] list - a reference to current list.
+   * @param[in] clist - a reference to current list.
    * @return Nothing.
    * @see CSLISTinit()
    **/
@@ -90,15 +90,15 @@ extern "C" {
    *
    * This function inserts an new node, with a reference to node data
    * given by parameter @a data - @b after the node referenced by
-   * parameter @a node - into @a list. 
+   * parameter @a node - into @a clist. 
    * 
-   * @param[in] clist - reference to current list
+   * @param[in] clist - reference to current circular list
    * @param[in] node - the node after which the new node is to be 
    * inserted. When inserting a node into an empty list, @a node
    * may hold any value - but should be set to NULL - just to avoid
    * confusion.
    * @param[in] data - reference to data to be stored in the new node, 
-   * that is inserted into the list.
+   * that is inserted into the circular list.
    *
    * @return Value 0 - if everything went OK - or value -1 otherwise.
    **/
@@ -198,8 +198,8 @@ extern "C" {
    * @param[in] match - a reference to a user-defined function that 
    * receives references to node data - and search key data - via its 
    * parameters @a key1 and @a key2 - and thereby can make 
-   * the actual matching. This callback function shall return 1 - 
-   * in case of a hit - or 0 otherwise.
+   * the actual matching. This user-defined callback function shall 
+   * return 1 - in case of a hit - or 0 otherwise.
    *
    * @return Nothing.
    **/

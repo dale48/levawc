@@ -35,8 +35,8 @@ DEBUG = 0
 
 ### Variables: ###
 
-LEVAWC_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fdlevawc.pdb $(____DEBUG_62) /I.\.. \
+LEVAWC_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fdlevawc.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 LEVAWC_OBJECTS =  \
 	levawc_slist.obj \
@@ -51,63 +51,80 @@ LEVAWC_OBJECTS =  \
 	levawc_cslist.obj \
 	levawc_set.obj \
 	levawc_ohashtbl.obj \
-	levawc_graph.obj \
-	levawc_utils.obj
-DEMO1_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo1.pdb $(____DEBUG_62) /I.\.. \
+	levawc_graph.obj
+DEMO1_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo1.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO1_OBJECTS =  \
-	demo1_demo1.obj
-DEMO2_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo2.pdb $(____DEBUG_62) /I.\.. \
+	demo1_demo1.obj \
+	demo1_utils.obj
+DEMO2_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo2.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO2_OBJECTS =  \
-	demo2_demo2.obj
-DEMO3_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo3.pdb $(____DEBUG_62) /I.\.. \
+	demo2_demo2.obj \
+	demo2_utils.obj
+DEMO3_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo3.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO3_OBJECTS =  \
-	demo3_demo3.obj
-DEMO4_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo4.pdb $(____DEBUG_62) /I.\.. \
+	demo3_demo3.obj \
+	demo3_utils.obj
+DEMO4_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo4.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO4_OBJECTS =  \
-	demo4_demo4.obj
-DEMO5_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo5.pdb $(____DEBUG_62) /I.\.. \
+	demo4_demo4.obj \
+	demo4_utils.obj
+DEMO5_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo5.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO5_OBJECTS =  \
-	demo5_demo5.obj
-DEMO6_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo6.pdb $(____DEBUG_62) /I.\.. \
+	demo5_demo5.obj \
+	demo5_utils.obj
+DEMO6_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo6.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO6_OBJECTS =  \
-	demo6_demo6.obj
-DEMO7_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo7.pdb $(____DEBUG_62) /I.\.. \
+	demo6_demo6.obj \
+	demo6_utils.obj
+DEMO7_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo7.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO7_OBJECTS =  \
-	demo7_demo7.obj
-DEMO8_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo8.pdb $(____DEBUG_62) /I.\.. \
+	demo7_demo7.obj \
+	demo7_utils.obj
+DEMO8_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo8.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO8_OBJECTS =  \
-	demo8_demo8.obj
-DEMO9_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo9.pdb $(____DEBUG_62) /I.\.. \
+	demo8_demo8.obj \
+	demo8_utils.obj
+DEMO9_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo9.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO9_OBJECTS =  \
-	demo9_demo9.obj
-DEMO10_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo10.pdb $(____DEBUG_62) /I.\.. \
+	demo9_demo9.obj \
+	demo9_utils.obj
+DEMO10_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo10.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO10_OBJECTS =  \
-	demo10_demo10.obj
-DEMO11_CFLAGS = /MD$(____DEBUG_60) /DWIN32 $(____DEBUG) $(____DEBUG_57) \
-	$(____DEBUG_58) $(______DEBUG) /Fddemo11.pdb $(____DEBUG_62) /I.\.. \
+	demo10_demo10.obj \
+	demo10_utils.obj
+DEMO11_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo11.pdb $(____DEBUG_68) /I.\.. \
 	$(CPPFLAGS) $(CFLAGS)
 DEMO11_OBJECTS =  \
-	demo11_demo11.obj
+	demo11_demo11.obj \
+	demo11_utils.obj
+DEMO12_CFLAGS = /MD$(____DEBUG_66) /DWIN32 $(____DEBUG) $(____DEBUG_63) \
+	$(____DEBUG_64) $(______DEBUG) /Fddemo12.pdb $(____DEBUG_68) /I.\.. \
+	$(CPPFLAGS) $(CFLAGS)
+DEMO12_OBJECTS =  \
+	demo12_demo12.obj \
+	demo12_algo.obj \
+	demo12_utils.obj
 
 ### Conditionally set variables: ###
 
@@ -115,67 +132,73 @@ DEMO11_OBJECTS =  \
 ____DEBUG_19_25 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_19_25 = $(____DEBUG_61)
+____DEBUG_19_25 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_33_39 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_33_39 = $(____DEBUG_61)
+____DEBUG_33_39 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_47_53 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_47_53 = $(____DEBUG_61)
+____DEBUG_47_53 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_61_67 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_61_67 = $(____DEBUG_61)
+____DEBUG_61_67 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_75_81 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_75_81 = $(____DEBUG_61)
+____DEBUG_75_81 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_89_95 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_89_95 = $(____DEBUG_61)
+____DEBUG_89_95 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_103_109 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_103_109 = $(____DEBUG_61)
+____DEBUG_103_109 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_117_123 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_117_123 = $(____DEBUG_61)
+____DEBUG_117_123 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_131_137 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_131_137 = $(____DEBUG_61)
+____DEBUG_131_137 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_145_151 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_145_151 = $(____DEBUG_61)
+____DEBUG_145_151 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG_159_165 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_159_165 = $(____DEBUG_61)
+____DEBUG_159_165 = $(____DEBUG_67)
+!endif
+!if "$(DEBUG)" == "0"
+____DEBUG_173_179 = 
+!endif
+!if "$(DEBUG)" == "1"
+____DEBUG_173_179 = $(____DEBUG_67)
 !endif
 !if "$(DEBUG)" == "0"
 ____DEBUG = /DNDEBUG
@@ -184,22 +207,22 @@ ____DEBUG = /DNDEBUG
 ____DEBUG = 
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_57 = /O2
+____DEBUG_63 = /O2
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_57 = /Od
+____DEBUG_63 = /Od
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_58 = 
+____DEBUG_64 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_58 = /Zi
+____DEBUG_64 = /Zi
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_59 = 
+____DEBUG_65 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_59 = /DEBUG
+____DEBUG_65 = /DEBUG
 !endif
 !if "$(DEBUG)" == "0"
 ______DEBUG = 
@@ -208,28 +231,28 @@ ______DEBUG =
 ______DEBUG = /D_DEBUG
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_60 = 
+____DEBUG_66 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_60 = d
+____DEBUG_66 = d
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_61 = /opt:ref /opt:icf
+____DEBUG_67 = /opt:ref /opt:icf
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_61 = 
+____DEBUG_67 = 
 !endif
 !if "$(DEBUG)" == "0"
-____DEBUG_62 = 
+____DEBUG_68 = 
 !endif
 !if "$(DEBUG)" == "1"
-____DEBUG_62 = /W4
+____DEBUG_68 = /W4
 !endif
 
 
 ### Targets: ###
 
-all: levawc.lib demo1.exe demo2.exe demo3.exe demo4.exe demo5.exe demo6.exe demo7.exe demo8.exe demo9.exe demo10.exe demo11.exe
+all: levawc.lib demo1.exe demo2.exe demo3.exe demo4.exe demo5.exe demo6.exe demo7.exe demo8.exe demo9.exe demo10.exe demo11.exe demo12.exe
 
 clean: 
 	-if exist .\*.obj del .\*.obj
@@ -269,6 +292,9 @@ clean:
 	-if exist demo11.exe del demo11.exe
 	-if exist demo11.ilk del demo11.ilk
 	-if exist demo11.pdb del demo11.pdb
+	-if exist demo12.exe del demo12.exe
+	-if exist demo12.ilk del demo12.ilk
+	-if exist demo12.pdb del demo12.pdb
 
 levawc.lib: $(LEVAWC_OBJECTS)
 	if exist $@ del $@
@@ -277,58 +303,63 @@ levawc.lib: $(LEVAWC_OBJECTS)
 <<
 
 demo1.exe: $(DEMO1_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo1.pdb" $(____DEBUG_19_25) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo1.pdb" $(____DEBUG_19_25) $(LDFLAGS) @<<
 	$(DEMO1_OBJECTS)   levawc.lib
 <<
 
 demo2.exe: $(DEMO2_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo2.pdb" $(____DEBUG_33_39) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo2.pdb" $(____DEBUG_33_39) $(LDFLAGS) @<<
 	$(DEMO2_OBJECTS)   levawc.lib
 <<
 
 demo3.exe: $(DEMO3_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo3.pdb" $(____DEBUG_47_53) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo3.pdb" $(____DEBUG_47_53) $(LDFLAGS) @<<
 	$(DEMO3_OBJECTS)   levawc.lib
 <<
 
 demo4.exe: $(DEMO4_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo4.pdb" $(____DEBUG_61_67) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo4.pdb" $(____DEBUG_61_67) $(LDFLAGS) @<<
 	$(DEMO4_OBJECTS)   levawc.lib
 <<
 
 demo5.exe: $(DEMO5_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo5.pdb" $(____DEBUG_75_81) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo5.pdb" $(____DEBUG_75_81) $(LDFLAGS) @<<
 	$(DEMO5_OBJECTS)   levawc.lib
 <<
 
 demo6.exe: $(DEMO6_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo6.pdb" $(____DEBUG_89_95) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo6.pdb" $(____DEBUG_89_95) $(LDFLAGS) @<<
 	$(DEMO6_OBJECTS)   levawc.lib
 <<
 
 demo7.exe: $(DEMO7_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo7.pdb" $(____DEBUG_103_109) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo7.pdb" $(____DEBUG_103_109) $(LDFLAGS) @<<
 	$(DEMO7_OBJECTS)   levawc.lib
 <<
 
 demo8.exe: $(DEMO8_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo8.pdb" $(____DEBUG_117_123) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo8.pdb" $(____DEBUG_117_123) $(LDFLAGS) @<<
 	$(DEMO8_OBJECTS)   levawc.lib
 <<
 
 demo9.exe: $(DEMO9_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo9.pdb" $(____DEBUG_131_137) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo9.pdb" $(____DEBUG_131_137) $(LDFLAGS) @<<
 	$(DEMO9_OBJECTS)   levawc.lib
 <<
 
 demo10.exe: $(DEMO10_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo10.pdb" $(____DEBUG_145_151) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo10.pdb" $(____DEBUG_145_151) $(LDFLAGS) @<<
 	$(DEMO10_OBJECTS)   levawc.lib
 <<
 
 demo11.exe: $(DEMO11_OBJECTS) levawc.lib
-	link /NOLOGO /OUT:$@  $(____DEBUG_59) /pdb:"demo11.pdb" $(____DEBUG_159_165) $(LDFLAGS) @<<
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo11.pdb" $(____DEBUG_159_165) $(LDFLAGS) @<<
 	$(DEMO11_OBJECTS)   levawc.lib
+<<
+
+demo12.exe: $(DEMO12_OBJECTS) levawc.lib
+	link /NOLOGO /OUT:$@  $(____DEBUG_65) /pdb:"demo12.pdb" $(____DEBUG_173_179) $(LDFLAGS) @<<
+	$(DEMO12_OBJECTS)   levawc.lib
 <<
 
 levawc_slist.obj: .\..\slist.c
@@ -370,39 +401,78 @@ levawc_ohashtbl.obj: .\..\ohashtbl.c
 levawc_graph.obj: .\..\graph.c
 	$(CC) /c /nologo /TC /Fo$@ $(LEVAWC_CFLAGS) .\..\graph.c
 
-levawc_utils.obj: .\..\utils.c
-	$(CC) /c /nologo /TC /Fo$@ $(LEVAWC_CFLAGS) .\..\utils.c
-
 demo1_demo1.obj: .\demo1.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO1_CFLAGS) .\demo1.c
+
+demo1_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO1_CFLAGS) .\..\utils.c
 
 demo2_demo2.obj: .\demo2.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO2_CFLAGS) .\demo2.c
 
+demo2_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO2_CFLAGS) .\..\utils.c
+
 demo3_demo3.obj: .\demo3.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO3_CFLAGS) .\demo3.c
+
+demo3_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO3_CFLAGS) .\..\utils.c
 
 demo4_demo4.obj: .\demo4.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO4_CFLAGS) .\demo4.c
 
+demo4_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO4_CFLAGS) .\..\utils.c
+
 demo5_demo5.obj: .\demo5.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO5_CFLAGS) .\demo5.c
+
+demo5_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO5_CFLAGS) .\..\utils.c
 
 demo6_demo6.obj: .\demo6.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO6_CFLAGS) .\demo6.c
 
+demo6_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO6_CFLAGS) .\..\utils.c
+
 demo7_demo7.obj: .\demo7.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO7_CFLAGS) .\demo7.c
+
+demo7_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO7_CFLAGS) .\..\utils.c
 
 demo8_demo8.obj: .\demo8.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO8_CFLAGS) .\demo8.c
 
+demo8_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO8_CFLAGS) .\..\utils.c
+
 demo9_demo9.obj: .\demo9.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO9_CFLAGS) .\demo9.c
+
+demo9_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO9_CFLAGS) .\..\utils.c
 
 demo10_demo10.obj: .\demo10.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO10_CFLAGS) .\demo10.c
 
+demo10_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO10_CFLAGS) .\..\utils.c
+
 demo11_demo11.obj: .\demo11.c
 	$(CC) /c /nologo /TC /Fo$@ $(DEMO11_CFLAGS) .\demo11.c
+
+demo11_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO11_CFLAGS) .\..\utils.c
+
+demo12_demo12.obj: .\demo12.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO12_CFLAGS) .\demo12.c
+
+demo12_algo.obj: .\..\algo.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO12_CFLAGS) .\..\algo.c
+
+demo12_utils.obj: .\..\utils.c
+	$(CC) /c /nologo /TC /Fo$@ $(DEMO12_CFLAGS) .\..\utils.c
 
