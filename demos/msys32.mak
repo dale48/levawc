@@ -222,16 +222,16 @@ demo10: $(DEMO10_OBJECTS) liblevawc.a
 	$(CC) -o $@ $(DEMO10_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a
 
 demo11: $(DEMO11_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO11_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a -lm
+	$(CC) -o $@ $(DEMO11_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a
 
 demo12: $(DEMO12_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO12_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a -lm
+	$(CC) -o $@ $(DEMO12_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a
 
 demo13: $(DEMO13_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO13_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a -lm
+	$(CC) -o $@ $(DEMO13_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a
 
 demo14: $(DEMO14_OBJECTS) liblevawc.a
-	$(CC) -o $@ $(DEMO14_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a -lm
+	$(CC) -o $@ $(DEMO14_OBJECTS)  $(____DEBUG_51) $(LDFLAGS)  liblevawc.a
 
 levawc_slist.o: ./../slist.c
 	$(CC) -c -o $@ $(LEVAWC_CFLAGS) $(CPPDEPS) $<

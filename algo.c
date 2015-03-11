@@ -266,7 +266,7 @@ int ALGOmst(Graph gr, const MstVertexdata start, Slist *span, int (*match)(const
   return OK;
 }
 
-int ALGOtsp(Slist *vertices, const TspVertexdata start, Slist *tour, int (*match)(const void *key1, const void *key2))
+int ALGOtsp(Slist vertices, const TspVertexdata start, Slist *tour, int (*match)(const void *key1, const void *key2))
 {
   TspVertexdata tsp_vtx, tsp_start, selection;
   SlistNode node;
@@ -280,7 +280,7 @@ int ALGOtsp(Slist *vertices, const TspVertexdata start, Slist *tour, int (*match
   found = FALSE;
 
   /* Loop over the list of vertices.. */
-  for (node = SLISThead(*vertices); node != NULL; node = SLISTnext(node))
+  for (node = SLISThead(vertices); node != NULL; node = SLISTnext(node))
     {
       /* Extract data of current node.. */
       tsp_vtx = SLISTdata(node);
@@ -322,12 +322,12 @@ int ALGOtsp(Slist *vertices, const TspVertexdata start, Slist *tour, int (*match
   /* --- Use the nearest-neighbor heuristic to compute the tour --- */
   i = 0;
 
-  while (i < SLISTsize(*vertices)-1)
+  while (i < SLISTsize(vertices)-1)
     {
       /* --- Select the white vertex closest to the previous tour vertex --- */
       min = DBL_MAX;
       /* Loop over list of vertices.. */
-      for (node = SLISThead(*vertices); node != NULL; node = SLISTnext(node))
+      for (node = SLISThead(vertices); node != NULL; node = SLISTnext(node))
         {
           /* Extract data from current node.. */
           tsp_vtx = SLISTdata(node);

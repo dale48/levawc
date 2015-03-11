@@ -4,26 +4,27 @@
  *     / /__  
  *     \___/  
  *
- * Filename: demo6.c
+ * Filename: demo06.c
  * Author  : Dan Levin
- * Date    : Fri Feb 20 11:33:43 2015
+ * Date    : Fri Feb 20 11:17:57 2015
  * Version : 0.5
  * ---
- * Description: Usage demo of the AVL tree ADT - in LevAWC. 
+ * Description: Usage demo of the binary search tree ADT - in LevAWC. 
  *
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
  * 130312 Created this program the first time..
- * 150127 Converted this program, demo7.c, to be menu-driven.
+ * 150206 Made this demo6.c menu-driven.
  * 150220 Moved some utility functions from here - to file ../utils.c
  * 150220 Source reade for version 0.5!
+ * 
  * 
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "avltree.h"
+#include "bitree.h"
 #include "utils.h"
 
 #ifndef OK
@@ -33,7 +34,7 @@
 #define NR_OF_ITEMS 9
 
 /* Some string macros for the main menu... */
-#define MAIN_MENU_ROW "--- AVL SEARCH TREE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
+#define MAIN_MENU_ROW "--- BINARY SEARCH TREE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
 
 /* FUNCTION DECLARATIONS */
 /* Application-specific callbacks */
@@ -42,14 +43,14 @@ void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
 
 /* Functions handling menu selections */
-void rem_node(AvlTree tree);
-void ins_node(AvlTree tree);
-void search_node(AvlTree tree);
-void print_tree(AvlTree tree);
-void final_status(AvlTree tree);
+void ins_node(BiTree tree);
+void rem_node(BiTree tree);
+void search_node(BiTree tree);
+void print_tree(BiTree tree);
+void final_status(BiTree tree);
 
 /* Misc. application functions.. */
-void create_nodes(AvlTree tree, int nr_of_nodes);
+void create_nodes(BiTree tree, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
@@ -71,8 +72,8 @@ int my_cmp(const void *key1, const void *key2)
   return (*(int *)key1 - *(int *)key2);
 }
 
-/* --- Function: void create_nodes(AvlTree tree, int nr_of_nodes) --- */
-void create_nodes(AvlTree tree, int nr_of_nodes)
+/* --- Function: void create_nodes(BiTree tree, int nr_of_nodes) --- */
+void create_nodes(BiTree tree, int nr_of_nodes)
 {
   int i=0, *pi, retval, dupctr=0;
 
@@ -81,7 +82,7 @@ void create_nodes(AvlTree tree, int nr_of_nodes)
       pi = (int *)malloc(sizeof(int));
       *pi = rand_int(1,99);
       
-      if ((retval = AVLTREEinsert(tree, pi)) != OK) /* Insertion failed... */
+      if ((retval = BITREEinsert(tree, pi)) != 0) /* Insertion failed... */
         {
           if (retval == 1) /* Duplicate key value.. */
             {
@@ -97,14 +98,14 @@ void create_nodes(AvlTree tree, int nr_of_nodes)
     } while (++i < nr_of_nodes);
 
   my_clearscrn();
-  printf("--- INITIALIZING AN AVL TREE, %d NODES, RANDOM INTEGER DATA ---\n", NR_OF_ITEMS);
+  printf("--- INITIALIZING A BINARY SEARCH TREE, %d NODES, RANDOM INTEGER DATA ---\n", NR_OF_ITEMS);
   print_tree(tree);
-  printf("\n\n%d/%d successful insertions -- %d duplicate(s) rejected...", AVLTREEsize(tree), nr_of_nodes, dupctr);
+  printf("\n\n%d/%d successful insertions -- %d duplicate(s) rejected..", BITREEsize(tree), nr_of_nodes, dupctr);
   prompt_and_pause("\n\n");
 }
 
-/* --- Function: void ins_node(AvlTree tree, int nr_of_insertions) --- */
-void ins_node(AvlTree tree)
+/* --- Function: void insert_nodes(BiTree tree, int nr_of_insertions) --- */
+void ins_node(BiTree tree)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -123,7 +124,7 @@ void ins_node(AvlTree tree)
       pi = (int *)malloc(sizeof(int));
       *pi = tmp;
 
-      if ((retval = AVLTREEinsert(tree, pi)) != OK) /* Insertion failed... */
+      if ((retval = BITREEinsert(tree, pi)) != 0) /* Insertion failed... */
         {
           if (retval == 1) /* Duplicate key value.. */
             {
@@ -145,8 +146,8 @@ void ins_node(AvlTree tree)
     } while (1);
 }
 
-/* --- Function: void rem_node(AvlTree tree, int nr_of_removes) --- */
-void rem_node(AvlTree tree)
+/* --- Function: void remove_nodes(BiTree tree, int nr_of_removes) --- */
+void rem_node(BiTree tree)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -157,13 +158,13 @@ void rem_node(AvlTree tree)
       printf("--- REMOVE NODE ---\n");
       print_tree(tree);
 
-      tmp = read_int("\nEnter data for node to be removed (-1=Quit): ", 0, 0);            
+      tmp = read_int("\nEnter data for node to be removed (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
 
       pi = &tmp;
-      if ((retval = AVLTREEremove(tree, pi)) != OK) /* Node removal failed.. */
+      if ((retval = BITREEremove(tree, (void **)&pi)) != 0) /* Node removal failed.. */
         {
           /* Removal didn't work - node NOT found... */
           if (retval == -1)
@@ -171,7 +172,7 @@ void rem_node(AvlTree tree)
               sprintf(mess, "Node %d not found..!", *(int *)pi);
               prompt_and_pause(mess);
             }
-          else /* Serious failure..(-2) */
+          else /* Serious failure..(-1 or -2) */
             {
               printf("Fatal failure - bailing out...");
               getchar();
@@ -181,15 +182,16 @@ void rem_node(AvlTree tree)
       else
         {
           /* Removal succesful - notify user.. */
-          sprintf(mess, "Node %d will be removed(=hidden)..!", *(int *)pi);
+          sprintf(mess, "Node %d will be removed..!", *(int *)pi);
           prompt_and_pause(mess);
-          /* Attention - don't have to free node space here - it will be hidden.. */
+          /* Free node - after being removed from tree.. */
+          my_destroy(pi);
         }
     } while (1);
 }
 
-/* --- Function: void search_node(AvlTree tree) --- */
-void search_node(AvlTree tree)
+/* --- Function: void search_node(BiTree tree) --- */
+void search_node(BiTree tree)
 {
   int tmp, *pi, retval;
   char mess[BUFSIZ];
@@ -200,68 +202,72 @@ void search_node(AvlTree tree)
       printf("--- SEARCH NODE ---\n");
       print_tree(tree);
 
-      tmp = read_int("\nEnter data for node to be found (-1=Quit): ", 0, 0);      
+      tmp = read_int("\nEnter data for node to be found (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
 
       pi = &tmp;
-
-      if ((retval = AVLTREElookup(tree, (void **)&pi)) != OK) /* Node search failed.. */
+      if ((retval = BITREElookup(tree, (void **)&pi)) != 0) /* Node searching failed.. */
         {
-          /* Searching didn't work - node NOT found... */
+          /* The search didn't work - node NOT found... */
           if (retval == -1)
             {
               sprintf(mess, "Node %d NOT found..!", *(int *)pi);
               prompt_and_pause(mess);
             }
-          else /* Serious failure..(-2) */
+          else /* Compare-callback not set - or serious failure..(-2) */
             {
-              printf("Fatal failure - bailing out...");
+              printf("Compare-callback not set - or other fatal failure - bailing out...");
               getchar();
               exit(retval);
             }
         }
       else
         {
-          /* Removal succesful - notify user.. */
+          /* Searching succesful - notify user.. */
           sprintf(mess, "Node %d FOUND..!", *(int *)pi);
           prompt_and_pause(mess);
         }
     } while (1);
 }
 
-/* --- Function: void print_tree(AvlTree tree) --- */
-void print_tree(AvlTree tree)
+/* --- Function: void print_tree(BiTree tree) --- */
+void print_tree(BiTree tree)
 {
-  AVLTREEprint(tree, print);
+  BITREEprint(tree, print);
   printf("INORDER: ");
-  AVLTREEinorder(tree, print);
+  BITREEinorder(tree, print);
 }
 
 /* --- Function: void final_status(Slist list) --- */
-void final_status(AvlTree tree)
+void final_status(BiTree tree)
 {
   /* Final list status... */
   my_clearscrn();
-  printf("--- FINAL AVL TREE STATUS---\n");
-  print_tree(tree);
+  printf("--- FINAL TREE STATUS ---\n");
+  BITREEprint(tree, print);
+  printf("INORDER: ");
+  BITREEinorder(tree, print);
 }
 
 int main(void)
 {
   /* Declare YOUR variables here ! */
-  AvlTree mytree;
+  BiTree mytree;
   int menu_choice;
 
   srand((unsigned int)time(NULL));
 
-  if ((mytree = AVLTREEinit(my_cmp, my_destroy)) == NULL)
+  if ((mytree = BITREEinit(my_destroy)) == NULL)
     {
       printf("\nFatal error - bailing out...\n!");
       exit(-1);
     }
   
+  /* Don't forget to set the compare callback..! */
+  BITREEsetcompare(mytree, my_cmp);
+
   /* Initialize - and add nodes to the table... */
   create_nodes(mytree, NR_OF_ITEMS);
   
@@ -294,7 +300,7 @@ int main(void)
   while (menu_choice); 
 
   prompt_and_pause("\n\nLet's tidy up and destroy the tree..- Bye!");
-  AVLTREEdestroy(mytree);
+  BITREEdestroy(mytree);
   
   return 0;
 }

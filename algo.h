@@ -143,7 +143,7 @@ extern "C" {
    * Find route for Travelling Salesman
    * 
    **/
-  int ALGOtsp(Slist *vertices, const TspVertexdata start, Slist *tour,
+  int ALGOtsp(Slist vertices, const TspVertexdata start, Slist *tour,
               int (*match)(const void *key1, const void *key2));
 
 /**
