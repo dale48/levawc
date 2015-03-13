@@ -25,9 +25,15 @@
 #include "graph.h"
 #include "utils.h"
 
+/* --- MACRO DEFINITIONS --- */
 #ifndef OK
 #define OK 0
 #endif
+
+#define ERR_DUPL 1
+#define ERR_VTX_OR_EDGE_MISSING -2
+#define ERR_VTX_NOT_ISOL -3
+#define ERR_FATAL -1
 
 #define NR_OF_VERTICES 7
 #define NR_OF_EDGES 20
@@ -96,20 +102,16 @@ void create_rand_vertices(Graph gr, int nr_of_nodes)
       
       if ((retval = GRAPHinsvertex(gr, pi)) != OK) /* Insertion failed... */
         {
-          if (retval == 1) /* Duplicate key value.. */
+          if (retval == ERR_DUPL) /* Duplicate key value.. */
             {
               dupctr++;
               my_destroy(pi); /* Free node - since duplicate..  */
             }
           else
             {
-              if (retval == -1)
+              if (retval == ERR_FATAL)
                 {
-                  prompt_and_pause("Insertion of vertex failed..!\n");
-                }
-              else
-                {
-                  prompt_and_pause("Fatal error - bailing out..!\n");
+                  prompt_and_pause("\nError: Fatal error - bailing out..!\n");
                   exit(-1);
                 }
             }
@@ -147,26 +149,23 @@ void ins_vertex(Graph gr)
 
       if ((retval = GRAPHinsvertex(gr, pi)) != OK) /* Insertion failed... */
         {
-          if (retval == 1) /* Duplicate key value.. */
+          /* Do some error handling here.. */
+          if (retval == ERR_DUPL) /* Duplicate key value.. */
             {
-              sprintf(mess, "Vertex %d already present in graph..!", *pi);
+              sprintf(mess, "\nError: Vertex %d duplicate - insertion failed..", *pi);
               prompt_and_pause(mess);
               my_destroy(pi); /* Free node - since being duplicate..  */
             }
-          /* else if (retval == -1) /\* Vertex missing - or error.. *\/ */
-          /*   { */
-          /*     prompt_and_pause("Error - insertion failed..!\n"); */
-          /*     my_destroy(pi); /\* Free node - due to error..  *\/ */
-          /*   } */
           else
             {
-              prompt_and_pause("Fatal error - bailing out..!\n");
+              prompt_and_pause("\nError: Fatal error - bailing out..!\n");
               exit(-1);
             }
         }
       else
         {
-          sprintf(mess, "Vertex %d will be inserted..", *(int *)pi);
+          /* Insertion succesful - notify user.. */
+          sprintf(mess, "\nVertex %d will be inserted..", *(int *)pi);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -194,22 +193,22 @@ void rem_vertex(Graph gr)
 
       if ((retval = GRAPHremvertex(gr, (void **)&pi)) != OK) /* Vertex removal failed.. */
         {
-          /* Removal didn't work - node NOT found... */
-          if (retval == -2)
+          /* Do some error handling here.. */
+          if (retval == ERR_VTX_OR_EDGE_MISSING)
             {
-              sprintf(mess, "Vertex %d not found..!", *(int *)pi);
+              sprintf(mess, "\nError: Vertex %d not found - removal failed..", *(int *)pi);
               prompt_and_pause(mess);
             }
           else
             {
-              if (retval == -3)
+              if (retval == ERR_VTX_NOT_ISOL)
                 {
-                  sprintf(mess, "Vertex %d not isolated - can't be removed..!", *(int *)pi);
+                  sprintf(mess, "\nError: Vertex %d not isolated - removal failed..", *(int *)pi);
                   prompt_and_pause(mess);
                 }
               else
                 {
-                  printf("Fatal failure - bailing out...");
+                  printf("\nError: Fatal failure - bailing out...");
                   exit(retval);
                 }
             }
@@ -217,7 +216,7 @@ void rem_vertex(Graph gr)
       else
         {
           /* Removal succesful - notify user.. */
-          sprintf(mess, "Vertex %d will be removed..!", *(int *)pi);
+          sprintf(mess, "\nVertex %d will be removed..!", *(int *)pi);
           prompt_and_pause(mess);
           /* Free node - after being removed from graph.. */
           my_destroy(pi);
@@ -253,24 +252,24 @@ void ins_edge(Graph gr)
 
       if ((retval = GRAPHinsedge(gr, &tmp1, pi)) != OK) /* Edge insertion failed.. */
         {
-          /* Duplicate edge found... */
-          if (retval == 1)
+          /* Do some error handling here.. */
+          if (retval == ERR_DUPL)
             {
-              sprintf(mess, "Duplicate edge found - between %d and %d..!", tmp1, *(int *)pi);
+              sprintf(mess, "\nError: Duplicate edge - between %d and %d..", tmp1, *(int *)pi);
               prompt_and_pause(mess);
               my_destroy(pi);
             }
           else
             {
-              if (retval == -2)
+              if (retval == ERR_VTX_OR_EDGE_MISSING)
                 {
-                  sprintf(mess, "Vertices missing in graph - edge could not be created..!");
+                  sprintf(mess, "\nError: Vertex not found - insertion failed..");
                   prompt_and_pause(mess);
                   my_destroy(pi);
                 }
               else
                 {
-                  printf("Fatal failure - bailing out...");
+                  printf("\nError: Fatal failure - bailing out...");
                   exit(retval);
                 }
             }
@@ -278,7 +277,7 @@ void ins_edge(Graph gr)
       else
         {
           /* Insertion succesful - notify user.. */
-          sprintf(mess, "Edge between vertex %d and %d will inserted..!", tmp1, *(int *)pi);
+          sprintf(mess, "\nEdge between vertex %d and %d will inserted..!", tmp1, *(int *)pi);
           prompt_and_pause(mess);
         }
     } while (1);
@@ -311,22 +310,22 @@ void rem_edge(Graph gr)
 
       if ((retval = GRAPHremedge(gr, &tmp1, (void **)&pi)) != OK) /* Edge removal failed.. */
         {
-          /* Removal didn't work -  adj vertices not found... */
-          if (retval == 1)
+          /* Do some error handling here.. */
+          if (retval == ERR_VTX_OR_EDGE_MISSING)
             {
-              sprintf(mess, "Error - edge connecting vertices %d and %d not found..!\n", tmp1, *(int *)pi);
+              sprintf(mess, "\nError: Edge between %d and %d not found..", tmp1, *(int *)pi);
               prompt_and_pause(mess);
             }
-	  else
-	    {
-	      printf("Fatal error - bailing out...");
-	      exit(retval);
-	    }
+          else
+            {
+              printf("\nError: Fatal error - bailing out...");
+              exit(retval);
+            }
         }
       else
         {
           /* Removal succesful - notify user.. */
-          sprintf(mess, "Edge between %d and %d will be removed..!", tmp1, *(int *)pi);
+          sprintf(mess, "\nEdge between %d and %d will be removed..!", tmp1, *(int *)pi);
           prompt_and_pause(mess);
           /* Free node - after being removed from graph.. */
           my_destroy(pi);

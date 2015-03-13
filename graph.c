@@ -284,6 +284,11 @@ EdgeNode GRAPHgetedgenext(EdgeNode node)
   return SLISTnext(node);
 }
 
+int GRAPHgetedgecount(VertexNode vtxnode)
+{
+  return SLISTsize(((Vertex)SLISTdata(vtxnode))->adj_vertices);
+}
+
 int GRAPHvcount(Graph graph)
 {
   return graph->vcount;

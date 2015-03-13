@@ -1,7 +1,7 @@
 C:/Users/Danne/git/levawc/chashtbl.c:35: warning: Compound CHtbl_ is not documented.
 C:/Users/Danne/git/levawc/avltree.c:36: warning: Compound AvlTreeNode_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:41: warning: Compound SList_ is not documented.
-C:/Users/Danne/git/levawc/demos/demo12.c:43: warning: Compound MyCitydata_ is not documented.
+C:/Users/Danne/git/levawc/demos/demo14.c:43: warning: Compound MyCitydata_ is not documented.
 C:/Users/Danne/git/levawc/graph.c:32: warning: Compound Graph_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:35: warning: Compound SListElmt_ is not documented.
 C:/Users/Danne/git/levawc/dlist.c:32: warning: Compound DListElmt_ is not documented.
@@ -84,8 +84,8 @@ C:/Users/Danne/git/levawc/algo.h:70: warning: Member weight (variable) of class 
 C:/Users/Danne/git/levawc/algo.h:71: warning: Member color (variable) of class MstVertexdata_ is not documented.
 C:/Users/Danne/git/levawc/algo.h:72: warning: Member key (variable) of class MstVertexdata_ is not documented.
 C:/Users/Danne/git/levawc/algo.h:75: warning: Member parent (variable) of class MstVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/demos/demo12.c:44: warning: Member id (variable) of class MyCitydata_ is not documented.
-C:/Users/Danne/git/levawc/demos/demo12.c:45: warning: Member name[KEYSIZ] (variable) of class MyCitydata_ is not documented.
+C:/Users/Danne/git/levawc/demos/demo14.c:44: warning: Member id (variable) of class MyCitydata_ is not documented.
+C:/Users/Danne/git/levawc/demos/demo14.c:45: warning: Member name[KEYSIZ] (variable) of class MyCitydata_ is not documented.
 C:/Users/Danne/git/levawc/ohashtbl.c:26: warning: Member positions (variable) of class OHtbl_ is not documented.
 C:/Users/Danne/git/levawc/ohashtbl.c:27: warning: Member vacated (variable) of class OHtbl_ is not documented.
 C:/Users/Danne/git/levawc/ohashtbl.c:29: warning: Member h1)(const void *key) (variable) of class OHtbl_ is not documented.

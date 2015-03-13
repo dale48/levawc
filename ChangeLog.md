@@ -2,16 +2,17 @@
 <h4>Changes</h4>
 <p>Since this is a <i>major revision</i>, the changes are numerous. Now all the data structures in Kyle's book are included in this version, AFAIK. Some graph algorithms are present, too.</p>
 <ul>
-  <li>Added <i>new container source</i>: <code>cslist.c, cslist.h, set.c, set.h, ohashtbl.c, ohashtbl.h, graph.c, graph.h, algo.c, algo.h</code></li>
-  <li>Added <i>new demo</i> source: <code>demo8.c, demo9.c, demo10.c, demo11.c</code> - showing usage of Circular List, Set, Open-Addressed Hashtable and Graph, respectivly.</li>
-  <li>Demo program <code>demo12.c</code> is a more extensive graph demo - implementing the "Dijkstra's Shortest Path" algorithm.</li>
+  <li>Added <i>new container source</i>: <code>cslist.c, cslist.h, set.c, set.h, ohashtbl.c, ohashtbl.h, graph.c, graph.h</code></li>
+  <li>Added new source files for (graph) algorithms, algo.c, algo.h. Here you'll find functions for calculating Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path. Functions for graph searching - Breadth First Search(BFS), Depth First Search(DFS) are also present here.</li>
+  <li>Added <i>new demo</i> source: <code>demo08.c, demo09.c, demo10.c, demo11.c, demo12.c, demo13.c</code> - showing usage of Circular List, Set, Open-Addressed Hashtable and Graph/Algorithms.</li>
+  <li>Demo program <code>demo14.c</code> is a more extensive graph demo - implementing the "Dijkstra's Shortest Path" algorithm.</li>
   <li>Made all demos <i>menu-driven</i> - with <i>rudimentary error handling</i></li>
   <li><i>Moved</i> some <i>utility functions</i> from the demo source files - to file <code>utils.c</code> and <code>utils.h</code>.</li>
 </ul>
 <h4>New features</h4>
 <ul>
-  <li>Four new container ADT:s - Circular List, Set, Open-Addressed Hashtable and Graph - accompanied by demos (<code>demo8.c, demo9.c, demo10.c, demo11.c</code>)</li>
-  <li>More extensiv demo: <code>demo12.c</code></li>
+  <li>Four new container ADT:s - Circular List, Set, Open-Addressed Hashtable and Graph - accompanied by demos (<code>demo08.c, demo09.c, demo10.c, demo11.c, demo12.c demo13.c</code>)</li>
+  <li>More extensiv demo: <code>demo14.c</code></li>
   <li>Introducing Graph Algorithms (in files <code>algo.c algo.h)</code></li>
   <li>Extended and fine-tuned the documentation accordingly...</li>
 </ul>

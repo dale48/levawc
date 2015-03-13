@@ -216,6 +216,16 @@ extern "C" {
   void *GRAPHgetedgedata(EdgeNode enode);
 
   /**
+   * Get number of edges incident from a vertex
+   * 
+   * @param[in] vtxnode - a reference to current vertex.
+   * @return The total number of edges incident out from
+   * @a vtxnode.
+   *
+   **/
+  int GRAPHgetedgecount(VertexNode vtxnode);
+
+  /**
    * Get total number of vertices
    * 
    * @param[in] graph - a reference to current graph.

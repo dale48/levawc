@@ -26,24 +26,25 @@
  * @version  0.50 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par Demos
  * The demos are trying to test and show most of the public interface of the ADT:s - accordingly:
- * - <code>demo1.c</code> - testing/showing Singly-linked List ADT..
- * - <code>demo2.c</code> - testing/showing Doubly-linked List ADT..
- * - <code>demo3.c</code> - testing/showing Stack and Queue ADT..
- * - <code>demo4.c</code> - testing/showing Chained Hash Table ADT..
- * - <code>demo5.c</code> - testing/showing Heap and Priority Queue ADT..
- * - <code>demo6.c</code> - testing/showing Binary Search Tree ADT..
- * - <code>demo7.c</code> - testing/showing AVL Tree ADT..
- * - <code>demo8.c</code> - testing/showing Circular, Singly-linked List ADT..
- * - <code>demo9.c</code> - testing/showing Set ADT..
+ * - <code>demo01.c</code> - testing/showing Singly-linked List ADT..
+ * - <code>demo02.c</code> - testing/showing Doubly-linked List ADT..
+ * - <code>demo03.c</code> - testing/showing Stack and Queue ADT..
+ * - <code>demo04.c</code> - testing/showing Chained Hash Table ADT..
+ * - <code>demo05.c</code> - testing/showing Heap and Priority Queue ADT..
+ * - <code>demo06.c</code> - testing/showing Binary Search Tree ADT..
+ * - <code>demo07.c</code> - testing/showing AVL Tree ADT..
+ * - <code>demo08.c</code> - testing/showing Circular, Singly-linked List ADT..
+ * - <code>demo09.c</code> - testing/showing Set ADT..
  * - <code>demo10.c</code> - testing/showing Open-addressed Hash Table ADT..
- * - <code>demo11.c</code> - testing/showing Graph ADT..
- * - <code>demo12.c</code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm.
+ * - <code>demo11.c</code> - testing/showing basic Graph ADT editing, BFS(Breadth-First-Search) - and DFS(Depth-First-Search)
+ * - <code>demo12.c</code> - testing/showing <i>interactive</i> Graph editing..
+ * - <code>demo13.c</code> - testing/showing Graph Algorithms, such as MST(=Minimal Spanning Tree), DSP(=Dijkstra's Shortest Path) and TSP(=Traveling Salesman Path).
+ * - <code>demo14.c</code> - a <i>more extensive</i> Graph ADT application, using Dijkstra's Shortest Path algorithm.
  * A (low-cost) criss-cross flight <a href="eu.pdf" target="_blank">within EU</a>.
  * @par Testing
  * All demos have been tested on both Windows and Linux. Memory leak detection/tracing was done with Valgrind (Linux).
  * @par ToDo
  * - Publishing version 1.0 (probably next version uploaded to GitHub..)
- * - Adding more Graph Algorithms(=Minimal Spanning Tree, Traveling Salesmans Problem, Breadth- and Depth-First Search)...\n
  * - Adding a function - <code>AVLTREEhard_remove()</code> - which <i>physically</i> removes a node from an AVL Tree. Ok - no performance gain - but a personal coding challenge ;-)
  * - Extending and fine-tuning Project Documentation - still some issues to fix here..
  * .

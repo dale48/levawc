@@ -36,14 +36,16 @@
 #define FALSE 0
 #endif
 
+/* MACRO DEFINITIONS */
 #define NR_OF_MST_VERTICES 9
 #define NR_OF_DSP_VERTICES 6
 #define NR_OF_TSP_VERTICES 7
 #define NR_OF_TSP_COORDS 2
 
-/* Some string macros for the main menu... */
+#define INITIAL_INFO "--- INITIAL DEMO INFORMATION ---\n\nThis demo contains code from the book - \"K Loudon: Mastering Algoritms with C\".\n\nFor further details - check the following:\n\n - \"Chapter 16: Graph Algorithms\"\n - The \"graphalg\" subfolder - in downloadable example zipfile\n\n"
+
 #define MAIN_MENU_ROW "--- GRAPH ALGORITHMS DEMO ---\nMENU: 0=Exit 1=MST 2=DSP 3=TSP\nSelection "
-/* --- END-MACROS --- */
+/* --- END-MACRO-DEFINITIONS --- */
 
 /* --- GLOBAL-VARIABLES --- */
 char mst_vtx_data[NR_OF_MST_VERTICES]={'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
@@ -598,6 +600,9 @@ int main(void)
   /* Declare YOUR variables here ! */
   int menu_choice, retval;
 
+  my_clearscrn();
+  prompt_and_pause(INITIAL_INFO);
+
   /* Enter menu loop.. */
   do
     {
@@ -649,5 +654,4 @@ int main(void)
   while (menu_choice); 
 
   return 0;
-
 }

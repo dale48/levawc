@@ -392,7 +392,7 @@ int read_edges(Graph gr, FILE *fp)
                   edata->weight = atof(tmp);
 
                   /* Insert edge into graph... */
-                  if ((retval = GRAPHinsedge(gr, &tmpvtxdata, edata)) != 0)
+                  if ((retval = GRAPHinsedge(gr, &tmpvtxdata, edata)) != OK)
                     {
                       sprintf(errmess, "\nError when inserting edge from %d to %d - on this line:\n%s",
                               cty_data.id, mycitydata->id, bufcopy);

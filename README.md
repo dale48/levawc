@@ -15,7 +15,7 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <p>In case you want to <i>regenerate the documentation locally</i> - on your box:</p>
 <i>Clone</i> (or <i>download zipfile</i> of) this project, <i>install</i> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> - and finally <i>run command:</i> <code>doxygen</code> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory  <code>html</code> - recently created by this command.
 
-<h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo1.c, demo2.c, demo3.c, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this:
+<h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo01.c, demo02.c, demo03.c, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this:
 <ul>
   <li><code>linux.mak</code> - uses the native gcc compiler in Linux. <i>Command</i>: <code>make -f linux.mak</code></li>
   <li><code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <i>Command</i>: <code>mingw32-make -f mingw32.mak</code></li>
@@ -24,15 +24,15 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.40.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [--prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
 <p>The demos are trying to test and show most of the public interface of the ADT:s - accordingly:</p>
 <ul>
- <li><code>demo1.c</code> - testing/showing Singly-linked List ADT..</li>
-  <li><code>demo2.c</code> - testing/showing Doubly-linked List ADT..</li>
-  <li><code>demo3.c</code> - testing/showing Stack and Queue ADT..</li>
-  <li><code>demo4.c</code> - testing/showing Chained Hash Table ADT..</li>
-  <li><code>demo5.c</code> - testing/showing Heap and Priority Queue ADT..</li>
-  <li><code>demo6.c</code> - testing/showing Binary Search Tree ADT..</li>
-  <li><code>demo7.c</code> - testing/showing AVL Tree ADT..</li>
-  <li><code>demo8.c</code> - testing/showing Circular, Singly-linked List ADT..</li>
-  <li><code>demo9.c</code> - testing/showing Set ADT..</li>
+ <li><code>demo01.c</code> - testing/showing Singly-linked List ADT..</li>
+  <li><code>demo02.c</code> - testing/showing Doubly-linked List ADT..</li>
+  <li><code>demo03.c</code> - testing/showing Stack and Queue ADT..</li>
+  <li><code>demo04.c</code> - testing/showing Chained Hash Table ADT..</li>
+  <li><code>demo05.c</code> - testing/showing Heap and Priority Queue ADT..</li>
+  <li><code>demo06.c</code> - testing/showing Binary Search Tree ADT..</li>
+  <li><code>demo07.c</code> - testing/showing AVL Tree ADT..</li>
+  <li><code>demo08.c</code> - testing/showing Circular, Singly-linked List ADT..</li>
+  <li><code>demo09.c</code> - testing/showing Set ADT..</li>
   <li><code>demo10.c</code> - testing/showing Open-addressed Hash Table ADT..</li>
   <li> <code>demo11.c</code> - testing/showing Graph ADT..</li>
   <li> <code>demo12.c</code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm.<br/>A (low-cost) criss-cross flight <a href="eu.pdf" target="_blank">within EU</a>.</li>
