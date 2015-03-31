@@ -7,10 +7,13 @@
  * Filename: ohashtbl.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 12:15:18 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: An open-addressed hashtable implemented as a pure, generic ADT - written in ANSI C
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file ohashtbl.h

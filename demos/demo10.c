@@ -7,7 +7,7 @@
  * Filename: demo10.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 12:14:56 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: A demo program testing/showing the Open-addressed Hash Table ADT 
  * 
@@ -16,6 +16,7 @@
  * 150204 Created this demo - and made it menu-driven
  * 150220 Moved some utility functions from here - to file ../utils.c
  * 150220 This source ready for version 0.5!
+ * 150318 This source ready for version 0.51
  *
  */
 
@@ -29,13 +30,21 @@
 #define OK 0
 #endif
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #define NR_OF_ITEMS 7
 #define NR_OF_SLOTS 11
 
 /* Some string macros for the main menu... */
 #define MAIN_MENU_ROW "--- OPEN-ADDRESSED HASH TABLE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
 
-/* FUNCTION DECLARATIONS */
+/* FUNCTION-DECLARATIONS */
 void my_destroy(void *data);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
@@ -54,7 +63,7 @@ void final_status(OHtbl tbl);
 void create_nodes(OHtbl tbl, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
-/* FUNCTION DEFINITIONS - the rest of the program */
+/* FUNCTION-DEFINITIONS - the rest of the program */
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -102,6 +111,8 @@ void create_nodes(OHtbl tbl, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = rand_int(1,99);
       
       if ((retval = OHTBLinsert(tbl, pi)) != OK) /* Insertion failed... */
@@ -120,8 +131,9 @@ void create_nodes(OHtbl tbl, int nr_of_nodes)
               else
                 {
                   prompt_and_pause("Fatal error - bailing out..!\n");
-                  exit(-1);
                 }
+              OHTBLdestroy(tbl);
+              exit(retval);
             }
         }
     } while (++i < nr_of_nodes);
@@ -151,13 +163,15 @@ void ins_node(OHtbl tbl)
         break;
 
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = tmp;
 
       if ((retval = OHTBLinsert(tbl, pi)) != OK) /* Insertion failed... */
         {
           if (retval == 1) /* Duplicate key value.. */
             {
-              sprintf(mess, "Node %d already present..!", *pi);
+              sprintf(mess, "Error: Duplicate - node %d already present..!", *pi);
               prompt_and_pause(mess);
               my_destroy(pi); /* Free node - since being duplicate..  */
             }
@@ -168,7 +182,8 @@ void ins_node(OHtbl tbl)
             }
           else
             {
-              prompt_and_pause("Fatal error - bailing out..!\n");
+              prompt_and_pause("\nFatal error - bailing out..!\n");
+              OHTBLdestroy(tbl);              
               exit(-1);
             }
         }
@@ -177,7 +192,7 @@ void ins_node(OHtbl tbl)
           sprintf(mess, "Node %d will be inserted..", *(int *)pi);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void remove_nodes(OHtbl tbl) --- */
@@ -204,12 +219,13 @@ void rem_node(OHtbl tbl)
           /* Removal didn't work - node NOT found... */
           if (retval == -1)
             {
-              sprintf(mess, "Node %d not found..!", *(int *)pi);
+              sprintf(mess, "Error: Node %d not found..!", *(int *)pi);
               prompt_and_pause(mess);
             }
           else
             {
-              printf("Fatal failure - bailing out...");
+              printf("\nFatal failure - bailing out...");
+              OHTBLdestroy(tbl);
               exit(retval);
             }
         }
@@ -221,7 +237,7 @@ void rem_node(OHtbl tbl)
           /* Free node - after being removed from table.. */
           my_destroy(pi);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void search_node(OHtbl tbl) --- */
@@ -264,7 +280,7 @@ void search_node(OHtbl tbl)
           sprintf(mess, "Node %d FOUND..!", *(int *)pi);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void print_table(parameter_list) --- */
@@ -294,6 +310,7 @@ int main(void)
   if ((mytbl = OHTBLinit(NR_OF_SLOTS, my_hash1, my_hash2, my_match, my_destroy)) == NULL)
     {
       printf("\nFatal error - bailing out...\n!");
+      OHTBLdestroy(mytbl);
       exit(-1);
     }
   

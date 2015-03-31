@@ -7,7 +7,7 @@
  * Filename: demo07.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 11:33:43 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: Usage demo of the AVL tree ADT - in LevAWC. 
  *
@@ -16,7 +16,8 @@
  * 130312 Created this program the first time..
  * 150127 Converted this program, demo7.c, to be menu-driven.
  * 150220 Moved some utility functions from here - to file ../utils.c
- * 150220 Source reade for version 0.5!
+ * 150220 Source ready for version 0.5!
+ * 150318 Source ready for version 0.51
  * 
  */
 
@@ -30,12 +31,20 @@
 #define OK 0
 #endif
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #define NR_OF_ITEMS 9
 
 /* Some string macros for the main menu... */
 #define MAIN_MENU_ROW "--- AVL SEARCH TREE DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Print\nSelection "
 
-/* FUNCTION DECLARATIONS */
+/* FUNCTION-DECLARATIONS */
 /* Application-specific callbacks */
 void my_destroy(void *data);
 void print(const void *data);
@@ -52,7 +61,7 @@ void final_status(AvlTree tree);
 void create_nodes(AvlTree tree, int nr_of_nodes);
 /* END-OF-FUNCTION-DECLARATIONS */
 
-/* FUNCTION DEFINITIONS - the rest of the program */
+/* FUNCTION-DEFINITIONS - the rest of the program */
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
@@ -79,6 +88,8 @@ void create_nodes(AvlTree tree, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = rand_int(1,99);
       
       if ((retval = AVLTREEinsert(tree, pi)) != OK) /* Insertion failed... */
@@ -91,6 +102,7 @@ void create_nodes(AvlTree tree, int nr_of_nodes)
           else
             {
               prompt_and_pause("Fatal error - bailing out..!\n");
+              AVLTREEdestroy(tree);
               exit(-1);
             }
         }
@@ -121,19 +133,22 @@ void ins_node(AvlTree tree)
         break;
 
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = tmp;
 
       if ((retval = AVLTREEinsert(tree, pi)) != OK) /* Insertion failed... */
         {
           if (retval == 1) /* Duplicate key value.. */
             {
-              sprintf(mess, "Node %d already present..!", *pi);
+              sprintf(mess, "Error: Duplicate - node %d already present..!", *pi);
               prompt_and_pause(mess);
               my_destroy(pi); /* Free node - since being duplicate..  */
             }
           else
             {
-              prompt_and_pause("Fatal error - bailing out..:!\n");
+              prompt_and_pause("\nFatal error - bailing out..:!\n");
+              AVLTREEdestroy(tree);
               exit(-1);
             }
         }
@@ -142,7 +157,7 @@ void ins_node(AvlTree tree)
           sprintf(mess, "Node %d will be inserted..", *(int *)pi);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void rem_node(AvlTree tree, int nr_of_removes) --- */
@@ -168,13 +183,13 @@ void rem_node(AvlTree tree)
           /* Removal didn't work - node NOT found... */
           if (retval == -1)
             {
-              sprintf(mess, "Node %d not found..!", *(int *)pi);
+              sprintf(mess, "Error: Node %d not found..!", *(int *)pi);
               prompt_and_pause(mess);
             }
           else /* Serious failure..(-2) */
             {
-              printf("Fatal failure - bailing out...");
-              getchar();
+              printf("\nFatal failure - bailing out...");
+              AVLTREEdestroy(tree);
               exit(retval);
             }
         }
@@ -185,7 +200,7 @@ void rem_node(AvlTree tree)
           prompt_and_pause(mess);
           /* Attention - don't have to free node space here - it will be hidden.. */
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void search_node(AvlTree tree) --- */
@@ -218,7 +233,7 @@ void search_node(AvlTree tree)
           else /* Serious failure..(-2) */
             {
               printf("Fatal failure - bailing out...");
-              getchar();
+              AVLTREEdestroy(tree);
               exit(retval);
             }
         }
@@ -228,7 +243,7 @@ void search_node(AvlTree tree)
           sprintf(mess, "Node %d FOUND..!", *(int *)pi);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void print_tree(AvlTree tree) --- */
@@ -259,6 +274,7 @@ int main(void)
   if ((mytree = AVLTREEinit(my_cmp, my_destroy)) == NULL)
     {
       printf("\nFatal error - bailing out...\n!");
+      AVLTREEdestroy(mytree);
       exit(-1);
     }
   

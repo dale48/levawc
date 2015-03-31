@@ -7,7 +7,7 @@
  * Filename: demo12.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 13:23:46 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: A demo program testing/showing the Graph ADT 
  * 
@@ -16,6 +16,7 @@
  * 150204 Created this demo - and made it menu-driven.
  * 150220 Moved some utility functions from here - to file ../utils.c
  * 150220 This source ready for version 0.5!
+ * 150320 This source ready for version 0.51!
  *
  */
 

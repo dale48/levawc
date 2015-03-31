@@ -7,7 +7,7 @@
  * Filename: stack.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: An implementation of a generic, stack ADT. 
  * 
@@ -15,7 +15,7 @@
  * 2012-12-20  Created this file
  * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
  *             in/out parameters - i.e. double-pointers.             
- *
+ * 2015-03-31  This code ready for version 0.51
  */
 
 /**

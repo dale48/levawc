@@ -7,14 +7,16 @@
  * Filename: set.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 12:29:13 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: A pure, generic set ADT - written in ANSI C
  * 
  * Revision history - coming up below:
  *
- * Date        Revision message
- * 2013-04-13  Created this file
+ * Date   Revision message
+ * 130413 Created this file
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file set.h

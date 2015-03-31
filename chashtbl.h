@@ -7,7 +7,7 @@
  * Filename: chashtbl.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: A chained hash table - implemented as a pure, generic ADT container. 
  * 
@@ -18,6 +18,7 @@
  * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
  *             in/out parameters - i.e. double-pointers.             
  * 2013-03-21  Minor documentation clarifications.
+ * 2015-03-31  This code ready for version 0.51
  *
  */
 
@@ -72,9 +73,9 @@ extern "C" {
    * @see CHTBLdestroy()
    **/
   CHtbl CHTBLinit(int buckets, 
-		  int (*h)(const void *key),
-		  int (*match)(const void *key1, const void *key2),
-		  void (*destroy)(void *data));
+                  int (*h)(const void *key),
+                  int (*match)(const void *key1, const void *key2),
+                  void (*destroy)(void *data));
 
   /**
    * Destroy the hash table

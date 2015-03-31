@@ -1,44 +1,44 @@
 C:/Users/Danne/git/levawc/chashtbl.c:35: warning: Compound CHtbl_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:36: warning: Compound AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:38: warning: Compound AvlTreeNode_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:41: warning: Compound SList_ is not documented.
 C:/Users/Danne/git/levawc/demos/demo14.c:43: warning: Compound MyCitydata_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:32: warning: Compound Graph_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:35: warning: Compound Graph_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:35: warning: Compound SListElmt_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:32: warning: Compound DListElmt_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:45: warning: Compound AvlTree_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:33: warning: Compound DListElmt_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:47: warning: Compound AvlTree_ is not documented.
 C:/Users/Danne/git/levawc/bitree.c:45: warning: Compound BiTree_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:25: warning: Compound OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:28: warning: Compound OHtbl_ is not documented.
 C:/Users/Danne/git/levawc/bitree.c:38: warning: Compound BiTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:25: warning: Compound CSListElmt_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:39: warning: Compound DList_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:25: warning: Compound Vertex_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:31: warning: Compound CSList_ is not documented.
-C:/Users/Danne/git/levawc/heap.c:35: warning: Compound Heap_ is not documented.
-C:/Users/Danne/git/levawc/algo.c:24: warning: Member OK (macro definition) of file algo.c is not documented.
-C:/Users/Danne/git/levawc/algo.c:28: warning: Member TRUE (macro definition) of file algo.c is not documented.
-C:/Users/Danne/git/levawc/algo.c:32: warning: Member FALSE (macro definition) of file algo.c is not documented.
-C:/Users/Danne/git/levawc/graph.h:56: warning: Member VertexNode (typedef) of file graph.h is not documented.
-C:/Users/Danne/git/levawc/graph.h:57: warning: Member EdgeNode (typedef) of file graph.h is not documented.
+C:/Users/Danne/git/levawc/cslist.c:29: warning: Compound CSListElmt_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:40: warning: Compound DList_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:28: warning: Compound Vertex_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:35: warning: Compound CSList_ is not documented.
+C:/Users/Danne/git/levawc/heap.c:38: warning: Compound Heap_ is not documented.
+C:/Users/Danne/git/levawc/algo.c:27: warning: Member OK (macro definition) of file algo.c is not documented.
+C:/Users/Danne/git/levawc/algo.c:31: warning: Member TRUE (macro definition) of file algo.c is not documented.
+C:/Users/Danne/git/levawc/algo.c:35: warning: Member FALSE (macro definition) of file algo.c is not documented.
+C:/Users/Danne/git/levawc/graph.h:59: warning: Member VertexNode (typedef) of file graph.h is not documented.
+C:/Users/Danne/git/levawc/graph.h:60: warning: Member EdgeNode (typedef) of file graph.h is not documented.
 C:/Users/Danne/git/levawc/pqueue.h:37: warning: Member PQueue (typedef) of file pqueue.h is not documented.
-C:/Users/Danne/git/levawc/queue.h:39: warning: Member Queue (typedef) of file queue.h is not documented.
-C:/Users/Danne/git/levawc/set.h:46: warning: Member Set (typedef) of file set.h is not documented.
-C:/Users/Danne/git/levawc/stack.h:39: warning: Member Stack (typedef) of file stack.h is not documented.
-C:/Users/Danne/git/levawc/utils.c:25: warning: Member OK (macro definition) of file utils.c is not documented.
-C:/Users/Danne/git/levawc/utils.c:29: warning: Member TRUE (macro definition) of file utils.c is not documented.
-C:/Users/Danne/git/levawc/utils.c:33: warning: Member FALSE (macro definition) of file utils.c is not documented.
-C:/Users/Danne/git/levawc/utils.h:167: warning: Unsupported xml/html tag <Enter> found
-C:/Users/Danne/git/levawc/utils.h:167: warning: Unsupported xml/html tag <Enter> found
-C:/Users/Danne/git/levawc/avltree.c:46: warning: Member size (variable) of class AvlTree_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:47: warning: Member compare)(const void *key1, const void *key2) (variable) of class AvlTree_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:48: warning: Member destroy)(void *data) (variable) of class AvlTree_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:49: warning: Member root (variable) of class AvlTree_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:37: warning: Member data (variable) of class AvlTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:38: warning: Member hidden (variable) of class AvlTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:39: warning: Member factor (variable) of class AvlTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:40: warning: Member left (variable) of class AvlTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/avltree.c:41: warning: Member right (variable) of class AvlTreeNode_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:106: warning: Member hops (variable) of class BfsVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:107: warning: Member color (variable) of class BfsVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/queue.h:40: warning: Member Queue (typedef) of file queue.h is not documented.
+C:/Users/Danne/git/levawc/set.h:48: warning: Member Set (typedef) of file set.h is not documented.
+C:/Users/Danne/git/levawc/stack.h:40: warning: Member Stack (typedef) of file stack.h is not documented.
+C:/Users/Danne/git/levawc/utils.c:28: warning: Member OK (macro definition) of file utils.c is not documented.
+C:/Users/Danne/git/levawc/utils.c:32: warning: Member TRUE (macro definition) of file utils.c is not documented.
+C:/Users/Danne/git/levawc/utils.c:36: warning: Member FALSE (macro definition) of file utils.c is not documented.
+C:/Users/Danne/git/levawc/utils.h:176: warning: Unsupported xml/html tag <Enter> found
+C:/Users/Danne/git/levawc/utils.h:176: warning: Unsupported xml/html tag <Enter> found
+C:/Users/Danne/git/levawc/avltree.c:48: warning: Member size (variable) of class AvlTree_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:49: warning: Member compare)(const void *key1, const void *key2) (variable) of class AvlTree_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:50: warning: Member destroy)(void *data) (variable) of class AvlTree_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:51: warning: Member root (variable) of class AvlTree_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:39: warning: Member data (variable) of class AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:40: warning: Member hidden (variable) of class AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:41: warning: Member factor (variable) of class AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:42: warning: Member left (variable) of class AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/avltree.c:43: warning: Member right (variable) of class AvlTreeNode_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:109: warning: Member hops (variable) of class BfsVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:110: warning: Member color (variable) of class BfsVertexdata_ is not documented.
 C:/Users/Danne/git/levawc/bitree.c:46: warning: Member size (variable) of class BiTree_ is not documented.
 C:/Users/Danne/git/levawc/bitree.c:47: warning: Member compare)(const void *key1, const void *key2) (variable) of class BiTree_ is not documented.
 C:/Users/Danne/git/levawc/bitree.c:48: warning: Member destroy)(void *data) (variable) of class BiTree_ is not documented.
@@ -52,48 +52,48 @@ C:/Users/Danne/git/levawc/chashtbl.c:39: warning: Member match)(const void *key1
 C:/Users/Danne/git/levawc/chashtbl.c:40: warning: Member destroy)(void *data) (variable) of class CHtbl_ is not documented.
 C:/Users/Danne/git/levawc/chashtbl.c:41: warning: Member size (variable) of class CHtbl_ is not documented.
 C:/Users/Danne/git/levawc/chashtbl.c:42: warning: Member table (variable) of class CHtbl_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:32: warning: Member size (variable) of class CSList_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:33: warning: Member match)(const void *key1, const void *key2) (variable) of class CSList_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:34: warning: Member destroy)(void *data) (variable) of class CSList_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:35: warning: Member head (variable) of class CSList_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:26: warning: Member data (variable) of class CSListElmt_ is not documented.
-C:/Users/Danne/git/levawc/cslist.c:27: warning: Member next (variable) of class CSListElmt_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:122: warning: Member color (variable) of class DfsVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:40: warning: Member size (variable) of class DList_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:41: warning: Member match)(const void *key1, const void *key2) (variable) of class DList_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:42: warning: Member destroy)(void *data) (variable) of class DList_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:43: warning: Member head (variable) of class DList_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:44: warning: Member tail (variable) of class DList_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:33: warning: Member data (variable) of class DListElmt_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:34: warning: Member prev (variable) of class DListElmt_ is not documented.
-C:/Users/Danne/git/levawc/dlist.c:35: warning: Member next (variable) of class DListElmt_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:50: warning: Member weight (variable) of class DspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:51: warning: Member color (variable) of class DspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:52: warning: Member distance (variable) of class DspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:55: warning: Member parent (variable) of class DspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:33: warning: Member vcount (variable) of class Graph_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:34: warning: Member ecount (variable) of class Graph_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:36: warning: Member match)(const void *key1, const void *key2) (variable) of class Graph_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:37: warning: Member destroy)(void *data) (variable) of class Graph_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:39: warning: Member vertices (variable) of class Graph_ is not documented.
-C:/Users/Danne/git/levawc/heap.c:36: warning: Member size (variable) of class Heap_ is not documented.
-C:/Users/Danne/git/levawc/heap.c:37: warning: Member compare)(const void *key1, const void *key2) (variable) of class Heap_ is not documented.
-C:/Users/Danne/git/levawc/heap.c:38: warning: Member destroy)(void *data) (variable) of class Heap_ is not documented.
-C:/Users/Danne/git/levawc/heap.c:39: warning: Member tree (variable) of class Heap_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:70: warning: Member weight (variable) of class MstVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:71: warning: Member color (variable) of class MstVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:72: warning: Member key (variable) of class MstVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:75: warning: Member parent (variable) of class MstVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:36: warning: Member size (variable) of class CSList_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:37: warning: Member match)(const void *key1, const void *key2) (variable) of class CSList_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:38: warning: Member destroy)(void *data) (variable) of class CSList_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:39: warning: Member head (variable) of class CSList_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:30: warning: Member data (variable) of class CSListElmt_ is not documented.
+C:/Users/Danne/git/levawc/cslist.c:31: warning: Member next (variable) of class CSListElmt_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:125: warning: Member color (variable) of class DfsVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:41: warning: Member size (variable) of class DList_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:42: warning: Member match)(const void *key1, const void *key2) (variable) of class DList_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:43: warning: Member destroy)(void *data) (variable) of class DList_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:44: warning: Member head (variable) of class DList_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:45: warning: Member tail (variable) of class DList_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:34: warning: Member data (variable) of class DListElmt_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:35: warning: Member prev (variable) of class DListElmt_ is not documented.
+C:/Users/Danne/git/levawc/dlist.c:36: warning: Member next (variable) of class DListElmt_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:53: warning: Member weight (variable) of class DspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:54: warning: Member color (variable) of class DspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:55: warning: Member distance (variable) of class DspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:58: warning: Member parent (variable) of class DspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:36: warning: Member vcount (variable) of class Graph_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:37: warning: Member ecount (variable) of class Graph_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:39: warning: Member match)(const void *key1, const void *key2) (variable) of class Graph_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:40: warning: Member destroy)(void *data) (variable) of class Graph_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:42: warning: Member vertices (variable) of class Graph_ is not documented.
+C:/Users/Danne/git/levawc/heap.c:39: warning: Member size (variable) of class Heap_ is not documented.
+C:/Users/Danne/git/levawc/heap.c:40: warning: Member compare)(const void *key1, const void *key2) (variable) of class Heap_ is not documented.
+C:/Users/Danne/git/levawc/heap.c:41: warning: Member destroy)(void *data) (variable) of class Heap_ is not documented.
+C:/Users/Danne/git/levawc/heap.c:42: warning: Member tree (variable) of class Heap_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:73: warning: Member weight (variable) of class MstVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:74: warning: Member color (variable) of class MstVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:75: warning: Member key (variable) of class MstVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:78: warning: Member parent (variable) of class MstVertexdata_ is not documented.
 C:/Users/Danne/git/levawc/demos/demo14.c:44: warning: Member id (variable) of class MyCitydata_ is not documented.
 C:/Users/Danne/git/levawc/demos/demo14.c:45: warning: Member name[KEYSIZ] (variable) of class MyCitydata_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:26: warning: Member positions (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:27: warning: Member vacated (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:29: warning: Member h1)(const void *key) (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:30: warning: Member h2)(const void *key) (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:31: warning: Member match)(const void *key1, const void *key2) (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:32: warning: Member destroy)(void *data) (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:34: warning: Member size (variable) of class OHtbl_ is not documented.
-C:/Users/Danne/git/levawc/ohashtbl.c:35: warning: Member table (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:29: warning: Member positions (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:30: warning: Member vacated (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:32: warning: Member h1)(const void *key) (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:33: warning: Member h2)(const void *key) (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:34: warning: Member match)(const void *key1, const void *key2) (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:35: warning: Member destroy)(void *data) (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:37: warning: Member size (variable) of class OHtbl_ is not documented.
+C:/Users/Danne/git/levawc/ohashtbl.c:38: warning: Member table (variable) of class OHtbl_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:42: warning: Member size (variable) of class SList_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:43: warning: Member match)(const void *key1, const void *key2) (variable) of class SList_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:44: warning: Member destroy)(void *data) (variable) of class SList_ is not documented.
@@ -101,8 +101,8 @@ C:/Users/Danne/git/levawc/slist.c:45: warning: Member head (variable) of class S
 C:/Users/Danne/git/levawc/slist.c:46: warning: Member tail (variable) of class SList_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:36: warning: Member data (variable) of class SListElmt_ is not documented.
 C:/Users/Danne/git/levawc/slist.c:37: warning: Member next (variable) of class SListElmt_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:90: warning: Member x (variable) of class TspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:90: warning: Member y (variable) of class TspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/algo.h:91: warning: Member color (variable) of class TspVertexdata_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:26: warning: Member vertexdata (variable) of class Vertex_ is not documented.
-C:/Users/Danne/git/levawc/graph.c:28: warning: Member adj_vertices (variable) of class Vertex_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:93: warning: Member x (variable) of class TspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:93: warning: Member y (variable) of class TspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/algo.h:94: warning: Member color (variable) of class TspVertexdata_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:29: warning: Member vertexdata (variable) of class Vertex_ is not documented.
+C:/Users/Danne/git/levawc/graph.c:31: warning: Member adj_vertices (variable) of class Vertex_ is not documented.

@@ -7,9 +7,13 @@
  * Filename: set.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 12:32:13 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: A pure, generic set ADT - written in ANSI C 
+ *
+ * Date   Revision message
+ * 130413 Created this file
+ * 150331 This code ready for version 0.51
  * 
  */
 /**

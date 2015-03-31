@@ -7,7 +7,7 @@
  * Filename: demo02.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 10:11:42 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: A short C demo program testing the function interface of library LevAWC, doubly-linked list. 
  * 
@@ -21,6 +21,7 @@
  * 150121 Converted demo2.c to be menu-driven. 
  * 150220 Moved some utility functions from here - to file ../utils.c
  * 150220 Source ready for version 0.5!
+ * 150317 Source ready for version 0.51
  *
  */
 
@@ -34,13 +35,21 @@
 #define OK 0
 #endif
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 /* Some string macros for the main menu... */
 #define MAIN_MENU_ROW "--- DOUBLY-LINKED LIST DEMO ---\nMENU: 0=Exit 1=Add_Node 2=Rem_Node 3=Search 4=Sort 5=Print\nSelection "
 
 #define NR_OF_ITEMS 10
 #define MINLEN 5
 
-/* FUNCTION DECLARATIONS */
+/* FUNCTION-DECLARATIONS */
 /* Application-specific callbacks.. */
 void my_destroy(void *data);
 void print(const void *data);
@@ -97,6 +106,8 @@ void create_random_nodes(Dlist list, int nr_of_nodes)
   do
     {
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = rand_int(1,50);
 
       /* Defensive programming... */
@@ -133,7 +144,7 @@ void ins_nodes(Dlist list)
       printf("\nAscending : ");
       DLISTtraverse(list, print, DLIST_FWD);
 
-      tmp = read_int("\nEnter nodedata, after which new node(data=99) to be inserted (-1=Quit): ", 0, 0);
+      tmp = read_int("\nEnter (key)data, after which new node(key=99) will be inserted (-1=Quit): ", 0, 0);
 
       if (tmp == -1)
         break;
@@ -142,11 +153,14 @@ void ins_nodes(Dlist list)
         {
           /* Insert node after first occurance of user-specified node */
           pi = (int *)malloc(sizeof(int));
+          MALCHK(pi);
+
           *pi = 99;
 
           if ((DLISTinsnext(list, node, pi)) != OK)
             {
-              printf("Fatal error - exiting...");
+              printf("\nFatal error - exiting...");
+              DLISTdestroy(list);
               exit(-1);
             }
           else
@@ -157,10 +171,10 @@ void ins_nodes(Dlist list)
         }
       else
         {
-          sprintf(mess, "Node %d not found...!", tmp);
+          sprintf(mess, "Error: Node %d not found...!", tmp);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void rem_nodes(Dlist list) --- */
@@ -191,15 +205,16 @@ void rem_nodes(Dlist list)
         {
           if (retval == 1)
             {
-              sprintf(mess, "Node %d not found..!", tmp);
+              sprintf(mess, "Error: Node %d not found..!", tmp);
               prompt_and_pause(mess);
             }
           else 
             {
               if (retval == -2)
-                printf("\nMatch-callback is missing... - bailing out!");
+                printf("\nError: Match-callback is missing... - bailing out!");
               else
                 printf("\nFatal error... - bailing out!");
+              DLISTdestroy(list);
               exit(retval);
             }
         }
@@ -211,8 +226,7 @@ void rem_nodes(Dlist list)
           /* Free node - after being removed from list.. */
           my_destroy(pi);
         }
-
-    } while (1);
+    } while (TRUE);
 }
 /* --- Function: void search_node(Dlist lst) --- */
 void search_node(Dlist lst)
@@ -243,7 +257,7 @@ void search_node(Dlist lst)
           sprintf(mess, "Node %d FOUND!", tmp);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- Function: void sort_list(Dlist list) --- */
@@ -299,6 +313,7 @@ int main(void)
   if ((mylist = DLISTinit(my_destroy)) == NULL)
     {
       printf("\nFatal error... - bailing out!");
+      DLISTdestroy(mylist);
       exit(-1);
     }
 

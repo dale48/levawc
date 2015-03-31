@@ -7,14 +7,15 @@
  * Filename: heap.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: A heap ADT - written in ANSI C.
  * 
  * Revision history - coming up below:
  *
- * Date        Revision message
- * 2013-02-17  Created this file
+ * Date   Revision message
+ * 130217 Created this file
+ * 150331 This code ready for version 0.51
  *
  */
 /**

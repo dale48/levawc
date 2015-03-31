@@ -7,10 +7,13 @@
  * Filename: algo.h
  * Author  : Dan Levin
  * Date    : Mon Feb 16 10:06:22 2015
- * Version : 0.5 
+ * Version : 0.51
  * ---
  * Description: Miscellanoeus algorithms 
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file algo.h
@@ -146,17 +149,17 @@ extern "C" {
   int ALGOtsp(Slist vertices, const TspVertexdata start, Slist *tour,
               int (*match)(const void *key1, const void *key2));
 
-/**
- * Do a breadth-first search in a graph
- * 
- **/ 
+  /**
+   * Do a breadth-first search in a graph
+   * 
+   **/ 
   int ALGObfs(Graph gr, const BfsVertexdata start, Slist *hops, 
-	      int (*match)(const void *key1, const void *key2));
+              int (*match)(const void *key1, const void *key2));
 
-/**
- * Do a depth-first search in a graph
- * 
- **/ 
+  /**
+   * Do a depth-first search in a graph
+   * 
+   **/ 
   int ALGOdfs(Graph gr, Slist *ordered);
 
 #ifdef __cplusplus

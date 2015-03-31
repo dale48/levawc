@@ -7,10 +7,14 @@
  * Filename: clist.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 12:24:12 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: A circular, singly-linked list - implemented as a pure, generic ADT
  * 
+ * Date   Revision message
+ * 130413 Created this file
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file cslist.c

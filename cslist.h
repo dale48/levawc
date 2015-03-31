@@ -7,15 +7,15 @@
  * Filename: cslist.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 19:29:27 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: A circular, singly-linked list - implemented as a pure, generic ADT
  * 
  * Revision history - coming up below:
  *
- * Date        Revision message
- * 2013-04-09  Created this file
- *
+ * Date   Revision message
+ * 130409 Created this file
+ * 150331 This code ready for version 0.51
  *
  */
 /**

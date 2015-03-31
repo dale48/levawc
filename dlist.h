@@ -7,7 +7,7 @@
  * Filename: dlist.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: A doubly-linked list - implemented as a pure, generic ADT.
  *
@@ -18,7 +18,7 @@
  * 2013-02-05  Created a new function 'int DLISTfind_remove(Dlist list, void **data)'
  * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of
  *             in/out parameters - i.e. double-pointers.             
- * 
+ * 2015-03-31  This code ready for ver. 0.51
  */
 
 /**
@@ -38,15 +38,15 @@
 extern "C" {
 #endif
 
-/**
- * Macro for forward traversal of the list
- * 
- **/
+  /**
+   * Macro for forward traversal of the list
+   * 
+   **/
 #define DLIST_FWD 1
-/**
- * Macro for backward traversal of the list
- * 
- **/
+  /**
+   * Macro for backward traversal of the list
+   * 
+   **/
 #define DLIST_BWD -1
 
   /**
@@ -265,7 +265,7 @@ extern "C" {
    * @return Nothing.
    **/
   void DLISTsetmatch(Dlist list, int (*match)(const void *key1, 
-					      const void *key2));
+                                              const void *key2));
   /**
    * Search - and remove a node - by using an in/out parameter.
    *

@@ -7,10 +7,13 @@
  * Filename: utils.c
  * Author  : Dan Levin
  * Date    : Mon Feb 09 07:58:29 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: Miscellanenous utility functions
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file utils.c
@@ -283,8 +286,9 @@ int read_int(const char *prompt, const int lo_val, const int hi_val)
       else
         printf("Invalid input - integer only!");
 
-      /* Remove '\n' from keyb. buffer */
-      getchar();
+      /* Flush keyb. buffer */
+      myflush(stdin);
+
     } while (retval == EOF || !val_ok);
 
   return input;
@@ -309,7 +313,65 @@ void my_clearscrn(void)
 /* --- Function: void prompt_and_pause(char *message) --- */
 void prompt_and_pause(char *message)
 {
+  int ch;
+
   printf("%s", message);
   printf(" - Hit <Enter> to continue...");
-  getchar();
+  ch = getchar();
+  if (ch == '\n')
+    ungetc(ch, stdin);
+  myflush(stdin);
+}
+
+int read_char(const char *prompt, const int lo_val, const int hi_val, int (*char_ok)(int ch))
+{
+  int retval, input, val_ok;
+
+  /* Initialize 'val_ok' - this is crucial.. */
+  val_ok = FALSE;
+
+  do
+    {
+      printf("\n%s", prompt);
+      /* Print tail to prompt - if 'lo_val' differ from 'hi_val'.. */
+      if (lo_val != hi_val)
+        printf("<%c-%c>+<Enter>: ", lo_val, hi_val);
+
+      /* Read user input stdin.. */
+      /* retval = scanf("%c", &input); */
+      input = getchar();
+      retval = char_ok(input);
+      
+      if (retval != FALSE) /* If valid integer input.. */
+        {
+          if (lo_val != hi_val)
+            { 
+              /* Check whether input is within interval 'lo_val' to 'hi_val'.. */
+              val_ok = is_val_ok(input, lo_val, hi_val);
+              if (!val_ok)
+                printf("Invalid selection - use <%c> to <%c>...!", lo_val, hi_val);
+            }
+          else
+            val_ok =TRUE;
+        }
+      else
+        printf("Invalid character input!");
+
+      /* Flush keyb. buffer */
+      myflush(stdin);
+
+    } while (retval == FALSE || !val_ok);
+
+  return input;
+}
+
+void myflush(FILE *in)
+{
+  int ch;
+
+  do
+    ch = fgetc(in); 
+  while (ch != EOF && ch != '\n'); 
+
+  clearerr (in);
 }

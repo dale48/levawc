@@ -7,7 +7,7 @@
  * Filename: demo05.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 11:00:53 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: Usage demo for heap and priority queue ADT - in LevAWC. 
  *
@@ -17,7 +17,7 @@
  * 150124 Converted this file, demo5.c - to be menu-driven.
  * 150220 Moved some utility functions from here - to file ../utils.c
  * 150220 Source ready for version 0.5! 
- * 
+ * 150318 Source ready for version 0.51
  * 
  */
 
@@ -40,9 +40,18 @@
 #define OK 0
 #endif
 
-/* FUNCTION DECLARATIONS */
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
+/* FUNCTION-DECLARATIONS */
 /* Application-specific callbacks */
 void my_destroy(void *data);
+int my_chkch(int ch);
 void print(const void *data);
 int my_cmp(const void *key1, const void *key2);
 
@@ -58,11 +67,17 @@ void create_nodes(PQueue pq, int nr_of_ele);
 void move_nodes(PQueue pq, Slist mylst, int nr_of_moves);
 /* END-OF-FUNCTION-DECLARATIONS */
 
-/* FUNCTION DEFINITIONS - the rest of the program */
+/* FUNCTION-DEFINITIONS - the rest of the program */
 /* --- Function: void my_destroy(void *data) --- */
 void my_destroy(void *data)
 {
   free(data);
+}
+
+/* --- Function: int my_chkch(int ch) --- */
+int my_chkch(int ch)
+{
+  return strchr("YyNn", ch) ? 1 : 0;
 }
 
 /* --- Function: void print(const void *data) --- */
@@ -89,6 +104,8 @@ void create_nodes(PQueue pq, int nr_of_ele)
     {
       /* Get a random integer */
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = rand_int(1,99);
 
       /* Insert an integer into priority queue... */
@@ -123,11 +140,14 @@ void ins_node(PQueue pq)
         break;
 
       pi = (int *)malloc(sizeof(int));
+      MALCHK(pi);
+
       *pi = tmp;
 
       if ((PQUEUEinsert(pq, pi)) != OK)
         {
           printf("\nFatal error enqueing data - exiting...!");
+          PQUEUEdestroy(pq);
           exit(-1);
         }
       else
@@ -135,7 +155,7 @@ void ins_node(PQueue pq)
           sprintf(mess, "Node %d will be inserted!", *pi);
           prompt_and_pause(mess);
         }
-    } while (1);
+    } while (TRUE);
 }
 
 /* --- void rem_node(PQueue pq) --- */
@@ -166,16 +186,15 @@ void rem_node(PQueue pq)
         }
       else
         {
-          sprintf(mess, "\nAbout to remove (top) node %d..", *ptmp);
-          printf("\n%s - Continue? (y/n+Enter): ", mess); 
-          ans = getchar();
-          getchar(); /* Remove '\n' from keyb. buffer */
-          
+          sprintf(mess, "\nAbout to remove (top) node %d.. - Continue? (y/n): ", *ptmp);
+          ans = read_char(mess, 0, 0, my_chkch);
+
           if (ans == 'y' || ans == 'Y')
             {
               if ((PQUEUEextract(pq, (void **)&pi)) != OK)
                 {
                   printf("\nFatal error removing data - exiting...!");
+                  PQUEUEdestroy(pq);
                   exit(-1);
                 }
               else
@@ -188,7 +207,7 @@ void rem_node(PQueue pq)
           else
             tmp = -1;
         }
-    } while (1);
+    } while (TRUE);
 }
 
 
@@ -208,6 +227,7 @@ void heapsort_intro(PQueue pq)
   if ((tmplst = SLISTinit(my_destroy)) == NULL)
     {
       printf("\nFatal error - bailing out...\n!");
+      PQUEUEdestroy(pq);
       exit(-1);
     }
     
@@ -248,7 +268,7 @@ void heapsort_intro(PQueue pq)
           break;
         }
 
-    } while (1);
+    } while (TRUE);
 
   printf("\n---\nHey - it looks like the priority queue can be used for sorting things.. :-)!");
   prompt_and_pause("\nTRUE, indeed! Just Google \'Heapsort\' for more..");
@@ -296,6 +316,7 @@ int main(void)
   if ((mypq = PQUEUEinit(my_cmp, my_destroy)) == NULL)
     {
       printf("\nFatal error - bailing out...\n!");
+      PQUEUEdestroy(mypq);
       exit(-1);
     }
 
@@ -327,7 +348,7 @@ int main(void)
     }
   while (menu_choice); 
 
-  prompt_and_pause("\nLet's tidy up and destroy the prio.queue..- Bye!");
+  prompt_and_pause("\nLet's tidy up and destroy the pr.queue..- Bye!");
   PQUEUEdestroy(mypq);
 
   return 0;

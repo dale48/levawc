@@ -7,10 +7,13 @@
  * Filename: heap.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: A heap ADT - written in ANSI C. 
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 
 /**

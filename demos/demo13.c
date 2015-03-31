@@ -7,13 +7,13 @@
  * Filename: tst1.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 13:23:46 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: A demo program testing/showing some Graph Algorithms 
  * 
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
- *
+ * 150331 This code ready for ver. 0.51
  */
 
 #include <stdio.h>
@@ -42,7 +42,7 @@
 #define NR_OF_TSP_VERTICES 7
 #define NR_OF_TSP_COORDS 2
 
-#define INITIAL_INFO "--- INITIAL DEMO INFORMATION ---\n\nThis demo contains code from the book - \"K Loudon: Mastering Algoritms with C\".\n\nFor further details - check the following:\n\n - \"Chapter 16: Graph Algorithms\"\n - The \"graphalg\" subfolder - in downloadable example zipfile\n\n"
+#define INITIAL_INFO "--- INITIAL DEMO INFORMATION ---\n\nThis demo contains code from the book - \"K Loudon: Mastering Algoritms with C\".\n\nFor further details - check the following:\n\n - \"Chapter 16: Graph Algorithms\"\n - The \"graphalg\" subfolder - in downloadable example zipfile\n\nTip: Use paper/pencil to draw initial graphs - and their calculated results.\nCould be useful here :-)..\n\n"
 
 #define MAIN_MENU_ROW "--- GRAPH ALGORITHMS DEMO ---\nMENU: 0=Exit 1=MST 2=DSP 3=TSP\nSelection "
 /* --- END-MACRO-DEFINITIONS --- */
@@ -61,7 +61,7 @@ double dsp_edge_data[NR_OF_DSP_VERTICES][NR_OF_DSP_VERTICES] =
    {0,0,0,0,0,0}, {0,0,0,0,0,5.0}, {0,2.0,0,7.0,4.0,0}};
 
 double tsp_data[NR_OF_TSP_VERTICES][NR_OF_TSP_COORDS] = {{2.0,1.0},{1.0,3.0},{2.0,4.0},{4.0,3.0},
-							 {5.0,2.0},{5.0,5.0},{6.0,3.0}};
+                                                         {5.0,2.0},{5.0,5.0},{6.0,3.0}};
 /* --- END-GLOBAL-VARIABLES --- */
 
 /* FUNCTION-DECLARATIONS */
@@ -93,7 +93,6 @@ int read_dsp_vtx(Graph gr, char *vertices, int nr_of_vertices);
 int read_dsp_edge(Graph gr, double (*dsp_edges)[NR_OF_DSP_VERTICES], int nr_of_vertices);
 int read_tsp_vtx(Slist lst, double (*vertices)[NR_OF_TSP_COORDS], int nr_of_vertices);
 
-static int read_char(const char *prompt, const int lo_val, const int hi_val);
 /* END-OF-FUNCTION-DECLARATIONS */
 
 /* FUNCTION DEFINITIONS - the rest of the program */
@@ -128,7 +127,7 @@ void print_mst_vtx(const void *data)
 void print_mst_edge(const void *data)
 {
   printf("%c %4.1lf ", *(char *)((MstVertexdata)data)->data, 
-	 ((MstVertexdata)data)->weight);
+         ((MstVertexdata)data)->weight);
 }
 
 /* --- Function: void print_mst(const void *data) --- */
@@ -137,7 +136,7 @@ void print_mst(const void *data)
   MstVertexdata mst = (MstVertexdata)data;
 
   printf("\nVertex = %c, parent = %c", *(char *)mst->data,
-	 mst->parent != NULL ? *(char *)mst->parent->data : '-');
+         mst->parent != NULL ? *(char *)mst->parent->data : '-');
 }
 
 /* --- Function: void print_dsp_vtx(const void *data) --- */
@@ -150,7 +149,7 @@ void print_dsp_vtx(const void *data)
 void print_dsp_edge(const void *data)
 {
   printf("%c %4.1lf ", *(char *)((DspVertexdata)data)->data,
-	 ((DspVertexdata)data)->weight);
+         ((DspVertexdata)data)->weight);
 }
 
 /* --- Function: void print_dsp(const void *data) --- */
@@ -159,7 +158,7 @@ void print_dsp(const void *data)
   DspVertexdata dsp = (DspVertexdata)data;
 
   printf("\nVertex = %c, parent = %c, distance=%.1lf", *(char *)dsp->data, 
-	 dsp->parent != NULL ? *(char *)dsp->parent->data : '-', dsp->distance);
+         dsp->parent != NULL ? *(char *)dsp->parent->data : '-', dsp->distance);
 }
 
 /* --- Function: void print_tsp_vtx(const void *data) --- */
@@ -219,9 +218,9 @@ int mst(void)
   /* Display graph.. */
   GRAPHprint(gr, print_mst_vtx, print_mst_edge);
   printf("\n--------------------------------------\nNr of vertices/edges: %d/%d", 
-	 GRAPHvcount(gr), GRAPHecount(gr));
+         GRAPHvcount(gr), GRAPHecount(gr));
 
-  start = read_char("\nStart node ", 'a', 'i');
+  start = read_char("\nStart node ", 'a', 'i', isalpha);
   mst_tmp.data = &start;
 
   /* Now - call appropriate algorithm to compute Minimal Spanning Tree.. */
@@ -294,8 +293,8 @@ int read_mst_edge(Graph gr, double mst_edges[][NR_OF_MST_VERTICES], int nr_of_ve
               MALCHK(mst->data);              
 
               *(char *)mst->data = 'a'+j;
-	      /* Distribute data - via indexing into 2-dim. array.. */
-	      mst->weight = mst_edges[i][j];
+              /* Distribute data - via indexing into 2-dim. array.. */
+              mst->weight = mst_edges[i][j];
               
               /* Temporary vertex (search) data.. */
               tmp = 'a'+i;
@@ -345,7 +344,7 @@ int dsp(void)
   GRAPHprint(gr, print_dsp_vtx, print_dsp_edge);
   printf("\n-------------------------------\nNr of vertices/edges: %d/%d", GRAPHvcount(gr), GRAPHecount(gr));
 
-  start = read_char("\nStart node ", 'a', 'f');
+  start = read_char("\nStart node ", 'a', 'f', isalpha);
   dsp_tmp.data = &start;
 
   /* Now - call appropriate algorithm to compute Shortest Paths.. */
@@ -410,10 +409,10 @@ int read_dsp_edge(Graph gr, double (*dsp_edges)[NR_OF_DSP_VERTICES], int nr_of_v
     {
       for (j = 0; j < nr_of_vertices; ++j)
         {
-	  
-	  /* Using pointer arithmetic here - just as an (uglier) alternative to indexing... */
-	  /* Get the adress of double numbers in 2-dim array - using pointer arithmetic */
-	  pdbl = *(dsp_edges+i)+j; 
+          
+          /* Using pointer arithmetic here - just as an (uglier) alternative to indexing... */
+          /* Get the adress of double numbers in 2-dim array - using pointer arithmetic */
+          pdbl = *(dsp_edges+i)+j; 
 
           if ( *pdbl != 0) /* If current dbl nr not equal to 0.. */
             {
@@ -425,12 +424,12 @@ int read_dsp_edge(Graph gr, double (*dsp_edges)[NR_OF_DSP_VERTICES], int nr_of_v
 
               *(char *)dsp->data = 'a'+j;
 
-	      /* Copy read nr into relevant variable.. */
+              /* Copy read nr into relevant variable.. */
               dsp->weight = *pdbl;
               /* Temporary vertex (search) data.. */
               tmp = 'a'+i;
               dsp_tmp.data = &tmp;
-	      /* Now - insert current edge into graph.. */
+              /* Now - insert current edge into graph.. */
               if ((retval = GRAPHinsedge(gr, &dsp_tmp, dsp)) != OK)
                 {
                   dsp_destroy(dsp);
@@ -472,7 +471,7 @@ int tsp(void)
   SLISTtraverse(tsp_list, print_tsp_vtx, SLIST_FWD);
   
   /* Set up start vertex.. */
-  id = read_char("\nStart node ", 'a', 'g');
+  id = read_char("\nStart node ", 'a', 'g', isalpha);
   tsp_start.data = &id;
 
   /* Now - call appropriate algorithm to compute Traveling Salesman Path.. */
@@ -485,23 +484,23 @@ int tsp(void)
   /* Print the optimized tour.. */
   printf("\nTraveling Salesman Path:");
   for (node = SLISThead(tour); node != NULL; node = SLISTnext(node))
-  {
-    tsp_rcd = SLISTdata(node);
+    {
+      tsp_rcd = SLISTdata(node);
 
-    if (!SLISTishead(tour, node))
-      {
-	distance = sqrt(pow(tsp_rcd->x-x, 2.0) + pow(tsp_rcd->y-y, 2.0));
-	total = total + distance; 	
-      }
+      if (!SLISTishead(tour, node))
+        {
+          distance = sqrt(pow(tsp_rcd->x-x, 2.0) + pow(tsp_rcd->y-y, 2.0));
+          total = total + distance;     
+        }
 
-    x = tsp_rcd->x;
-    y = tsp_rcd->y;
+      x = tsp_rcd->x;
+      y = tsp_rcd->y;
 
-    if (!SLISTishead(tour, node))
-      printf("\nVertex=%c, distance=%.2lf", *(char *)tsp_rcd->data, distance);
-    else
-      printf("\nVertex=%c", *(char *)tsp_rcd->data);
-  }
+      if (!SLISTishead(tour, node))
+        printf("\nVertex=%c, distance=%.2lf", *(char *)tsp_rcd->data, distance);
+      else
+        printf("\nVertex=%c", *(char *)tsp_rcd->data);
+    }
 
   printf("\n------------------------\nTotal = %.2lf", total);
 
@@ -535,64 +534,23 @@ int read_tsp_vtx(Slist lst, double (*vertices)[NR_OF_TSP_COORDS], int nr_of_vert
 
       for (j = 0; j < NR_OF_TSP_COORDS; ++j)
         {
-	  /* Get the adress of double numbers in 2-dim array - using pointer arithmetic */
-	  pdbl = *(vertices+i)+j; 
+          /* Get the adress of double numbers in 2-dim array - using pointer arithmetic */
+          pdbl = *(vertices+i)+j; 
 
-	  /* Copy current nr read - into relevant variable.. */
-	  (j == 0) ? (tsp->x = *pdbl) : (tsp->y = *pdbl);
-	}
+          /* Copy current nr read - into relevant variable.. */
+          (j == 0) ? (tsp->x = *pdbl) : (tsp->y = *pdbl);
+        }
 
       /* Now - insert current tsp data record into list.. */
       if ((retval = SLISTinsnext(lst, SLISTtail(lst), tsp)) != OK)
-	{
-	  tsp_destroy(tsp);
-	  return retval;
-	}
+        {
+          tsp_destroy(tsp);
+          return retval;
+        }
     }
 
   /* Everything OK */
   return OK;   
-}
-
-static int read_char(const char *prompt, const int lo_val, const int hi_val)
-{
-  int retval, input, val_ok;
-
-  /* Initialize 'val_ok' - this is crucial.. */
-  val_ok = FALSE;
-
-  do
-    {
-      printf("\n%s", prompt);
-      /* Print tail to prompt - if 'lo_val' differ from 'hi_val'.. */
-      if (lo_val != hi_val)
-        printf("<%c-%c>+<Enter>: ", lo_val, hi_val);
-
-      /* Read user input stdin.. */
-      /* retval = scanf("%c", &input); */
-      input = getchar();
-      retval = isalnum(input);
-      
-      if (retval != FALSE) /* If valid integer input.. */
-        {
-          if (lo_val != hi_val)
-            { 
-              /* Check whether input is within interval 'lo_val' to 'hi_val'.. */
-              val_ok = is_val_ok(input, lo_val, hi_val);
-              if (!val_ok)
-                printf("Invalid selection - use <%c> to <%c>...!", lo_val, hi_val);
-            }
-          else
-            val_ok =TRUE;
-        }
-      else
-        printf("Invalid character input!");
-
-      /* Remove '\n' from keyb. buffer */
-      getchar();
-    } while (retval == FALSE || !val_ok);
-
-  return input;
 }
 
 int main(void)
@@ -612,39 +570,39 @@ int main(void)
         {
         case 1:
           if ((retval = mst()) != OK)
-	    {
-	      if (retval == -2)
-		fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
-	      else if (retval == -3)
-		fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
-	      else
-		fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
-	      exit(-1);
-	    }
+            {
+              if (retval == -2)
+                fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
+              else if (retval == -3)
+                fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
+              else
+                fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
+              exit(-1);
+            }
           break;
         case 2:
           if ((retval = dsp()) != OK)
-	    {
-	      if (retval == -2)
-		fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
-	      else if (retval == -3)
-		fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
-	      else
-		fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
-	      exit(-1);
-	    }
+            {
+              if (retval == -2)
+                fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
+              else if (retval == -3)
+                fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
+              else
+                fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
+              exit(-1);
+            }
           break;
         case 3:
           if ((retval = tsp()) != OK)
-	    {
-	      if (retval == -2)
-		fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
-	      else if (retval == -3)
-		fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
-	      else
-		fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
-	      exit(-1);
-	    }
+            {
+              if (retval == -2)
+                fprintf(stderr, "Error reading vertex data (errcode=%d).. - bailing out!", retval);
+              else if (retval == -3)
+                fprintf(stderr, "Error reading edge data (errcode=%d).. - bailing out!", retval);
+              else
+                fprintf(stderr, "Error: Fatal error (errcode=%d).. - bailing out!", retval);
+              exit(-1);
+            }
           break;
         default:
           prompt_and_pause("\nThat's all folks - Bye..!");

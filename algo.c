@@ -7,9 +7,12 @@
  * Filename: algo.c
  * Author  : Dan Levin
  * Date    : Mon Feb 16 10:08:33 2015
- * Version : 0.5 
+ * Version : 0.51
  * ---
  * Description: Miscellaneous  algorithms 
+ * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
  * 
  */
 /**

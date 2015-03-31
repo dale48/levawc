@@ -7,10 +7,13 @@
  * Filename: graph.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Thu Jan 15 09:27:26 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: A generic graph ADT - written in ANSI C. 
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file graph.c

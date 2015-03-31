@@ -7,7 +7,7 @@
  * Filename: slist.h
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Fri Mar 22 12:40:45 GMT 2013
- * Version : 0.40
+ * Version : 0.51
  * ---
  * Description: A singly-linked list - implemented as a pure, generic ADT.
  *
@@ -25,6 +25,8 @@
  *             simply returns the reference to the formerly added match callback stored in 
  *             the ADT header. The data type "match_callback" is the following typedef:
  *             typedef int (*match_callback)(const void *, const void *).
+ * 2015-03-31  This code ready for version 0.51
+ *
  */
 
 /**
@@ -44,15 +46,15 @@
 extern "C" {
 #endif
 
-/**
- * Macro for forward traversal of the list
- * 
- **/
+  /**
+   * Macro for forward traversal of the list
+   * 
+   **/
 #define SLIST_FWD 1
-/**
- * Macro for backward traversal of the list
- * 
- **/
+  /**
+   * Macro for backward traversal of the list
+   * 
+   **/
 #define SLIST_BWD -1
 
   /**
@@ -253,7 +255,7 @@ extern "C" {
    * @return Nothing.
    **/
   void SLISTsetmatch(Slist list, int (*match)(const void *key1, 
-					      const void *key2));
+                                              const void *key2));
 
   /**
    * Get the stored match callback for searching the list

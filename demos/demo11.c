@@ -7,10 +7,13 @@
  * Filename: demo11.c
  * Author  : Dan Levin
  * Date    : Wed Mar 11 09:14:04 2015
- * Version : 0.5
+ * Version : 0.51
  * ---
  * Description: Basic usage of Graph ADT
  * 
+ * Revision history: (this is where you document the diffs between versions...)
+ * Date   Revision
+ * 150318 This source ready for version 0.51
  */
 
 #include <stdio.h>
@@ -45,7 +48,7 @@
 #define NR_OF_TASKNODES 9
 #define NR_OF_NETNODES 6
 
-#define INITIAL_INFO "--- INITIAL DEMO INFORMATION ---\n\nThis demo contains code from the book - \"K Loudon: Mastering Algoritms with C\".\n\nFor further details - check the following:\n\n - \"Chapter 11: Graphs\"\n - The \"graph\" subfolder - in downloadable example zipfile\n\n"
+#define INITIAL_INFO "--- INITIAL DEMO INFORMATION ---\n\nThis demo contains code from the book - \"K Loudon: Mastering Algoritms with C\".\n\nFor further details - check the following:\n\n - \"Chapter 11: Graphs\"\n - The \"graph\" subfolder - in downloadable example zipfile\n\nTip: Use paper/pencil to draw initial graphs - and their calculated results.\nCould be useful here :-)..\n\n"
 
 #define MAIN_MENU_ROW "--- GRAPH BASIC USAGE & BFS/DFS DEMO ---\nMENU: 0=Exit 1=Basic_Graph_Usage 2=BFS/Hop_Count 3=DFS/Topological_Sort\nSelection "
 

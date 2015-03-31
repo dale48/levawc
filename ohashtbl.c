@@ -7,10 +7,13 @@
  * Filename: ohashtbl.c
  * Author  : Kyle Loudon/Dan Levin
  * Date    : Mon Apr 08 12:15:39 2013
- * Version : 0.1 
+ * Version : 0.51
  * ---
  * Description: An open-addressed hashtable implemented as a pure, generic ADT - written in ANSI C
  * 
+ * Date   Revision message
+ * 150331 This code ready for version 0.51
+ *
  */
 /**
  * @file ohashtbl.c
@@ -200,10 +203,10 @@ void OHTBLprint(OHtbl htbl, void (*callback)(const void *data))
   for (i=0; i<htbl->positions; i++)
     {
       if (htbl->table[i] == NULL)
-	printf("\nNULL");
+        printf("\nNULL");
       else if (htbl->table[i] == htbl->vacated)
-	printf("\nVACATED");
+        printf("\nVACATED");
       else
-	callback(htbl->table[i]);
+        callback(htbl->table[i]);
     }
 }

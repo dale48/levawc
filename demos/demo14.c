@@ -7,14 +7,14 @@
  * Filename: demo14.c
  * Author  : Dan Levin
  * Date    : Fri Feb 20 13:26:47 2015
- * Version : 0.5 
+ * Version : 0.51
  * ---
  * Description: A demo program for testing/showing Dijkstra's Shortest Path
  * Algorithm - as "The EU City Criss Cross Tour".
  *
  * Revision history: (this is where you document the diffs between versions...)
  * Date   Revision
- * 150206 This source is created for version 0.5..
+ * 150206 This source is created for version 0.51..
  *
  * 
  */
@@ -54,6 +54,7 @@ void my_destroy(void *data);                  /* Callback for deallocating verte
 int my_match(const void *, const void *);     /* Callback for matching vertices */
 int my_cmp(const void *key1,                  /* Callback for comparing vetices */
            const void *key2);
+int my_chchk(int ch);                         /* Callback for testing char input */
 void vtx_prt(const void *vtxdata);            /* Callback for printing vertex data */
 void edge_prt(const void *edgedata);          /* Callback for printing edge data */
 
@@ -85,6 +86,12 @@ void my_destroy(void *data)
   mcd = (MyCitydata)(vdata->data);
   free(mcd);
   free(vdata);
+}
+
+/* --- Function: int my_chchk(int ch) --- */
+int my_chchk(int ch)
+{
+  return strchr("YyNn", ch) ? 1 : 0;
 }
 
 /* --- Function: void printvtx(const void *data) --- */
@@ -569,9 +576,8 @@ void make_tour(Graph gr)
       printf("\nOptimized route:\n");
       printroute(vtxdata);
 
-      printf("\nTry another destination (y/n)? ");
-      reply = getchar();
-      getchar(); /* Remove '\n' from keyb. buffer */
+      reply = read_char("\nTry another destination (y/n)? ", 0, 0, my_chchk);
+
       if (reply == 'y' || reply == 'y')
         {
           my_clearscrn();
@@ -589,6 +595,8 @@ void make_tour(Graph gr)
 /* --- Calculate the Minimum Spanning Tree --- */
 void min_span_tree(Graph gr)
 {
+  assert(gr != NULL);
+
   my_clearscrn();
   printf("--- MIMIMAL SPANNING TREE ---");
   prompt_and_pause("\n\nComing up in next version..");
@@ -597,10 +605,7 @@ void min_span_tree(Graph gr)
 /* --- Function: void final_status(Graph gr) --- */
 void final_status(Graph gr)
 {
-  /* my_clearscrn(); */
-  /* printf("--- FINAL STATUS ---"); */
-  /* printf("\n\nFinal graph status(%d vertices/%d edges): ", GRAPHvcount(gr), GRAPHecount(gr)); */
-  /* GRAPHprint(gr, printvtx, printedge); */
+  assert(gr != NULL);
   prompt_and_pause("\n\nThat's all folks...- Bye!");
 }
 
