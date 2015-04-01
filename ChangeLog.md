@@ -1,5 +1,5 @@
-<h2>LevAWC version 0.51 (Fri Mar 27, 2015)</h2>
-<h4>Changes</h4>
+<h2>LevAWC version 0.51</h2>
+<h4>Changes (Mar 31, 2015)</h4>
 <p>Since this is a <i>major revision</i>, the changes are numerous. Now all the data structures in Kyle's book are included in this version, AFAIK. Some graph algorithms are present, too.</p>
 <ul>
   <li>Added <i>new container source</i>: <code>cslist.c, cslist.h, set.c, set.h, ohashtbl.c, ohashtbl.h, graph.c, graph.h</code></li>
