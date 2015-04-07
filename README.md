@@ -4,7 +4,7 @@
 Original source code was written by <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> - in his book <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">Mastering Algorithms with C</a> - published at <a href="http://www.oreilly.com" target="_blank">O'Reilly Company</a>. I have rewritten and extended some minor parts of the original source code. Finally, I want to thank Kyle and O'Reilly for giving me permisson to publish this code here at GitHub.
 
 <h4>Authors:</h4><a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> - and me.
-<h4>Changelog</h4>see file <a href="md__change_log.html">ChangeLog.md</a>
+<h4>Changelog</h4>see file <a href="http://dale48.github.io/levawc/documentation/md__change_log.html">ChangeLog.md</a>
 <h4>License/Disclaimer:</h4> see file "UNLICENSE" above.
 
 <h4>Documentation:</h4> 
@@ -38,7 +38,7 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
   <li> <code>demo11.c</code> - testing/showing basic Graph ADT editing, BFS(Breadth-First-Search) - and DFS(Depth-First-Search)..</li>
   <li> <code>demo12.c</code> - testing/showing interactive Graph editing..</li>
   <li> <code>demo13.c</code> - testing/showing Graph Algorithms, such as MST(=Minimal Spanning Tree), DSP(=Dijkstra's Shortest Path) and TSP(=Traveling Salesman Path)..</li>
-  <li> <code>demo14.c</code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm. A (distance-low-cost) criss-cross flight <a href="eu.pdf" target="_blank">within EU</a>.</li>
+  <li> <code>demo14.c</code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm. A (distance-low-cost) criss-cross flight <a href="http://dale48.github.io/levawc/documentation/eu.pdf" target="_blank">within EU</a>.</li>
 </ul>
 <p>All demos are tested on both Windows and Linux. Tracing for memory leaks was done with Valgrind, Linux.</p>
 <!--
