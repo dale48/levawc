@@ -18,8 +18,10 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
 <h4>Demos:</h4> In the <code>demos</code> subdirectory you will find some simple demos (<code>demo01.c, demo02.c, demo03.c, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this:
 <ul>
   <li><code>linux.mak</code> - uses the native gcc compiler in Linux. <i>Command</i>: <code>make -f linux.mak</code></li>
-  <li><code>mingw32.mak</code> - uses <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under a native DOS Shell. <i>Command</i>: <code>mingw32-make -f mingw32.mak</code></li>
-  <li><code>msys32.mak</code> - uses the <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under the <a href="http://www.mingw.org/wiki/MSYS" target="_blank">MSYS Shell</a>. <i>Command</i>: <code>make -f msys32.mak</code></li>
+  <li><code>mingw32.mak</code> - uses <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under a native DOS Shell.
+ <br /><i>Command</i>: <code>mingw32-make -f mingw32.mak</code></li>
+  <li><code>msys32.mak</code> - uses the <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under the <a href="http://www.mingw.org/wiki/MSYS" target="_blank">MSYS Shell</a>.
+  <br /><i>Command</i>: <code>make -f msys32.mak</code></li>
   <li><code>vcwin32.mak</code> - uses MS Visual C compiler in Win32. <i>Command</i>: <code>nmake -f vcwin32.mak</code></li>
 </ul>
 <p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.40.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [--prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
