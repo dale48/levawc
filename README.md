@@ -24,7 +24,7 @@ Original source code was written by <a href="http://www.kyleloudon.com/" target=
   <br /><i>Command</i>: <code>make -f msys32.mak</code></li>
   <li><code>vcwin32.mak</code> - uses MS Visual C compiler in Win32. <i>Command</i>: <code>nmake -f vcwin32.mak</code></li>
 </ul>
-<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.40.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [--prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
+<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.51.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [--prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
 <p>The demos are trying to test and show most of the public interface of the ADT:s - accordingly:</p>
 <ul>
  <li><code>demo01.c</code> - testing/showing Singly-linked List ADT..</li>
