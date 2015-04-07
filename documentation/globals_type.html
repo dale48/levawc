@@ -68,6 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>All</span></a></li>
       <li><a href="globals_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="globals_type.html"><span>Typedefs</span></a></li>
+      <li><a href="globals_enum.html"><span>Enumerations</span></a></li>
       <li><a href="globals_defs.html"><span>Macros</span></a></li>
     </ul>
   </div>
@@ -77,7 +78,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -94,6 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>AvlTreeNode
 : <a class="el" href="avltree_8h.html#a4d8b7dab130174bd9ca8b641a155cec9">avltree.h</a>
 </li>
+<li>BfsVertexdata
+: <a class="el" href="algo_8h.html#adb08d7d96b5a646d1bfe2a4e09629245">algo.h</a>
+</li>
 <li>BiTree
 : <a class="el" href="bitree_8h.html#a02c59662ecf91aac45621e313005719f">bitree.h</a>
 </li>
@@ -103,14 +107,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>CHtbl
 : <a class="el" href="chashtbl_8h.html#aab77611b866f9096572cdf5b1a23727a">chashtbl.h</a>
 </li>
+<li>CSlist
+: <a class="el" href="cslist_8h.html#a3edb75a960f03421188794ae333541c7">cslist.h</a>
+</li>
+<li>CSlistNode
+: <a class="el" href="cslist_8h.html#ab6409ca6d0dc68fef43d35695d98647f">cslist.h</a>
+</li>
+<li>DfsVertexdata
+: <a class="el" href="algo_8h.html#a4e959f5fd44d4039c1ed92afa772c47e">algo.h</a>
+</li>
 <li>Dlist
 : <a class="el" href="dlist_8h.html#aa6741d7dbcf1722511313e1f0158f014">dlist.h</a>
 </li>
 <li>DlistNode
 : <a class="el" href="dlist_8h.html#a673a2463a6d22ee690e37f08047315b5">dlist.h</a>
 </li>
+<li>DspVertexdata
+: <a class="el" href="algo_8h.html#a780f4b40619ec6b402fa3542cfbd5e3a">algo.h</a>
+</li>
+<li>Graph
+: <a class="el" href="graph_8h.html#a93cb87cbefa2c2eec98c5cfe5e23690f">graph.h</a>
+</li>
 <li>Heap
 : <a class="el" href="heap_8h.html#a4796b7437694d8ed71adda9bf3dd784c">heap.h</a>
+</li>
+<li>match_callback
+: <a class="el" href="slist_8h.html#aef2e226b252b7fe58d1a4d63f640149b">slist.h</a>
+</li>
+<li>MstVertexdata
+: <a class="el" href="algo_8h.html#a98259cf694a16031e0574f9f3f69bd0e">algo.h</a>
+</li>
+<li>OHtbl
+: <a class="el" href="ohashtbl_8h.html#ac6361b5c89763fe1c8d5696878542a5a">ohashtbl.h</a>
 </li>
 <li>Slist
 : <a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">slist.h</a>
@@ -118,11 +146,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>SlistNode
 : <a class="el" href="slist_8h.html#a0f234c1610410203ce1d7e839bff9d73">slist.h</a>
 </li>
+<li>TspVertexdata
+: <a class="el" href="algo_8h.html#a59659166a02f6b395f980fffa353c807">algo.h</a>
+</li>
+<li>Vertex
+: <a class="el" href="graph_8h.html#aa98319e381cd1a3c900ab32c77c0b6d1">graph.h</a>
+</li>
+<li>VertexColor
+: <a class="el" href="graph_8h.html#a8cf412fbb590e1caed479910c0d4bcc6">graph.h</a>
+</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:13 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

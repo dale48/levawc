@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -156,7 +156,7 @@ Functions</h2></td></tr>
 <p>Macro for level separation when calling <a class="el" href="avltree_8c.html#a53af30684d5197e77f9b85110f66ad54">AVLTREEprint()</a></p>
 <p>This macro sets the distance - measured in column positions - between node levels of the tree when it is printed on screen as a result of a call to <a class="el" href="avltree_8c.html#a53af30684d5197e77f9b85110f66ad54">AVLTREEprint()</a> </p>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00033">33</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00035">35</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Generic reference to node data. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00127">127</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00129">129</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="avltree_8c.html#a9647a4fd87aba9a15fdfcf6c5d1c2ae1">AVLTREEinit()</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00084">84</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00086">86</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -237,7 +237,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Tree height - i.e. the max. number of levels in the tree. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00142">142</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00144">144</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference - to a new, empty tree - if dynamic memory allocation for the ADT was successful - or NULL otherwise. Take really good care of this return value, since it will be needed as a parameter in subsequent calls - to the majority of other tree functions in this function interface - i.e. a sort of "handle" to the tree. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00069">69</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00071">71</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -322,7 +322,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00159">159</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00161">161</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -362,7 +362,7 @@ Functions</h2></td></tr>
  Value 1, if data already exists in the tree.<br/>
  Value -1, indicates fatal error. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00090">90</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00092">92</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -388,7 +388,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Value 1 if <em>node</em> is the end of a branch in the tree - or 0 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00117">117</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00119">119</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -414,7 +414,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Value 1 if <em>node</em> is a leaf - or 0 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00122">122</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00124">124</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -440,7 +440,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to left child of parameter <em>node</em>. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00132">132</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00134">134</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -479,7 +479,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Value 0 - if call was successful.<br/>
  Value -1, if searched node not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00102">102</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00104">104</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -527,7 +527,7 @@ Functions</h2></td></tr>
 </li>
 </ol>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00164">164</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00166">166</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -575,7 +575,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00154">154</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00156">156</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -612,7 +612,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00147">147</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00149">149</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -647,7 +647,7 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>Value 0 - if call was successful.<br/>
  Value -1, if searched node not found. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00097">97</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00099">99</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -673,7 +673,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to right child of parameter <em>node</em>. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00137">137</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00139">139</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -699,7 +699,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the root node of the tree. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00112">112</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00114">114</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
@@ -725,14 +725,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The size, i.e. the number of nodes in the tree. </dd></dl>
 
-<p>Definition at line <a class="el" href="avltree_8c_source.html#l00107">107</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
+<p>Definition at line <a class="el" href="avltree_8c_source.html#l00109">109</a> of file <a class="el" href="avltree_8c_source.html">avltree.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:12 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

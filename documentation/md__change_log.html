@@ -62,7 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -77,11 +77,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ChangeLog </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>LevAWC version 0.40</h2>
+<div class="textblock"><h2>LevAWC version 0.51</h2>
+<h4>Changes (Tue Apr 07, 2015)</h4>
+<p>Since this is a <em>major revision</em>, the changes are numerous. Now all data containers in Kyle's book are included in the library, AFAIK. Some graph algorithms are present, too.</p>
+<ul>
+<li>
+Added <em>new container source</em>: <code><a class="el" href="cslist_8c.html">cslist.c</a>, <a class="el" href="cslist_8h.html">cslist.h</a>, <a class="el" href="set_8c.html">set.c</a>, <a class="el" href="set_8h.html">set.h</a>, <a class="el" href="ohashtbl_8c.html">ohashtbl.c</a>, <a class="el" href="ohashtbl_8h.html">ohashtbl.h</a>, <a class="el" href="graph_8c.html">graph.c</a>, <a class="el" href="graph_8h.html">graph.h</a></code> </li>
+<li>
+Added new source files for <em>Graph Algorithms</em>, <a class="el" href="algo_8c.html">algo.c</a>, <a class="el" href="algo_8h.html">algo.h</a>. Here you'll find functions for calculating <em>Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path</em>. Functions for graph searching - <em>Breadth First Search(BFS), Depth First Search(DFS)</em> are also present in these files </li>
+<li>
+Added <em>new demo</em> source: <code><a class="el" href="demo08_8c_source.html">demo08.c</a>, <a class="el" href="demo09_8c_source.html">demo09.c</a>, <a class="el" href="demo10_8c_source.html">demo10.c</a>, <a class="el" href="demo11_8c_source.html">demo11.c</a>, <a class="el" href="demo12_8c_source.html">demo12.c</a>, <a class="el" href="demo13_8c_source.html">demo13.c</a> <a class="el" href="demo14_8c_source.html">demo14.c</a></code> - showing usage of Circular List, Set, Open-Addressed Hashtable and Graph ADT:s (together with some Graph Algorithms) </li>
+<li>
+Demo program <code><a class="el" href="demo14_8c_source.html">demo14.c</a></code> is a more extensive graph demo - implementing the <em>Dijkstra's Shortest Path</em> algorithm </li>
+<li>
+Made all demos <em>menu-driven</em> - with <em>rudimentary error handling</em> </li>
+<li>
+<em>Moved</em> some <em>utility functions</em> from demo source files - to file <code><a class="el" href="utils_8c.html">utils.c</a></code> and <code><a class="el" href="utils_8h.html">utils.h</a></code> </li>
+</ul>
+<h4>New features</h4>
+<ul>
+<li>
+Four new container ADT:s - <em>Circular List, Set, Open-Addressed Hashtable</em> and <em>Graph</em> - accompanied by demos (<code><a class="el" href="demo08_8c_source.html">demo08.c</a>, <a class="el" href="demo09_8c_source.html">demo09.c</a>, <a class="el" href="demo10_8c_source.html">demo10.c</a>, <a class="el" href="demo11_8c_source.html">demo11.c</a>, <a class="el" href="demo12_8c_source.html">demo12.c</a> <a class="el" href="demo13_8c_source.html">demo13.c</a></code>) </li>
+<li>
+More extensiv Graph ADT demo: <code><a class="el" href="demo14_8c_source.html">demo14.c</a></code> </li>
+<li>
+Introducing Graph Algorithms (in files <code><a class="el" href="algo_8c.html">algo.c</a> <a class="el" href="algo_8h.html">algo.h</a>)</code> </li>
+<li>
+Extended and fine-tuned the documentation accordingly... </li>
+</ul>
+<h4>Bugfixes</h4>
+<ul>
+<li>
+A lot... </li>
+</ul>
+<h2>LevAWC version 0.40</h2>
 <h4>Changes</h4>
 <ul>
 <li>
-Added new source: <code><a class="el" href="bitree_8c.html">bitree.c</a>, <a class="el" href="bitree_8h.html">bitree.h</a>, <a class="el" href="avltree_8c.html">avltree.c</a>, <a class="el" href="avltree_8h.html">avltree.h</a>, <a class="el" href="utils_8c.html">utils.c</a>, <a class="el" href="utils_8h.html">utils.h</a></code> </li>
+Added new source: <code>bitree.cp, <a class="el" href="bitree_8h.html">bitree.h</a>, <a class="el" href="avltree_8c.html">avltree.c</a>, <a class="el" href="avltree_8h.html">avltree.h</a>, <a class="el" href="utils_8c.html">utils.c</a>, <a class="el" href="utils_8h.html">utils.h</a></code> </li>
 <li>
 Added new demo source: <code>demo6.c, demo7.c</code> - showing usage of binary search and AVL trees. </li>
 <li>
@@ -187,7 +220,7 @@ None </li>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:13 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

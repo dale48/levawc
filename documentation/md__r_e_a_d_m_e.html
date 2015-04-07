@@ -62,7 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,12 +79,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h2>Project "LevAWC"</h2>
 <h4>Purpose:</h4>
-<p>Some fundamental, pure, generic container ADT:s - written in ANSI C. Primarily for educational purposes.</p>
+<p>This project covers some basic <b>Dynamic Data Structures</b> implemented as <b> pure, generic ADT:s</b>, coded in <b>ANSI C</b>. Makefiles for building a library, both for Windows/Linux are included. You can also download a tarball to build/install the library from source, under Linux/Unix. Primarily for educational purposes - but the project can, of course, be useful in other contexts, as well.</p>
 <p>Original source code was written by <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> - in his book <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">Mastering Algorithms with C</a> - published at <a href="http://www.oreilly.com" target="_blank">O'Reilly Company</a>. I have rewritten and extended some minor parts of the original source code. Finally, I want to thank Kyle and O'Reilly for giving me permisson to publish this code here at GitHub.</p>
 <h4>Authors:</h4>
 <p><a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> - and me. </p>
 <h4>Changelog</h4>
-<p>see file <a href="ChangeLog.md">ChangeLog.md</a> </p>
+<p>see file <a href="md__change_log.html">ChangeLog.md</a> </p>
 <h4>License/Disclaimer:</h4>
 <p>see file "UNLICENSE" above.</p>
 <h4>Documentation:</h4>
@@ -93,20 +93,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>In case you want to <em>regenerate the documentation locally</em> - on your box:</p>
 <p><em>Clone</em> (or <em>download zipfile</em> of) this project, <em>install</em> <a href="http://www.stack.nl/~dimitri/doxygen/" target="_blank">Doxygen</a> - and finally <em>run command:</em> <code>doxygen</code> - from the command prompt - when standing in the top-most directory of your clone. Then point your browser to the file <code>index.html</code> in the the new subdirectory <code>html</code> - recently created by this command.</p>
 <h4>Demos:</h4>
-<p>In the <code>demos</code> subdirectory you will find some simple demos (<code>demo1.c, demo2.c, demo3.c, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this: </p>
+<p>In the <code>demos</code> subdirectory you will find some simple demos (<code><a class="el" href="demo01_8c_source.html">demo01.c</a>, <a class="el" href="demo02_8c_source.html">demo02.c</a>, <a class="el" href="demo03_8c_source.html">demo03.c</a>, ...</code>) - using the ADT containers. You can build these yourself - together with a complete, single library (<code>liblevawc.a/levawc.lib</code>) of all the ADT:s - by simply using the enclosed makefiles in this directory, like this: </p>
 <ul>
 <li>
 <code>linux.mak</code> - uses the native gcc compiler in Linux. <em>Command</em>: <code>make -f linux.mak</code> </li>
 <li>
-<code>mingw32.mak</code> - uses mingw32 gcc compiler in Win32. <em>Command</em>: <code>mingw32-make -f mingw32.mak</code> </li>
+<code>mingw32.mak</code> - uses <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under a native DOS Shell. <em>Command</em>: <code>mingw32-make -f mingw32.mak</code> </li>
 <li>
-<code>vcwin32.mak</code> - uses Visual C compiler in Win32. <em>Command</em>: <code>nmake -f vcwin32.mak</code> </li>
+<code>msys32.mak</code> - uses the <a href="http://www.mingw.org/" target="_blank">Mingw32 gcc Compiler</a> in Win32 - under the <a href="http://www.mingw.org/wiki/MSYS" target="_blank">MSYS Shell</a>. <em>Command</em>: <code>make -f msys32.mak</code> </li>
+<li>
+<code>vcwin32.mak</code> - uses MS Visual C compiler in Win32. <em>Command</em>: <code>nmake -f vcwin32.mak</code> </li>
 </ul>
-<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.30.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: "./configure [--prefix=...]", "make" and finally - "[sudo] make install" - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
+<p>Another way, to build the library and the demos, is to download a <a href="http://dale48.github.com/levawc/gnu_tarballs/levawc-0.40.tar.gz">GNU Tarball</a> - if you are sitting on a UNIX/Linux box or if you have Cygwin or MSYS/MinGW installed - on Windows. Decompress the tarball - enter the root directory of the unpacked tarball - and then execute the usual commands for GNU Tarballs: <code>./configure [&ndash;prefix=...]</code>, <code>make</code> and finally - <code>[sudo] make install</code> - if you want to install. The demos are created just where you are - ready to run - and the library and header-files are installed on your system.</p>
+<p>The demos are trying to test and show most of the public interface of the ADT:s - accordingly:</p>
+<ul>
+<li>
+<code><a class="el" href="demo01_8c_source.html">demo01.c</a></code> - testing/showing Singly-linked List ADT.. </li>
+<li>
+<code><a class="el" href="demo02_8c_source.html">demo02.c</a></code> - testing/showing Doubly-linked List ADT.. </li>
+<li>
+<code><a class="el" href="demo03_8c_source.html">demo03.c</a></code> - testing/showing Stack and Queue ADT.. </li>
+<li>
+<code><a class="el" href="demo04_8c_source.html">demo04.c</a></code> - testing/showing Chained Hash Table ADT.. </li>
+<li>
+<code><a class="el" href="demo05_8c_source.html">demo05.c</a></code> - testing/showing Heap and Priority Queue ADT.. </li>
+<li>
+<code><a class="el" href="demo06_8c_source.html">demo06.c</a></code> - testing/showing Binary Search Tree ADT.. </li>
+<li>
+<code><a class="el" href="demo07_8c_source.html">demo07.c</a></code> - testing/showing AVL Tree ADT.. </li>
+<li>
+<code><a class="el" href="demo08_8c_source.html">demo08.c</a></code> - testing/showing Circular, Singly-linked List ADT.. </li>
+<li>
+<code><a class="el" href="demo09_8c_source.html">demo09.c</a></code> - testing/showing Set ADT.. </li>
+<li>
+<code><a class="el" href="demo10_8c_source.html">demo10.c</a></code> - testing/showing Open-addressed Hash Table ADT.. </li>
+<li>
+<code><a class="el" href="demo11_8c_source.html">demo11.c</a></code> - testing/showing basic Graph ADT editing, BFS(Breadth-First-Search) - and DFS(Depth-First-Search).. </li>
+<li>
+<code><a class="el" href="demo12_8c_source.html">demo12.c</a></code> - testing/showing interactive Graph editing.. </li>
+<li>
+<code><a class="el" href="demo13_8c_source.html">demo13.c</a></code> - testing/showing Graph Algorithms, such as MST(=Minimal Spanning Tree), DSP(=Dijkstra's Shortest Path) and TSP(=Traveling Salesman Path).. </li>
+<li>
+<code><a class="el" href="demo14_8c_source.html">demo14.c</a></code> - a more extensive Graph ADT application, using Dijkstra's Shortest Path algorithm. A (distance-low-cost) criss-cross flight <a href="eu.pdf" target="_blank">within EU</a>. </li>
+</ul>
+<p>All demos are tested on both Windows and Linux. Tracing for memory leaks was done with Valgrind, Linux.</p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:13 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

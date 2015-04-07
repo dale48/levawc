@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['bfsvertexdata',['BfsVertexdata',['../algo_8h.html#adb08d7d96b5a646d1bfe2a4e09629245',1,'algo.h']]],
+  ['bfsvertexdata_5f',['BfsVertexdata_',['../struct_bfs_vertexdata__.html',1,'']]],
   ['bitree',['BiTree',['../bitree_8h.html#a02c59662ecf91aac45621e313005719f',1,'bitree.h']]],
   ['bitree_2ec',['bitree.c',['../bitree_8c.html',1,'']]],
   ['bitree_2eh',['bitree.h',['../bitree_8h.html',1,'']]],

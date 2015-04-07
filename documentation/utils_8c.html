@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -80,6 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">utils.c File Reference</div>  </div>
@@ -91,10 +92,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <p><a href="utils_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aba51915c87d64af47fb1cc59348961c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba51915c87d64af47fb1cc59348961c9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>OK</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:aba51915c87d64af47fb1cc59348961c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8cecfc5c5c054d2875c03e77b7be15d"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TRUE</b>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa93f0eb578d23995850d61f7d61c55c1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FALSE</b>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae7c80bfcccaaf5d1381177e96ea72d8e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#ae7c80bfcccaaf5d1381177e96ea72d8e">randint</a> (int low, int high)</td></tr>
-<tr class="separator:ae7c80bfcccaaf5d1381177e96ea72d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa574aa3a54b3bd35a68af091ba6409a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#aa574aa3a54b3bd35a68af091ba6409a1">rand_int</a> (int low, int high)</td></tr>
+<tr class="separator:aa574aa3a54b3bd35a68af091ba6409a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3d7b571ec657ab3a23e5e47ac367c06"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#ad3d7b571ec657ab3a23e5e47ac367c06">dn_up_lim</a> (int <a class="el" href="utils_8h.html#af13e1431a8c20b1b91a0586262bdd817">minval</a>, int <a class="el" href="utils_8h.html#ae2071890895208299f98dfae4cefcae6">maxval</a>, int val)</td></tr>
 <tr class="separator:ad3d7b571ec657ab3a23e5e47ac367c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64b3094d646d8eb3069101685931231e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a64b3094d646d8eb3069101685931231e">dn_lim</a> (int <a class="el" href="utils_8h.html#af13e1431a8c20b1b91a0586262bdd817">minval</a>, int val)</td></tr>
@@ -105,6 +118,38 @@ Functions</h2></td></tr>
 <tr class="separator:ae2071890895208299f98dfae4cefcae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af13e1431a8c20b1b91a0586262bdd817"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#af13e1431a8c20b1b91a0586262bdd817">minval</a> (int val1, int val2)</td></tr>
 <tr class="separator:af13e1431a8c20b1b91a0586262bdd817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a679f58599ddf3477c4cd76d437fc99ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a679f58599ddf3477c4cd76d437fc99ec">isfloat2</a> (char *c)</td></tr>
+<tr class="separator:a679f58599ddf3477c4cd76d437fc99ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7c9944de9e8e8a3483a3f399efe6da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#acf7c9944de9e8e8a3483a3f399efe6da">isfloat</a> (char *str)</td></tr>
+<tr class="separator:acf7c9944de9e8e8a3483a3f399efe6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3778707c8c00eade388719b49de8714"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#aa3778707c8c00eade388719b49de8714">isunsigned</a> (char *str)</td></tr>
+<tr class="separator:aa3778707c8c00eade388719b49de8714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a316cd4bf200a59c0e3f66e1cc8b8c0d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a316cd4bf200a59c0e3f66e1cc8b8c0d2">isunsignedfloat</a> (char *str)</td></tr>
+<tr class="separator:a316cd4bf200a59c0e3f66e1cc8b8c0d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8964cfc6de8640466cc608d5c99b431f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a8964cfc6de8640466cc608d5c99b431f">strmove</a> (char *to, char *from)</td></tr>
+<tr class="separator:a8964cfc6de8640466cc608d5c99b431f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad9dc6b2940bea67f2758a3886648ccc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#aad9dc6b2940bea67f2758a3886648ccc">strins</a> (char *dest, const char *ins)</td></tr>
+<tr class="separator:aad9dc6b2940bea67f2758a3886648ccc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0493cd3d30a1744250b93a23d6b31de2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a0493cd3d30a1744250b93a23d6b31de2">strtrim</a> (char *str, int(*left)(int), int(*right)(int))</td></tr>
+<tr class="separator:a0493cd3d30a1744250b93a23d6b31de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08af9c5034e14fb95390dbb97ea63e2"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#af08af9c5034e14fb95390dbb97ea63e2">strtriml</a> (char *str)</td></tr>
+<tr class="separator:af08af9c5034e14fb95390dbb97ea63e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abecbe61e2831453156a2ad80aada8b68"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#abecbe61e2831453156a2ad80aada8b68">strtrimr</a> (char *str)</td></tr>
+<tr class="separator:abecbe61e2831453156a2ad80aada8b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b19688f5dbb52665afdc88bbc1d9897"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a7b19688f5dbb52665afdc88bbc1d9897">menu</a> (const char *menurow, const int lo_sel, const int hi_sel)</td></tr>
+<tr class="separator:a7b19688f5dbb52665afdc88bbc1d9897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa10b1c9e1e4dfc589fa1a5dadeaf1d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#acfa10b1c9e1e4dfc589fa1a5dadeaf1d">read_int</a> (const char *prompt, const int lo_val, const int hi_val)</td></tr>
+<tr class="separator:acfa10b1c9e1e4dfc589fa1a5dadeaf1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a319c9943081154c0514cba2e9dc96b95"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a319c9943081154c0514cba2e9dc96b95">is_val_ok</a> (const int val, const int lo_val, const int hi_val)</td></tr>
+<tr class="separator:a319c9943081154c0514cba2e9dc96b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3765af545b1a99d931e00513f86151ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a3765af545b1a99d931e00513f86151ba">my_clearscrn</a> (void)</td></tr>
+<tr class="separator:a3765af545b1a99d931e00513f86151ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ce05b7f8e78a0513535c55d129c3af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a1ce05b7f8e78a0513535c55d129c3af4">prompt_and_pause</a> (char *message)</td></tr>
+<tr class="separator:a1ce05b7f8e78a0513535c55d129c3af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcba0ffad38b20c65bc7e0e218c63d09"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#abcba0ffad38b20c65bc7e0e218c63d09">read_char</a> (const char *prompt, const int lo_val, const int hi_val, int(*char_ok)(int ch))</td></tr>
+<tr class="separator:abcba0ffad38b20c65bc7e0e218c63d09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03e8114959101f968d785d1b03ead6ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="utils_8c.html#a03e8114959101f968d785d1b03ead6ab">myflush</a> (FILE *in)</td></tr>
+<tr class="separator:a03e8114959101f968d785d1b03ead6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a class="anchor" id="a64b3094d646d8eb3069101685931231e"></a>
@@ -132,7 +177,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set a lower bound for an integer value </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00041">41</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00056">56</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
@@ -167,7 +212,118 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set both a lower and upper bounds for an integer value - i.e. force it into a given interval </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00032">32</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00047">47</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a319c9943081154c0514cba2e9dc96b95"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int is_val_ok </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>lo_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>hi_val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if a value is within a specified interval - or not </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00298">298</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf7c9944de9e8e8a3483a3f399efe6da"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isfloat </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if a string is a float.. </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00122">122</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a679f58599ddf3477c4cd76d437fc99ec"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isfloat2 </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if a string is a float.. </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00081">81</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa3778707c8c00eade388719b49de8714"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isunsigned </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if a string is an unsigned integer.. </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00148">148</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a316cd4bf200a59c0e3f66e1cc8b8c0d2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int isunsignedfloat </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine if a string is an unsigned float.. </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00165">165</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
@@ -196,7 +352,42 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the largest of two integer values </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00054">54</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00069">69</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b19688f5dbb52665afdc88bbc1d9897"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int menu </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>menurow</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>lo_sel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>hi_sel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rudimentary menu function </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00245">245</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
@@ -225,16 +416,73 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Return the smallest of two integer values </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00060">60</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00075">75</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ae7c80bfcccaaf5d1381177e96ea72d8e"></a>
+<a class="anchor" id="a3765af545b1a99d931e00513f86151ba"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int randint </td>
+          <td class="memname">void my_clearscrn </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Clear screen - both in Windows and Linux </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00304">304</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a03e8114959101f968d785d1b03ead6ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void myflush </td>
+          <td>(</td>
+          <td class="paramtype">FILE *&#160;</td>
+          <td class="paramname"><em>in</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Flush input/keyb buffer </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00368">368</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ce05b7f8e78a0513535c55d129c3af4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void prompt_and_pause </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Stop execution, show prompt - and wait for &lt;Enter&gt; keypress </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00314">314</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa574aa3a54b3bd35a68af091ba6409a1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int rand_int </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>low</em>, </td>
@@ -254,7 +502,214 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Generate random integer values in an interval </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00026">26</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00041">41</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abcba0ffad38b20c65bc7e0e218c63d09"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int read_char </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prompt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>lo_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>hi_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int ch)&#160;</td>
+          <td class="paramname"><em>char_ok</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Read character from stdin - with some error handling </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00326">326</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acfa10b1c9e1e4dfc589fa1a5dadeaf1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int read_int </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>prompt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>lo_val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>hi_val</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Read integer from stdin - with some error handling </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00257">257</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aad9dc6b2940bea67f2758a3886648ccc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strins </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ins</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Insert a string into another.. </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00197">197</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8964cfc6de8640466cc608d5c99b431f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strmove </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>to</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>from</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Move a string in memory... </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00191">191</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0493cd3d30a1744250b93a23d6b31de2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strtrim </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int)&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int(*)(int)&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Trim both ends of a string </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00206">206</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af08af9c5034e14fb95390dbb97ea63e2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strtriml </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Trim left side(=skip blanks) of a string </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00233">233</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abecbe61e2831453156a2ad80aada8b68"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* strtrimr </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Trim rigt side(=skip trailing blanks) of a string </p>
+
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00239">239</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
@@ -283,14 +738,14 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Set an upper bound for an integer value </p>
 
-<p>Definition at line <a class="el" href="utils_8c_source.html#l00048">48</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
+<p>Definition at line <a class="el" href="utils_8c_source.html#l00063">63</a> of file <a class="el" href="utils_8c_source.html">utils.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:13 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

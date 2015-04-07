@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Filename: slist.c</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Author  : Kyle Loudon/Dan Levin</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Date    : Fri Mar 22 12:40:45 GMT 2013</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.40</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.51</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * ---</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Description: A singly-linked list - implemented as a pure, generic ADT.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *</span></div>
@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *             - Changed return value - for node not found - from -1 to 1.</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> *             in/out parameters - i.e. double-pointers.             </span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> *             </span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"> * 2015-03-31  This code ready for version 0.51</span></div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="slist_8h.html">slist.h</a>&quot;</span></div>
@@ -314,93 +314,98 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  list-&gt;match = match;</div>
 <div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;}</div>
 <div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="code" href="slist_8h.html#a434b13bc67eff0bc6b5a86a32feb9b50">  237</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#a434b13bc67eff0bc6b5a86a32feb9b50">SLISTreverse</a>(<a class="code" href="struct_s_list__.html">Slist</a> list)</div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="code" href="slist_8h.html#a44c2a6f0cfd0e065669a6f7eef1f8bef">  237</a></span>&#160;<a class="code" href="slist_8h.html#aef2e226b252b7fe58d1a4d63f640149b">match_callback</a> <a class="code" href="slist_8c.html#a44c2a6f0cfd0e065669a6f7eef1f8bef">SLISTgetmatch</a>(<a class="code" href="struct_s_list__.html">Slist</a> list)</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;{</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> tmp;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;  <span class="comment">/* If listsize &gt; 1... */</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;  <span class="keywordflow">if</span> (list-&gt;size &gt; 1)</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;      <span class="comment">/* Call &#39;revert()&#39; to reverse the list physically */</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;      revert(list-&gt;head);</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;      list-&gt;head-&gt;next = NULL;</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;      <span class="comment">/* Swap head- and tailpointers */</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      tmp = list-&gt;head;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      list-&gt;head = list-&gt;tail;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      list-&gt;tail = tmp;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> revert(<a class="code" href="struct_s_list_elmt__.html">SlistNode</a> node)</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;  <span class="keywordflow">if</span> (!(node-&gt;next))</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;  <span class="keywordflow">return</span> list-&gt;match;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="code" href="slist_8h.html#a434b13bc67eff0bc6b5a86a32feb9b50">  242</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#a434b13bc67eff0bc6b5a86a32feb9b50">SLISTreverse</a>(<a class="code" href="struct_s_list__.html">Slist</a> list)</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;{</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> tmp;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;  <span class="comment">/* If listsize &gt; 1... */</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;  <span class="keywordflow">if</span> (list-&gt;size &gt; 1)</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    {</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;      <span class="comment">/* Call &#39;revert()&#39; to reverse the list physically */</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;      revert(list-&gt;head);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;      list-&gt;head-&gt;next = NULL;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;      <span class="comment">/* Swap head- and tailpointers */</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;      tmp = list-&gt;head;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;      list-&gt;head = list-&gt;tail;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;      list-&gt;tail = tmp;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;  revert(node-&gt;next);</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;  node-&gt;next-&gt;next=node;</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;}</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">/* Selection sort for linked list */</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno"><a class="code" href="slist_8h.html#aee39a6a799daeddf8e3f7f3e9e9335ec">  265</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#aee39a6a799daeddf8e3f7f3e9e9335ec">SLISTsort</a>(<a class="code" href="struct_s_list__.html">Slist</a> list, <span class="keywordtype">int</span> (*cmp)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2))</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;{</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> curr, maxmin, tmp;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;  <span class="keywordtype">void</span> *tmpdata;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;  <span class="keywordflow">if</span> (list-&gt;size &gt; 1)</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    {</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;      curr = list-&gt;head;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;      <span class="keywordflow">while</span> (curr-&gt;next)</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        {</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;          maxmin = curr;</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;          tmp = curr-&gt;next;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> revert(<a class="code" href="struct_s_list_elmt__.html">SlistNode</a> node)</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;{</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;  <span class="keywordflow">if</span> (!(node-&gt;next))</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  revert(node-&gt;next);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;  node-&gt;next-&gt;next=node;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;}</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">/* Selection sort for linked list */</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno"><a class="code" href="slist_8h.html#aee39a6a799daeddf8e3f7f3e9e9335ec">  270</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#aee39a6a799daeddf8e3f7f3e9e9335ec">SLISTsort</a>(<a class="code" href="struct_s_list__.html">Slist</a> list, <span class="keywordtype">int</span> (*cmp)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2))</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;{</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> curr, maxmin, tmp;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordtype">void</span> *tmpdata;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;  <span class="keywordflow">if</span> (list-&gt;size &gt; 1)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    {</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;      curr = list-&gt;head;</div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;          <span class="keywordflow">while</span>(tmp)</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            {</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;              <span class="keywordflow">if</span> (cmp(tmp-&gt;data, maxmin-&gt;data) &lt; 0)</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                maxmin = tmp;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;              tmp = tmp-&gt;next;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            }</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;          <span class="keywordflow">if</span> (maxmin != curr)</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            {</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;              tmpdata = curr-&gt;data;</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;              curr-&gt;data = maxmin-&gt;data;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;              maxmin-&gt;data = tmpdata;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            }</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;          curr = curr-&gt;next;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        }</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    }</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> bwd_traverse(<a class="code" href="struct_s_list_elmt__.html">SlistNode</a> node, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data))</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;{</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;  <span class="keywordflow">if</span> (!(node))</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;      <span class="keywordflow">while</span> (curr-&gt;next)</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;          maxmin = curr;</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;          tmp = curr-&gt;next;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;          <span class="keywordflow">while</span>(tmp)</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;              <span class="keywordflow">if</span> (cmp(tmp-&gt;data, maxmin-&gt;data) &lt; 0)</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                maxmin = tmp;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;              tmp = tmp-&gt;next;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;            }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;          <span class="keywordflow">if</span> (maxmin != curr)</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            {</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;              tmpdata = curr-&gt;data;</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;              curr-&gt;data = maxmin-&gt;data;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;              maxmin-&gt;data = tmpdata;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            }</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;          curr = curr-&gt;next;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        }</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;}</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;  bwd_traverse(node-&gt;next, callback);</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;  callback(node-&gt;data);</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;}</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno"><a class="code" href="slist_8h.html#a431e0f671fe016275de19d82340ccd88">  306</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#a431e0f671fe016275de19d82340ccd88">SLISTtraverse</a>(<a class="code" href="struct_s_list__.html">Slist</a> list, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data), <span class="keywordtype">int</span> direction)</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;{</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> curr;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;  <span class="keywordflow">if</span> (direction == <a class="code" href="slist_8h.html#a6f9eeff1695b1f5ff6657e1a98dd322f">SLIST_FWD</a>)</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    <span class="keywordflow">for</span> (curr=list-&gt;head; curr != NULL; curr=curr-&gt;next)</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;      callback(curr-&gt;data); </div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <span class="keywordflow">if</span> (direction == <a class="code" href="slist_8h.html#afae326856da500e22c4fdcd265c1aecc">SLIST_BWD</a>)</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    {</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;      curr = list-&gt;head;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      bwd_traverse(curr, callback);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;}</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> bwd_traverse(<a class="code" href="struct_s_list_elmt__.html">SlistNode</a> node, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data))</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;{</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;  <span class="keywordflow">if</span> (!(node))</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;  bwd_traverse(node-&gt;next, callback);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;  callback(node-&gt;data);</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;}</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="code" href="slist_8h.html#a431e0f671fe016275de19d82340ccd88">  311</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="slist_8c.html#a431e0f671fe016275de19d82340ccd88">SLISTtraverse</a>(<a class="code" href="struct_s_list__.html">Slist</a> list, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data), <span class="keywordtype">int</span> direction)</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;{</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;  <a class="code" href="struct_s_list_elmt__.html">SlistNode</a> curr;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;  <span class="keywordflow">if</span> (direction == <a class="code" href="slist_8h.html#a6f9eeff1695b1f5ff6657e1a98dd322f">SLIST_FWD</a>)</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">for</span> (curr=list-&gt;head; curr != NULL; curr=curr-&gt;next)</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;      callback(curr-&gt;data); </div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;  <span class="keywordflow">if</span> (direction == <a class="code" href="slist_8h.html#afae326856da500e22c4fdcd265c1aecc">SLIST_BWD</a>)</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    {</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;      curr = list-&gt;head;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;      bwd_traverse(curr, callback);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    }</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;}</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:12 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

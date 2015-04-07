@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,80 +92,82 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Filename: avltree.h</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Author  : Kyle Loudon/Dan Levin</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Date    : Fri Mar 22 12:40:45 GMT 2013</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.40</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.51</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * ---</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Description: An AVLtree - with some extensions.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#ifndef _AVLTREE_H_</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _AVLTREE_H_</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;malloc.h&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="avltree_8h.html#ab949109b5610bd3c4875c6b8bc59093c">   36</a></span>&#160;<span class="preprocessor">#define            AVL_LFT_HEAVY         1</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="code" href="avltree_8h.html#a18a0bb02fd6bff08ae88803fbac44b01">   41</a></span>&#160;<span class="preprocessor">#define            AVL_BALANCED          0</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="avltree_8h.html#a9f12c156cfc26826c8b2d0e30b5b2002">   46</a></span>&#160;<span class="preprocessor">#define            AVL_RGT_HEAVY        -1</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="avltree_8h.html#a4d8b7dab130174bd9ca8b641a155cec9">   53</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_avl_tree_node__.html">AvlTreeNode_</a> *<a class="code" href="avltree_8h.html#a4d8b7dab130174bd9ca8b641a155cec9">AvlTreeNode</a>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="avltree_8h.html#ac88ab56a6df1c5fadfafda260f88f737">   60</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_avl_tree__.html">AvlTree_</a> *<a class="code" href="avltree_8h.html#ac88ab56a6df1c5fadfafda260f88f737">AvlTree</a>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="comment">/* FUNCTION DECLARATIONS */</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Date   Revision message</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * 150331 This code ready for version 0.51</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#ifndef _AVLTREE_H_</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _AVLTREE_H_</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;malloc.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="avltree_8h.html#ab949109b5610bd3c4875c6b8bc59093c">   38</a></span>&#160;<span class="preprocessor">#define            AVL_LFT_HEAVY         1</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="avltree_8h.html#a18a0bb02fd6bff08ae88803fbac44b01">   43</a></span>&#160;<span class="preprocessor">#define            AVL_BALANCED          0</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="avltree_8h.html#a9f12c156cfc26826c8b2d0e30b5b2002">   48</a></span>&#160;<span class="preprocessor">#define            AVL_RGT_HEAVY        -1</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="avltree_8h.html#a4d8b7dab130174bd9ca8b641a155cec9">   55</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_avl_tree_node__.html">AvlTreeNode_</a> *<a class="code" href="avltree_8h.html#a4d8b7dab130174bd9ca8b641a155cec9">AvlTreeNode</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="avltree_8h.html#ac88ab56a6df1c5fadfafda260f88f737">   62</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_avl_tree__.html">AvlTree_</a> *<a class="code" href="avltree_8h.html#ac88ab56a6df1c5fadfafda260f88f737">AvlTree</a>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  AvlTree <a class="code" href="avltree_8c.html#a9647a4fd87aba9a15fdfcf6c5d1c2ae1">AVLTREEinit</a>(<span class="keywordtype">int</span> (*compare)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2), </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                      <span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a88d28d0bf4676a170a5bbbec6d45f382">AVLTREEdestroy</a>(AvlTree tree);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a9dd823cb5588bcf1eb0a19a4bac9047b">AVLTREEinsert</a>(AvlTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a5a34a3f7fb05152856ca2697556ebc8d">AVLTREEremove</a>(AvlTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a184c408d85aea3e82d52328509d11ecb">AVLTREElookup</a>(AvlTree tree, <span class="keywordtype">void</span> **data);</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a9f65cbcb9a63c22fed9526bd22b3a60c">AVLTREEsize</a>(AvlTree tree);</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#ac19b5fb897675c32116449712f178b6a">AVLTREEroot</a>(AvlTree tree);</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a6bbf30fbd5f31cd8942d3957fdc49596">AVLTREEis_eob</a>(AvlTreeNode node);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a5a4a6106433b562297cdcb56ebf799d4">AVLTREEis_leaf</a>(AvlTreeNode node);</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;  <span class="keywordtype">void</span> *<a class="code" href="avltree_8c.html#a6752b9ad07d9c665ceb26e77bbe3b4c3">AVLTREEdata</a>(AvlTreeNode node);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#a7f4872ee19b4dbf201a0645069f6300a">AVLTREEleft</a>(AvlTreeNode node);</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#ac0141a64da0f8615387d6686e5dd653f">AVLTREEright</a>(AvlTreeNode node);</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a4b3a000f20203b29ba679f8ae2020f72">AVLTREEheight</a>(AvlTree tree);</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a53af30684d5197e77f9b85110f66ad54">AVLTREEprint</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a1ad7e452cc0c518ffdb7f77185f0c6ba">AVLTREEpreorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#ab998394fa982335b42bcadbe40dd78c0">AVLTREEinorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a9e18e8b513277ad119f106cc39deb00c">AVLTREEpostorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="preprocessor">#endif </span></div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _AVLTREE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="comment">/* FUNCTION DECLARATIONS */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  AvlTree <a class="code" href="avltree_8c.html#a9647a4fd87aba9a15fdfcf6c5d1c2ae1">AVLTREEinit</a>(<span class="keywordtype">int</span> (*compare)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2), </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                      <span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a88d28d0bf4676a170a5bbbec6d45f382">AVLTREEdestroy</a>(AvlTree tree);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a9dd823cb5588bcf1eb0a19a4bac9047b">AVLTREEinsert</a>(AvlTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a5a34a3f7fb05152856ca2697556ebc8d">AVLTREEremove</a>(AvlTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a184c408d85aea3e82d52328509d11ecb">AVLTREElookup</a>(AvlTree tree, <span class="keywordtype">void</span> **data);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a9f65cbcb9a63c22fed9526bd22b3a60c">AVLTREEsize</a>(AvlTree tree);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#ac19b5fb897675c32116449712f178b6a">AVLTREEroot</a>(AvlTree tree);</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a6bbf30fbd5f31cd8942d3957fdc49596">AVLTREEis_eob</a>(AvlTreeNode node);</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a5a4a6106433b562297cdcb56ebf799d4">AVLTREEis_leaf</a>(AvlTreeNode node);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;  <span class="keywordtype">void</span> *<a class="code" href="avltree_8c.html#a6752b9ad07d9c665ceb26e77bbe3b4c3">AVLTREEdata</a>(AvlTreeNode node);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#a7f4872ee19b4dbf201a0645069f6300a">AVLTREEleft</a>(AvlTreeNode node);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  AvlTreeNode <a class="code" href="avltree_8c.html#ac0141a64da0f8615387d6686e5dd653f">AVLTREEright</a>(AvlTreeNode node);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="avltree_8c.html#a4b3a000f20203b29ba679f8ae2020f72">AVLTREEheight</a>(AvlTree tree);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a53af30684d5197e77f9b85110f66ad54">AVLTREEprint</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a1ad7e452cc0c518ffdb7f77185f0c6ba">AVLTREEpreorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#ab998394fa982335b42bcadbe40dd78c0">AVLTREEinorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="avltree_8c.html#a9e18e8b513277ad119f106cc39deb00c">AVLTREEpostorder</a>(AvlTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _AVLTREE_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:11 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

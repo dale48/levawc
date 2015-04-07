@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,7 +92,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Filename: dlist.c</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Author  : Kyle Loudon/Dan Levin</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Date    : Fri Mar 22 12:40:45 GMT 2013</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.40</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.51</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * ---</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Description: A doubly-linked list - implemented as a pure, generic ADT.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> *</span></div>
@@ -103,58 +103,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * 2013-02-05  Created a new function &#39;int DLISTfind_remove(Dlist list, void **data)&#39;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * 2013-02-19  Made some revision to the Doxygen documentation. Enhanced the description of</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> *             in/out parameters - i.e. double-pointers.             </span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dlist_8h.html">dlist.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="struct_d_list_elmt__.html">   31</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;  <span class="keywordtype">void</span>             *data;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>  *prev;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>  *next;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;};</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="struct_d_list__.html">   38</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_d_list__.html">DList_</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="keywordtype">int</span>                size;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  int                (*match)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  void               (*destroy)(<span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>    *head;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>    *tail;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;};</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">/* FUNCTION DEFINITIONS ------------------------------------------------------ */</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="dlist_8h.html#ad50a243ed8cc07eaaec3ab49bc742ecf">   49</a></span>&#160;<a class="code" href="struct_d_list__.html">Dlist</a> <a class="code" href="dlist_8c.html#ad50a243ed8cc07eaaec3ab49bc742ecf">DLISTinit</a>(<span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data))</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <a class="code" href="struct_d_list__.html">Dlist</a> list;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordflow">if</span> ((list = (<a class="code" href="struct_d_list__.html">Dlist</a>)malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="struct_d_list__.html">DList_</a>))) == NULL)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  list-&gt;size = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  list-&gt;match = NULL;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  list-&gt;destroy = destroy;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  list-&gt;head = NULL;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  list-&gt;tail = NULL;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">return</span> list;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="dlist_8h.html#a6bfe3b6a0825eb215641d6ed7ef33b2e">   65</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="dlist_8c.html#a6bfe3b6a0825eb215641d6ed7ef33b2e">DLISTdestroy</a>(<a class="code" href="struct_d_list__.html">Dlist</a> list)</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;{</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordtype">void</span> *data;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordflow">while</span> (<a class="code" href="dlist_8c.html#ab581ac12fc35764c0af29061aa8f68a3">DLISTsize</a>(list) &gt; 0)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="dlist_8c.html#ab2879d223866eaba770b6cd7b86e5e10">DLISTremove</a>(list, <a class="code" href="dlist_8c.html#af9617d6c8545fde165afc29058da6295">DLISTtail</a>(list), (<span class="keywordtype">void</span> **)&amp;data) == 0 &amp;&amp; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;          list-&gt;destroy != NULL)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;          list-&gt;destroy(data);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * 2015-03-31  This code ready for ver. 0.51</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dlist_8h.html">dlist.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="struct_d_list_elmt__.html">   32</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <span class="keywordtype">void</span>             *data;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>  *prev;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>  *next;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="struct_d_list__.html">   39</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_d_list__.html">DList_</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">int</span>                size;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  int                (*match)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  void               (*destroy)(<span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>    *head;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keyword">struct </span><a class="code" href="struct_d_list_elmt__.html">DListElmt_</a>    *tail;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">/* FUNCTION DEFINITIONS ------------------------------------------------------ */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="dlist_8h.html#ad50a243ed8cc07eaaec3ab49bc742ecf">   50</a></span>&#160;<a class="code" href="struct_d_list__.html">Dlist</a> <a class="code" href="dlist_8c.html#ad50a243ed8cc07eaaec3ab49bc742ecf">DLISTinit</a>(<span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data))</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <a class="code" href="struct_d_list__.html">Dlist</a> list;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <span class="keywordflow">if</span> ((list = (<a class="code" href="struct_d_list__.html">Dlist</a>)malloc(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="struct_d_list__.html">DList_</a>))) == NULL)</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">return</span> NULL;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  list-&gt;size = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  list-&gt;match = NULL;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  list-&gt;destroy = destroy;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  list-&gt;head = NULL;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  list-&gt;tail = NULL;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <span class="keywordflow">return</span> list;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="dlist_8h.html#a6bfe3b6a0825eb215641d6ed7ef33b2e">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="dlist_8c.html#a6bfe3b6a0825eb215641d6ed7ef33b2e">DLISTdestroy</a>(<a class="code" href="struct_d_list__.html">Dlist</a> list)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordtype">void</span> *data;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordflow">while</span> (<a class="code" href="dlist_8c.html#ab581ac12fc35764c0af29061aa8f68a3">DLISTsize</a>(list) &gt; 0)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="dlist_8c.html#ab2879d223866eaba770b6cd7b86e5e10">DLISTremove</a>(list, <a class="code" href="dlist_8c.html#af9617d6c8545fde165afc29058da6295">DLISTtail</a>(list), (<span class="keywordtype">void</span> **)&amp;data) == 0 &amp;&amp; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;          list-&gt;destroy != NULL)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        {</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;          list-&gt;destroy(data);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  free(list);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
@@ -403,7 +403,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:12 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

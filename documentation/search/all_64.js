@@ -1,5 +1,8 @@
 var searchData=
 [
+  ['data',['data',['../struct_dsp_vertexdata__.html#a4996be6753531aeaf93067f0e594839e',1,'DspVertexdata_::data()'],['../struct_mst_vertexdata__.html#aed2e175be0bd48dad1b397957b36d202',1,'MstVertexdata_::data()'],['../struct_tsp_vertexdata__.html#a3e7b62802a2175a22d76e7b5e4a518ad',1,'TspVertexdata_::data()'],['../struct_bfs_vertexdata__.html#a264d866f096a1b3b6d33152363dd88d5',1,'BfsVertexdata_::data()'],['../struct_dfs_vertexdata__.html#abd44f9763678e9039f93b72e5c2870dc',1,'DfsVertexdata_::data()']]],
+  ['dfsvertexdata',['DfsVertexdata',['../algo_8h.html#a4e959f5fd44d4039c1ed92afa772c47e',1,'algo.h']]],
+  ['dfsvertexdata_5f',['DfsVertexdata_',['../struct_dfs_vertexdata__.html',1,'']]],
   ['dlist',['Dlist',['../dlist_8h.html#aa6741d7dbcf1722511313e1f0158f014',1,'dlist.h']]],
   ['dlist_2ec',['dlist.c',['../dlist_8c.html',1,'']]],
   ['dlist_2eh',['dlist.h',['../dlist_8h.html',1,'']]],
@@ -27,5 +30,7 @@ var searchData=
   ['dlisttail',['DLISTtail',['../dlist_8c.html#af9617d6c8545fde165afc29058da6295',1,'DLISTtail(Dlist list):&#160;dlist.c'],['../dlist_8h.html#af9617d6c8545fde165afc29058da6295',1,'DLISTtail(Dlist list):&#160;dlist.c']]],
   ['dlisttraverse',['DLISTtraverse',['../dlist_8c.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c'],['../dlist_8h.html#a57c354b2f04ec7f5e4875e2b4c4a4119',1,'DLISTtraverse(Dlist list, void(*callback)(const void *data), int direction):&#160;dlist.c']]],
   ['dn_5flim',['dn_lim',['../utils_8c.html#a64b3094d646d8eb3069101685931231e',1,'dn_lim(int minval, int val):&#160;utils.c'],['../utils_8h.html#a64b3094d646d8eb3069101685931231e',1,'dn_lim(int minval, int val):&#160;utils.c']]],
-  ['dn_5fup_5flim',['dn_up_lim',['../utils_8c.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c'],['../utils_8h.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c']]]
+  ['dn_5fup_5flim',['dn_up_lim',['../utils_8c.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c'],['../utils_8h.html#ad3d7b571ec657ab3a23e5e47ac367c06',1,'dn_up_lim(int minval, int maxval, int val):&#160;utils.c']]],
+  ['dspvertexdata',['DspVertexdata',['../algo_8h.html#a780f4b40619ec6b402fa3542cfbd5e3a',1,'algo.h']]],
+  ['dspvertexdata_5f',['DspVertexdata_',['../struct_dsp_vertexdata__.html',1,'']]]
 ];

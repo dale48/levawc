@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,90 +92,91 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * Filename: bitree.h</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * Author  : Kyle Loudon/Dan Levin</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Date    : Fri Mar 22 12:40:45 GMT 2013</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.40</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Version : 0.51</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * ---</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Description: A basic, binary search tree ADT - written in ANSI C.</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Date        Revision message</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * 2013-02-17  Created this file</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#ifndef _BITREE_H_</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _BITREE_H_</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;malloc.h&gt;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="code" href="bitree_8h.html#af436394350f6266c0e24bd28fd365b2d">   42</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_bi_tree_node__.html">BiTreeNode_</a> *<a class="code" href="bitree_8h.html#af436394350f6266c0e24bd28fd365b2d">BiTreeNode</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="bitree_8h.html#a02c59662ecf91aac45621e313005719f">   49</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_bi_tree__.html">BiTree_</a> *<a class="code" href="bitree_8h.html#a02c59662ecf91aac45621e313005719f">BiTree</a>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">/* FUNCTION DECLARATIONS */</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  BiTree <a class="code" href="bitree_8c.html#a04df06dd93308f0f75c294eb7db5d0de">BITREEinit</a>(<span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aca420853b7c3b5385858ad1f0f1ef6ec">BITREEdestroy</a>(BiTree tree);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aeafa5f6472a4ddd8757177e0d303c6f9">BITREEsetcompare</a>(BiTree tree, <span class="keywordtype">int</span> (*compare)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2));</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#af37e23797785e5dbe2758ff187b1c7f6">BITREEinsleft</a>(BiTree tree, BiTreeNode node, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#aab0597fc54d354b574fcb4a995b0e8d8">BITREEinsright</a>(BiTree tree, BiTreeNode node, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a9eec6b2e714b6351b82c7bb88f5fc8a8">BITREEinsert</a>(BiTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a00130870aabb720c8eeb52dff36cc1c4">BITREElookup</a>(BiTree tree, <span class="keywordtype">void</span> **data);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a7e97d8d28e8908ff1dd06c17871ce17d">BITREEremove</a>(BiTree tree, <span class="keywordtype">void</span> **data);</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aabdc3ac947cca878c3d8ae3208555bfe">BITREEremleft</a>(BiTree tree, BiTreeNode node);</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#accc027c081db14846cb4618fe68f0089">BITREEremright</a>(BiTree tree, BiTreeNode node);</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;  BiTree <a class="code" href="bitree_8c.html#a9d37f5de632b2a515acccf6b3d1bed92">BITREEmerge</a>(BiTree left, BiTree right, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#ab71aab0d9d85c2bc7a5d147198848238">BITREEsize</a>(BiTree tree);</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#a3f4fd435f5deb9573f67c9c2dff7f1e7">BITREEroot</a>(BiTree tree);</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a9b55bb58a60652f16c49e483f3b19e79">BITREEis_eob</a>(BiTreeNode node);</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#afb38d19ae862af49504cd3338bd783c3">BITREEis_leaf</a>(BiTreeNode node);</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <span class="keywordtype">void</span> *<a class="code" href="bitree_8c.html#a262d70a372ac42f223913fc66bc5caf3">BITREEdata</a>(BiTreeNode node);</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#af52c0b34c8042c16e8e7142b0e3189cf">BITREEleft</a>(BiTreeNode node);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#a349b218a579539d61ac48e3e34cc6762">BITREEright</a>(BiTreeNode node);</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a661a5014e67448e3ed2cc55cc872dda7">BITREEheight</a>(BiTree tree);</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a5191d2e8f4f1a8dc28e2f77df263c6b7">BITREEprint</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a50ea0bc264de9e365cf05e481edb6dd6">BITREEpreorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a6c3db5dff63cad73fd94c3f0ecab22cb">BITREEinorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a4ce66cecd63793a8c79cf92afa7db02d">BITREEpostorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;</div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor">#endif </span></div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _BITREE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Date   Revision message</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * 130217 Created this file</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * 150331 This code ready for version 0.51</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#ifndef _BITREE_H_</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define _BITREE_H_</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;malloc.h&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;assert.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utils_8h.html">utils.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="bitree_8h.html#af436394350f6266c0e24bd28fd365b2d">   43</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_bi_tree_node__.html">BiTreeNode_</a> *<a class="code" href="bitree_8h.html#af436394350f6266c0e24bd28fd365b2d">BiTreeNode</a>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="bitree_8h.html#a02c59662ecf91aac45621e313005719f">   50</a></span>&#160;  <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_bi_tree__.html">BiTree_</a> *<a class="code" href="bitree_8h.html#a02c59662ecf91aac45621e313005719f">BiTree</a>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">/* FUNCTION DECLARATIONS */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  BiTree <a class="code" href="bitree_8c.html#a04df06dd93308f0f75c294eb7db5d0de">BITREEinit</a>(<span class="keywordtype">void</span> (*destroy)(<span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aca420853b7c3b5385858ad1f0f1ef6ec">BITREEdestroy</a>(BiTree tree);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aeafa5f6472a4ddd8757177e0d303c6f9">BITREEsetcompare</a>(BiTree tree, <span class="keywordtype">int</span> (*compare)(<span class="keyword">const</span> <span class="keywordtype">void</span> *key1, <span class="keyword">const</span> <span class="keywordtype">void</span> *key2));</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#af37e23797785e5dbe2758ff187b1c7f6">BITREEinsleft</a>(BiTree tree, BiTreeNode node, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#aab0597fc54d354b574fcb4a995b0e8d8">BITREEinsright</a>(BiTree tree, BiTreeNode node, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a9eec6b2e714b6351b82c7bb88f5fc8a8">BITREEinsert</a>(BiTree tree, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a00130870aabb720c8eeb52dff36cc1c4">BITREElookup</a>(BiTree tree, <span class="keywordtype">void</span> **data);</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a7e97d8d28e8908ff1dd06c17871ce17d">BITREEremove</a>(BiTree tree, <span class="keywordtype">void</span> **data);</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#aabdc3ac947cca878c3d8ae3208555bfe">BITREEremleft</a>(BiTree tree, BiTreeNode node);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#accc027c081db14846cb4618fe68f0089">BITREEremright</a>(BiTree tree, BiTreeNode node);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;  BiTree <a class="code" href="bitree_8c.html#a9d37f5de632b2a515acccf6b3d1bed92">BITREEmerge</a>(BiTree left, BiTree right, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#ab71aab0d9d85c2bc7a5d147198848238">BITREEsize</a>(BiTree tree);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#a3f4fd435f5deb9573f67c9c2dff7f1e7">BITREEroot</a>(BiTree tree);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a9b55bb58a60652f16c49e483f3b19e79">BITREEis_eob</a>(BiTreeNode node);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#afb38d19ae862af49504cd3338bd783c3">BITREEis_leaf</a>(BiTreeNode node);</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  <span class="keywordtype">void</span> *<a class="code" href="bitree_8c.html#a262d70a372ac42f223913fc66bc5caf3">BITREEdata</a>(BiTreeNode node);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#af52c0b34c8042c16e8e7142b0e3189cf">BITREEleft</a>(BiTreeNode node);</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;  BiTreeNode <a class="code" href="bitree_8c.html#a349b218a579539d61ac48e3e34cc6762">BITREEright</a>(BiTreeNode node);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="bitree_8c.html#a661a5014e67448e3ed2cc55cc872dda7">BITREEheight</a>(BiTree tree);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a5191d2e8f4f1a8dc28e2f77df263c6b7">BITREEprint</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a50ea0bc264de9e365cf05e481edb6dd6">BITREEpreorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;</div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a6c3db5dff63cad73fd94c3f0ecab22cb">BITREEinorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;  <span class="keywordtype">void</span> <a class="code" href="bitree_8c.html#a4ce66cecd63793a8c79cf92afa7db02d">BITREEpostorder</a>(BiTree tree, <span class="keywordtype">void</span> (*callback)(<span class="keyword">const</span> <span class="keywordtype">void</span> *data));</div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;<span class="preprocessor"></span>}</div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* _BITREE_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:11 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>

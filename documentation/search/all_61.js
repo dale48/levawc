@@ -1,5 +1,12 @@
 var searchData=
 [
+  ['algo_2ec',['algo.c',['../algo_8c.html',1,'']]],
+  ['algo_2eh',['algo.h',['../algo_8h.html',1,'']]],
+  ['algobfs',['ALGObfs',['../algo_8c.html#a47694bd6b2817ef26e03571a76833816',1,'ALGObfs(Graph gr, const BfsVertexdata start, Slist *hops, int(*match)(const void *key1, const void *key2)):&#160;algo.c'],['../algo_8h.html#a47694bd6b2817ef26e03571a76833816',1,'ALGObfs(Graph gr, const BfsVertexdata start, Slist *hops, int(*match)(const void *key1, const void *key2)):&#160;algo.c']]],
+  ['algodfs',['ALGOdfs',['../algo_8c.html#a68b72070a417b7c5844e9831d4147fed',1,'ALGOdfs(Graph gr, Slist *ordered):&#160;algo.c'],['../algo_8h.html#a68b72070a417b7c5844e9831d4147fed',1,'ALGOdfs(Graph gr, Slist *ordered):&#160;algo.c']]],
+  ['algodsp',['ALGOdsp',['../algo_8c.html#a841d5b5945b3b06076326e3baa5de241',1,'ALGOdsp(Graph gr, const DspVertexdata start, Slist *spath, int(*match)(const void *key1, const void *key2)):&#160;algo.c'],['../algo_8h.html#a841d5b5945b3b06076326e3baa5de241',1,'ALGOdsp(Graph gr, const DspVertexdata start, Slist *spath, int(*match)(const void *key1, const void *key2)):&#160;algo.c']]],
+  ['algomst',['ALGOmst',['../algo_8c.html#a1c48de35a7c657e927ef9b73885c5096',1,'ALGOmst(Graph gr, const MstVertexdata start, Slist *span, int(*match)(const void *key1, const void *key2)):&#160;algo.c'],['../algo_8h.html#a1c48de35a7c657e927ef9b73885c5096',1,'ALGOmst(Graph gr, const MstVertexdata start, Slist *span, int(*match)(const void *key1, const void *key2)):&#160;algo.c']]],
+  ['algotsp',['ALGOtsp',['../algo_8c.html#a2c277960c4df2eecc8eee147a00c0e3c',1,'ALGOtsp(Slist vertices, const TspVertexdata start, Slist *tour, int(*match)(const void *key1, const void *key2)):&#160;algo.c'],['../algo_8h.html#a2c277960c4df2eecc8eee147a00c0e3c',1,'ALGOtsp(Slist vertices, const TspVertexdata start, Slist *tour, int(*match)(const void *key1, const void *key2)):&#160;algo.c']]],
   ['avl_5fbalanced',['AVL_BALANCED',['../avltree_8h.html#a18a0bb02fd6bff08ae88803fbac44b01',1,'avltree.h']]],
   ['avl_5flft_5fheavy',['AVL_LFT_HEAVY',['../avltree_8h.html#ab949109b5610bd3c4875c6b8bc59093c',1,'avltree.h']]],
   ['avl_5frgt_5fheavy',['AVL_RGT_HEAVY',['../avltree_8h.html#a9f12c156cfc26826c8b2d0e30b5b2002',1,'avltree.h']]],

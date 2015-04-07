@@ -68,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Data Structures</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -127,6 +127,8 @@ Functions</h2></td></tr>
 <tr class="separator:af9b585899b2805f80cc58809a8744f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dd89ca3c79c0dad70084fff2a74b86d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist_8c.html#a3dd89ca3c79c0dad70084fff2a74b86d">SLISTsetmatch</a> (<a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">Slist</a> list, int(*match)(const void *key1, const void *key2))</td></tr>
 <tr class="separator:a3dd89ca3c79c0dad70084fff2a74b86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c2a6f0cfd0e065669a6f7eef1f8bef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="slist_8h.html#aef2e226b252b7fe58d1a4d63f640149b">match_callback</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist_8c.html#a44c2a6f0cfd0e065669a6f7eef1f8bef">SLISTgetmatch</a> (<a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">Slist</a> list)</td></tr>
+<tr class="separator:a44c2a6f0cfd0e065669a6f7eef1f8bef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a434b13bc67eff0bc6b5a86a32feb9b50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist_8c.html#a434b13bc67eff0bc6b5a86a32feb9b50">SLISTreverse</a> (<a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">Slist</a> list)</td></tr>
 <tr class="separator:a434b13bc67eff0bc6b5a86a32feb9b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aee39a6a799daeddf8e3f7f3e9e9335ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slist_8c.html#aee39a6a799daeddf8e3f7f3e9e9335ec">SLISTsort</a> (<a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">Slist</a> list, int(*cmp)(const void *key1, const void *key2))</td></tr>
@@ -271,6 +273,36 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a44c2a6f0cfd0e065669a6f7eef1f8bef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="slist_8h.html#aef2e226b252b7fe58d1a4d63f640149b">match_callback</a> SLISTgetmatch </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="slist_8h.html#ae79390a19212f998cf660b1174b8cab4">Slist</a>&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the stored match callback for searching the list</p>
+<p>The call simply returns the the funtion reference to the match callback in the list header - formerly stored by the function <a class="el" href="slist_8c.html#a3dd89ca3c79c0dad70084fff2a74b86d">SLISTsetmatch()</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">list</td><td>- reference to current list.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The stored reference to a match callback function. </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="slist_8h.html#aef2e226b252b7fe58d1a4d63f640149b">match_callback</a> </dd>
+<dd>
+<a class="el" href="slist_8c.html#a3dd89ca3c79c0dad70084fff2a74b86d">SLISTsetmatch()</a> </dd></dl>
+
+<p>Definition at line <a class="el" href="slist_8c_source.html#l00237">237</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="aa945b36141716bebf9f4853555110aca"></a>
 <div class="memitem">
 <div class="memproto">
@@ -317,7 +349,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A reference - to a new, empty list - if dynamic memory allocation for the ADT was successful - or NULL otherwise. Take really good care of this return value, since it will be needed as a parameter in subsequent calls - to the majority of other list handling functions in the this function interface - i.e. a sort of "handle" to the list. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference - to a new, empty list - if dynamic memory allocation for the ADT was successful - or NULL otherwise. Take really good care of this return value, since it will be needed as a parameter in subsequent calls - to the majority of other list handling functions in this function interface - i.e. a sort of "handle" to the list. </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="slist_8c.html#a60f35196ba10e3239319bbce61ad0741">SLISTdestroy()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="slist_8c_source.html#l00055">55</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
@@ -499,12 +531,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Remove the node - directly <b>after</b> - parameter <em>node</em>.</p>
-<p>Data referenced by the removed node can be accessed by dereferencing parameter <em>data</em> - that is, <em>*data</em> - after the call - if the call was successful. If parameter <em>node</em> is set to NULL, then the first node in <em>list</em> will be removed. The caller is responsible for the future of this memory - deallocating it, for example.</p>
+<p>After the call - an (external) pointer referenced by parameter <em>data</em>, has been redirected to point to data of the removed node - if the call was succesful. If parameter <em>node</em> is set to NULL, then the first node in <em>list</em> will be removed. The caller is responsible for the future of this memory - deallocating it, for example.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">list</td><td>- reference to current list. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">node</td><td>- the node just <b>before</b> the node to be removed. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>- reference to a pointer, that will point to data of the removed node - after the call, if successful.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">data</td><td>- reference to a pointer, that will point to data of the removed node after the call - if successful.</td></tr>
   </table>
   </dd>
 </dl>
@@ -536,7 +568,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
 
-<p>Definition at line <a class="el" href="slist_8c_source.html#l00237">237</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
+<p>Definition at line <a class="el" href="slist_8c_source.html#l00242">242</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
 
 </div>
 </div>
@@ -636,7 +668,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="slist_8c_source.html#l00265">265</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
+<p>Definition at line <a class="el" href="slist_8c_source.html#l00270">270</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
 
 </div>
 </div>
@@ -706,14 +738,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Nothing. </dd></dl>
 
-<p>Definition at line <a class="el" href="slist_8c_source.html#l00306">306</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
+<p>Definition at line <a class="el" href="slist_8c_source.html#l00311">311</a> of file <a class="el" href="slist_8c_source.html">slist.c</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2013 18:36:32 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Apr 7 2015 09:01:13 for The LevAWC Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.2
 </small></address>
