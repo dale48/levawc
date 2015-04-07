@@ -1,17 +1,17 @@
 <h2>LevAWC version 0.51</h2>
-<h4>Changes (Mar 31, 2015)</h4>
-<p>Since this is a <i>major revision</i>, the changes are numerous. Now all the data structures in Kyle's book are included in this version, AFAIK. Some graph algorithms are present, too.</p>
+<h4>Changes (Tue Apr 07, 2015)</h4>
+<p>Since this is a <i>major revision</i>, the changes are numerous. Now all data containers in Kyle's book are included in the library, AFAIK. Some graph algorithms are present, too.</p>
 <ul>
   <li>Added <i>new container source</i>: <code>cslist.c, cslist.h, set.c, set.h, ohashtbl.c, ohashtbl.h, graph.c, graph.h</code></li>
-  <li>Added new source files for (graph) algorithms, algo.c, algo.h. Here you'll find functions for calculating Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path. Functions for graph searching - Breadth First Search(BFS), Depth First Search(DFS) are also present here</li>
+  <li>Added new source files for <i>Graph Algorithms</i>, algo.c, algo.h. Here you'll find functions for calculating <i>Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path</i>. Functions for graph searching - <i>Breadth First Search(BFS), Depth First Search(DFS)</i> are also present in these files</li>
   <li>Added <i>new demo</i> source: <code>demo08.c, demo09.c, demo10.c, demo11.c, demo12.c, demo13.c demo14.c</code> - showing usage of Circular List, Set, Open-Addressed Hashtable and Graph ADT:s (together with some Graph Algorithms)</li>
-  <li>Demo program <code>demo14.c</code> is a more extensive graph demo - implementing the "Dijkstra's Shortest Path" algorithm</li>
+  <li>Demo program <code>demo14.c</code> is a more extensive graph demo - implementing the <i>Dijkstra's Shortest Path</i> algorithm</li>
   <li>Made all demos <i>menu-driven</i> - with <i>rudimentary error handling</i></li>
   <li><i>Moved</i> some <i>utility functions</i> from demo source files - to file <code>utils.c</code> and <code>utils.h</code></li>
 </ul>
 <h4>New features</h4>
 <ul>
-  <li>Four new container ADT:s - Circular List, Set, Open-Addressed Hashtable and Graph - accompanied by demos (<code>demo08.c, demo09.c, demo10.c, demo11.c, demo12.c demo13.c</code>)</li>
+  <li>Four new container ADT:s - <i>Circular List, Set, Open-Addressed Hashtable</i> and <i>Graph</i> - accompanied by demos (<code>demo08.c, demo09.c, demo10.c, demo11.c, demo12.c demo13.c</code>)</li>
   <li>More extensiv Graph ADT demo: <code>demo14.c</code></li>
   <li>Introducing Graph Algorithms (in files <code>algo.c algo.h)</code></li>
   <li>Extended and fine-tuned the documentation accordingly...</li>

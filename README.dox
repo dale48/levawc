@@ -2,7 +2,7 @@
  * @file README.dox
  * @mainpage Project Presentation
  * @par Introduction
- * This project covers some <b>Basic Dynamic Data Structures</b> implemented as pure, <b>generic ADT:s</b>, coded in <b>ANSI C</b>. Makefiles for building a library, both for Windows/Linux are included.\n You can even download a tarball to build/install the library from source, the usual way, under Linux.
+ * This project covers some basic <b>Dynamic Data Structures</b> implemented as <b>pure, generic ADT:s</b>, coded in <b>ANSI C</b>. Makefiles for building a library, both for Windows/Linux are included.\n You can even download a tarball to build/install the library from source, the usual way, under Linux.
  * - Singly-linked list
  * - Doubly-linked list
  * - Circular, singly-linked list
@@ -17,14 +17,14 @@
  * - AVL tree
  * - Graph
  * @par Algorithms
- * Moreover, I've included some Graph Algorithms (Breadth-First-Search, Depth-First-Search, Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path) in file <code>algo.h</code> and <code>algo.c</code>.
+ * Moreover, I've included some <i>Graph Algorithms</i> (Breadth-First-Search, Depth-First-Search, Minimal Spanning Tree, Dijkstra's Shortest Path and Traveling Salesman Path) in file <code>algo.h</code> and <code>algo.c</code>.
  * These algorithms are not part of the library, though - so you have to link them into your project, if needed.
  * @par Source
  *  Original and major parts of the code written by 
  * <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a>, in his book "Mastering Algorithms with C", published at <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">O'Reilly Company</a>.\n
  * Minor adjustments and extensions added by <a href="https://github.com/dale48" target="_blank">Dan Levin</a>.
  * @author   <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> and <a href="https://github.com/dale48" target="_blank">Dan Levin</a>
- * @date     <b>Tue Mar 31, 2015</b>
+ * @date     <b>Tue Apr 07, 2015</b>
  * @version  0.51 (<a href="md__change_log.html">To ChangeLog</a>)
  * @par Demos
  * The demos are trying to test and show most of the public interface of the ADT:s - accordingly:

@@ -1,5 +1,5 @@
 <h2>Project "LevAWC"</h2>
-<h4>Purpose:</h4> This project covers some <b>Basic Dynamic Data Structures</b> implemented as pure, <b>generic ADT:s</b>, coded in <b>ANSI C</b>. Makefiles for building a library, both for Windows/Linux are included. You can also download a tarball to build/install the library from source, under Linux/Unix. Primarily for educational purposes - but the project can, of course, be useful in other contexts, as well.
+<h4>Purpose:</h4> This project covers some basic <b>Dynamic Data Structures</b> implemented as <b> pure, generic ADT:s</b>, coded in <b>ANSI C</b>. Makefiles for building a library, both for Windows/Linux are included. You can also download a tarball to build/install the library from source, under Linux/Unix. Primarily for educational purposes - but the project can, of course, be useful in other contexts, as well.
 
 Original source code was written by <a href="http://www.kyleloudon.com/" target="_blank">Kyle Loudon</a> - in his book <a href="http://shop.oreilly.com/product/9781565924536.do" target="_blank">Mastering Algorithms with C</a> - published at <a href="http://www.oreilly.com" target="_blank">O'Reilly Company</a>. I have rewritten and extended some minor parts of the original source code. Finally, I want to thank Kyle and O'Reilly for giving me permisson to publish this code here at GitHub.
 
