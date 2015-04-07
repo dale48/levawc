@@ -2,13 +2,13 @@ TODO-list for project LevAWC - created Wed Jan 21 09:16:14 2015
 ---------------------------------------------------------------
 
 - Make EU Criss-Cross Tour demo14.c complete - i.e. add a mst function - or postpone this a while..
-- Make new tarballs for version 0.51
 - Make/Extend documentation for utils.h and algo.h
 - Create new code - AVLTREEhard_remove() - to physically remove any node in an AVLtree.
 
 ---------------------------------------------------------------
 Completed tasks:
 ---------------------------------------------------------------
+- Make new tarballs for version 0.51 Tue Apr 07 09:06:58 2015
 - Check return values for Graph functions in demo12.c and demo14.c Fixed: Thu Mar 26 13:09:29 2015
 - Make/Improve new documentation for circular list, set, open-addressed hashtable and graph Fixed: Thu Mar 26 13:07:29 2015
 - Try to flush keyb. buffer from junk after input+Enter in inputroutines Fixed: Wed Mar 18 08:48:46 2015
